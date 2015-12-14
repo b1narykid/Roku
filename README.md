@@ -3,6 +3,8 @@
 
 CoreData multithreaded stacks made easy.
 
+# License
+
 ```
 The MIT License (MIT)
 
