@@ -1,5 +1,5 @@
 # Roku
-###### Warning: This is pre-release version. There are not tests for now.
+###### Warning: This is pre-release version. There are no tests for now.
 
 CoreData multithreaded stacks made easy.
 
