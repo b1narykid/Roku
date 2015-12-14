@@ -10,7 +10,7 @@ import Swift
 import CoreData
 
 private enum ObservedParentStore {
-    case MOC(ObservableContext)
+    case MOC(NSManagedObjectContext)
     case PSC(NSPersistentStoreCoordinator)
     /// Error: No storage
     case Error
@@ -26,7 +26,7 @@ public class ContextObserver {
     ///
     /// - Note: Weak reference. Receiving a notification when 
     ///         the object, pointed by reference is `nil`
-    public internal(set) weak var observedObject: ObservableContext?
+    public internal(set) weak var observedObject: NSManagedObjectContext?
     
     // MARK: Multithreading
     
@@ -66,7 +66,7 @@ public class ContextObserver {
             
             // Initilizing context with persistent as a child context 
             // also initializes its `persistentStoreCoordinator` (or it is getter).
-            if let moc = observedObject.parentContext as? ObservableContext {
+            if let moc = observedObject.parentContext where moc is ObservableContext {
                 return .MOC(moc)
             }
             
@@ -94,7 +94,7 @@ public class ContextObserver {
         guard notific.name == NSManagedObjectContextDidSaveNotification else { return }
         // Assert that the observed object is not released.
         guard let obj = self.observedObject else { return self.endObserving() }
-        guard let sender = notific.object as? ObservableContext where sender !== obj else { return }
+        guard let sender = notific.object where sender is ObservableContext && sender !== obj else { return }
         
         switch self.observedStore {
         case .MOC(let moc):

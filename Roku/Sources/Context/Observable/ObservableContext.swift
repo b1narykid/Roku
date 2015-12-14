@@ -39,27 +39,9 @@ public protocol ObservableContext: class {
     /// Bool value indicating whether the persistent store coordinator's
     /// changes are observed or not (read-only value).
     var storeObserved: Bool { get }
-    
-    // MARK: ContextObserver support
-    
-    /// Parent object context. Should conform to `ObservableContext`.
-    var parentContext: NSManagedObjectContext? { get }
-    /// Persistent store coordinator.
-    var persistentStoreCoordinator: NSPersistentStoreCoordinator? { get }
-    
-    /// Merges the changes specified in notification object received
-    /// from another context's `NSManagedObjectContextDidSaveNotification` into the receiver.
-    /// This method will refresh any objects which have been updated in the other context,
-    /// fault in any newly inserted objects, and invoke deleteObject: on those which have been deleted.
-    func mergeChangesFromContextDidSaveNotification(notification: NSNotification)
-    /// Asynchronously performs the block on the context's queue. 
-    /// Encapsulates an autorelease pool and a call to `processPendingChanges`.
-    func performBlock(block: () -> Void)
-    /// Synchronously performs the block on the context's queue.  May safely be called reentrantly.
-    func performBlockAndWait(block: () -> Void)
 }
 
-extension ObservableContext {
+extension ObservableContext where Self: NSManagedObjectContext {
     /// Bool value indicating whether the parent context's
     /// changes are observed or not (read-only value).
     public var parentObserved: Bool {
