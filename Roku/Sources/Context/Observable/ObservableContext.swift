@@ -1,0 +1,80 @@
+//
+//  ObservableContext.swift
+//  Roku
+//
+// Copyright (c) 2015 Ivan Trubach
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+import Swift
+import CoreData
+
+/// Objects conforming to this protocol can be observed with `ContextObserver`.
+///
+/// - Important: Protocol should be applied only to `NSManagedObjectContext` subclasses.
+public protocol ObservableContext: class {
+    /// An object that observes changes of contexts with
+    /// identical parent context or persistent store coordinator.
+    var observer: ContextObserver? { get }
+    
+    /// Bool value indicating whether the parent context's
+    /// changes are observed or not (read-only value).
+    var parentObserved: Bool { get }
+    /// Bool value indicating whether the persistent store coordinator's
+    /// changes are observed or not (read-only value).
+    var storeObserved: Bool { get }
+    
+    // MARK: ContextObserver support
+    
+    /// Parent object context. Should conform to `ObservableContext`.
+    var parentContext: NSManagedObjectContext? { get }
+    /// Persistent store coordinator.
+    var persistentStoreCoordinator: NSPersistentStoreCoordinator? { get }
+    
+    /// Merges the changes specified in notification object received
+    /// from another context's `NSManagedObjectContextDidSaveNotification` into the receiver.
+    /// This method will refresh any objects which have been updated in the other context,
+    /// fault in any newly inserted objects, and invoke deleteObject: on those which have been deleted.
+    func mergeChangesFromContextDidSaveNotification(notification: NSNotification)
+    /// Asynchronously performs the block on the context's queue. 
+    /// Encapsulates an autorelease pool and a call to `processPendingChanges`.
+    func performBlock(block: () -> Void)
+    /// Synchronously performs the block on the context's queue.  May safely be called reentrantly.
+    func performBlockAndWait(block: () -> Void)
+}
+
+extension ObservableContext {
+    /// Bool value indicating whether the parent context's
+    /// changes are observed or not (read-only value).
+    public var parentObserved: Bool {
+        get {
+            return self.parentContext != nil && self.observer != nil
+        }
+    }
+    
+    /// Bool value indicating whether the persistent store coordinator's
+    /// changes are observed or not (read-only value).
+    public var storeObserved: Bool {
+        get {
+            // Setting `parentContext` property also mutates
+            // `persistentStoreCoordinator` to `parentContext.persistentStoreCoordinator`
+            return self.parentContext == nil && self.persistentStoreCoordinator != nil && self.observer != nil
+        }
+    }
+}
