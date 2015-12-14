@@ -2,8 +2,7 @@
 //  StorageController.swift
 //  Roku
 //
-//  Created by Ivan Trubach on 15.11.15.
-//  Copyright © 2015 Ivan Trubach. All rights reserved.
+// Copyright © 2015 Ivan Trubach
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
