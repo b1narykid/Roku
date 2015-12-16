@@ -38,15 +38,13 @@ public final class StorageModel {
     ///
     /// - Parameter persistentStoreCoordinator: Persistent store coordinator instance.
     ///                                         You may either transmit an persistent store coordinator
-    ///                                         to the `Roku` framework or create a new one in a closure.
+    ///                                         to the `Roku` framework or create a new one in a function.
     ///
-    /// - Parameter lazyEvaluation:             Uses lazy evaluation iff `true`. Otherwise, iff `false`,
+    /// - Parameter lazyEvaluation:             Uses lazy evaluation iff `true`. Otherwise,
     ///                                         the values will be computed at the initialization.
     ///                                         Default value is `true`.
-    public init(
-        persistentStoreCoordinator store: () -> NSPersistentStoreCoordinator = StorageModel.nullStore,
-        lazyEvaluation beLazy: Bool = true) {
-        self._createStore = store
+    public init(persistentStoreCoordinator: () -> NSPersistentStoreCoordinator = StorageModel.nullStore, beLazy: Bool = true) {
+        self._createStore = persistentStoreCoordinator
         // Evaluate values if not lazy evaluation
         if beLazy == true { return }
         self._store = self._createStore()

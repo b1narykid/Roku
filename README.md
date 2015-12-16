@@ -11,24 +11,6 @@ CoreData's concurrent stacks made easy.
 
 A small layer between `Roku` framework and the external services.
 
-#### Usage
-
-Initializing storage model (recomended).
-```swift
-func createPersistentStore() -> NSPersistentStoreCoordinator {
-    // Create and return persistent store coordinator
-}
-
-let storage = StorageModel(persistentStoreCoordinator: createPersistentStore)
-```
-
-Overriding lazy initialization.
-```swift
-// By default, `StorageModel` uses lazy initialization of its values.
-let dontBeLazy = false
-let storage = StorageModel(persistentStoreCoordinator: createPersistentStore, lazyEvaluation: dontBeLazy)
-```
-
 #### Error handling
 
 `Roku` relies on existence of persistent store coordinator.
@@ -58,6 +40,35 @@ if storage.persistentStoreCoordinator is NullObject {
     // Persistent store coordinator was not initialized by user
     // Handle an error
 }
+```
+
+#### Usage
+
+##### Overriding lazy initialization.
+
+By default, `StorageModel` initializes its values lazily.
+
+```swift
+let dontBeLazy = false
+let storage = StorageModel(persistentStoreCoordinator: createPersistentStore, beLazy: dontBeLazy)
+```
+
+##### Initializing storage model (recomended way).
+```swift
+func createPersistentStore() -> NSPersistentStoreCoordinator {
+    let persistentStoreCoordinator: NSPersistentStoreCoordinator
+    // Create persistent store coordinator
+    // ...
+    if let error = error {
+        // Handle error.
+        // And return `NullObject`.
+        return StorageModel.nullStore()
+    }
+    // Return new persistent store coordinator
+    return persistentStoreCoordinator
+}
+
+let storage = StorageModel(persistentStoreCoordinator: createPersistentStore)
 ```
 
 #### Related protocols

@@ -62,7 +62,7 @@
 		778647481C1F0AB700483361 /* ContextObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextObserver.swift; sourceTree = "<group>"; };
 		7786474B1C1F0AB700483361 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		7786474C1C1F0AB700483361 /* OperationQueueFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueueFactory.swift; sourceTree = "<group>"; };
-		7786474D1C1F0AB700483361 /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		7786474D1C1F0AB700483361 /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Provider.swift; path = Utils/Provider.swift; sourceTree = "<group>"; };
 		7786474F1C1F0AB700483361 /* NullObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullObject.swift; sourceTree = "<group>"; };
 		778647501C1F0AB700483361 /* Roku.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roku.swift; sourceTree = "<group>"; };
 		778647541C1F0AB700483361 /* BaseStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseStack.swift; sourceTree = "<group>"; };
@@ -136,6 +136,14 @@
 			path = RokuTests;
 			sourceTree = "<group>";
 		};
+		77456DAD1C21DE3700719C24 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7786474D1C1F0AB700483361 /* Provider.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		778647411C1F0AB700483361 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +195,7 @@
 			children = (
 				7786474A1C1F0AB700483361 /* Internal */,
 				7786474E1C1F0AB700483361 /* Patterns */,
+				77456DAD1C21DE3700719C24 /* Utils */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -196,7 +205,6 @@
 			children = (
 				7786474B1C1F0AB700483361 /* Queue.swift */,
 				7786474C1C1F0AB700483361 /* OperationQueueFactory.swift */,
-				7786474D1C1F0AB700483361 /* Provider.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -385,6 +393,9 @@
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 771CCF131C1F057C002C7411;
 			productRefGroup = 771CCF1E1C1F057C002C7411 /* Products */;
 			projectDirPath = "";
