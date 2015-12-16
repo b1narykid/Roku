@@ -31,19 +31,4 @@ public class StorageModelTests: XCTestCase {
         XCTAssertTrue(Data.tests.storageModel.managedObjectModel                            === Data.tests.managedObjectModel, err3)
         XCTAssertTrue(Data.tests.storageModel.persistentStoreCoordinator.managedObjectModel === Data.tests.managedObjectModel, err4)
     }
-    
-    public func testModelReset() {
-        let pscBackup = Data.tests.storageModel.persistentStoreCoordinator
-        let pscEmpty  = NSPersistentStoreCoordinator(managedObjectModel: pscBackup.managedObjectModel)
-        Data.tests.storageModel.resetModelWith(persistentStoreCoordinator: pscEmpty, lazyEvaluation: true)
-        
-        XCTAssertNil(Data.tests.storageModel._model)
-        XCTAssertNil(Data.tests.storageModel._store)
-        
-        Data.tests.storageModel.resetModelWith(persistentStoreCoordinator: pscBackup, lazyEvaluation: false)
-    }
-    
-//    public func testPerformanceExample() {
-//        self.measureBlock { }
-//    }
 }

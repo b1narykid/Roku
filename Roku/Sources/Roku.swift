@@ -25,9 +25,9 @@
 import Swift
 @exported import CoreData
 
-/// Generic wrapper over the `StorageModelBasedStack` `CoreData` stack.
+/// Wrapper over the `StorageModelBasedStack` `CoreData` stack.
 ///
-/// Provides a convenience API for the `CoreData`'s context.
+/// Provides a convenience API for the `CoreData`'s context stacks.
 ///
 /// - SeeAlso: `BaseStack`, `BaseStackTemplate`, `NestedStack`, `NestedStackTemplate`, `IndependentStack`, `IndependentStackTemplate`
 ///
@@ -90,10 +90,6 @@ public class Roku<ContextStack: StorageModelBasedStack>: StorageModelBased, Stor
         }
         
         return try body(worker)
-    }
-    
-    public func take() {
-        
     }
     
     /// Save data to persistent store.

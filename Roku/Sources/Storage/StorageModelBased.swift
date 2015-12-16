@@ -26,7 +26,7 @@ import Swift
 import CoreData
 
 /// Storage model based stack.
-public typealias StorageModelBasedStack = protocol<BaseStackTemplate, StorageModelBased>
+public typealias StorageModelBasedStack = protocol<BaseStackTemplate, StorageModelBased, StorageModelConvertible>
 
 /// Describes an object which behaviour is based on `StorageModel`.
 public protocol StorageModelBased: StorageModelConvertible {
@@ -39,7 +39,7 @@ public protocol StorageModelBased: StorageModelConvertible {
 public extension StorageModelBased where Self: BaseStackTemplate {
     /// Storage used by managed object contexts.
     ///
-    /// - Note: Always equal to `self.storage.persistentStoreCoordinator`.
+    /// - Note: Equal to `self.storage.persistentStoreCoordinator`.
     public var persistentStoreCoordinator: NSPersistentStoreCoordinator {
         get { return self.storage.persistentStoreCoordinator }
     }

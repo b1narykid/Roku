@@ -28,5 +28,4 @@ import Swift
 ///
 /// - SeeAlso: [Null-object pattern.](https://wikipedia.org/wiki/Null_Object_pattern)
 public protocol NullObject: class {
-    
 }

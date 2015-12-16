@@ -25,24 +25,16 @@
 import Swift
 import CoreData
 
-/// Basic layer between `Roku` framework and the external services.
+/// A small layer between `Roku` framework and the external services.
 ///
-/// Wrapper of `CoreData`'s storage model classic implementation.
-public class StorageModel {
+/// Use it to initialize (or transmit existing) persistent store coordinator.
+public final class StorageModel {
     /// Initialize `StorageModel`.
     ///
-    /// Initializes with `NSManagedObjectModel` (optional) and `NSPersistentStoreCoordinator`.
+    /// Initializes with function that returns `NSPersistentStoreCoordinator`.
     ///
-    /// - Note: You may want to transmit your `CoreData`'s
+    /// - Note: You may wish to transmit your `CoreData`'s
     ///         storage model to `Roku` with this initializer.
-    ///
-    /// - Parameter managedObjectModel:         Managed object model instance.
-    ///                                         This object has a default `NullObject` value.
-    ///                                         You may ignore this parameter iff
-    ///                                         `persistentStoreCoordinator().managedObjectModel` 
-    ///                                         is a correct value. `StorageModel` will use either
-    ///                                         the passed parameter value (if not `NullObject`)
-    ///                                         or `persistentStoreCoordinator.managedObjectModel`.
     ///
     /// - Parameter persistentStoreCoordinator: Persistent store coordinator instance.
     ///                                         You may either transmit an persistent store coordinator
@@ -52,56 +44,35 @@ public class StorageModel {
     ///                                         the values will be computed at the initialization.
     ///                                         Default value is `true`.
     public init(
-        managedObjectModel         model: () -> NSManagedObjectModel = { return _NullManagedObjectModel() },
-        persistentStoreCoordinator store: () -> NSPersistentStoreCoordinator,
+        persistentStoreCoordinator store: () -> NSPersistentStoreCoordinator = StorageModel.nullStore,
         lazyEvaluation beLazy: Bool = true) {
-        // Set new values initializer
-        self._createModel = model
         self._createStore = store
         // Evaluate values if not lazy evaluation
-        guard beLazy == false else { return }
-        
-        self._store = self._initializedStore()
-        self._model = self._initializedModel()
+        if beLazy == true { return }
+        self._store = self._createStore()
     }
     
-    // MARK: Private API
+    /// Return `_NullPSC` instance.
+    public static func nullStore() -> NSPersistentStoreCoordinator {
+        /// `NSPersistentStoreCoordinator`. Null object pattern.
+        final class _NullPSC: NSPersistentStoreCoordinator, NullObject {}
+        return _NullPSC()
+    }
     
-    /// `NSPersistentStoreCoordinator`. Null object pattern.
-    private final class _NullPersistentStoreCoordinator: NSPersistentStoreCoordinator, NullObject {}
-    /// `NSManagedObjectModel`. Null object pattern.
-    private final class _NullManagedObjectModel: NSManagedObjectModel, NullObject {}
+    /// Return `_NullMOMD` instance.
+    public static func nullModel() -> NSManagedObjectModel {
+        final class _NullMOMD: NSManagedObjectModel, NullObject {}
+        return _NullMOMD()
+    }
     
-    /// Creates managed object model (by user).
-    private var _createModel: () -> NSManagedObjectModel
     /// Creates persistent store coordinator (by user).
-    private var _createStore: () -> NSPersistentStoreCoordinator
-    /// Private managed object context storage.
-    internal var _model: NSManagedObjectModel!
+    internal private(set) var _createStore: () -> NSPersistentStoreCoordinator
     /// Private persistent store coordinator storage.
-    internal var _store: NSPersistentStoreCoordinator!
-    /// Initialize and/or return initialized managed object model.
-    private func _initializedModel() -> NSManagedObjectModel {
-        if self._model == nil {
-            self._model = self._createModel()
-        }
-        
-        if self._model is NullObject || self._model == nil {
-            self._model = self.persistentStoreCoordinator.managedObjectModel
-        }
-        
-        return self._model
-    }
+    internal private(set) var _store: NSPersistentStoreCoordinator!
     /// Initialize and/or return initialized persistent store.
-    private func _initializedStore() -> NSPersistentStoreCoordinator {
+    internal func _initializedStore() -> NSPersistentStoreCoordinator {
         if self._store == nil {
             self._store = self._createStore()
-        }
-        
-        // Check whether it is `NullObject` or not.
-        if self._store is NullObject || self._store == nil {
-            // _NullPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-            self._store = _NullPersistentStoreCoordinator()
         }
         
         return self._store
@@ -112,7 +83,10 @@ public class StorageModel {
     /// The managed object model for the application.
     public var managedObjectModel: NSManagedObjectModel {
         get {
-            return self._initializedModel()
+            if self.persistentStoreCoordinator is NullObject {
+                return StorageModel.nullModel()
+            }
+            return self.persistentStoreCoordinator.managedObjectModel
         }
     }
     
@@ -120,36 +94,17 @@ public class StorageModel {
     ///
     /// - Important: Check of the returned value type is required
     ///              before using this property. `StorageModel`
-    ///              by default initializes in-memory store with
-    ///              `NullObject`
-    ///              persistent store coordinator type. This behaviour 
-    ///              allows easier internal implementaion (less checks)
-    ///              and less failable `Roku` initialization because 
-    ///              user has the ability to handle the error (and retry).
+    ///              by default initializes `NullObject`
+    ///              persistent store coordinator. This behaviour allows
+    ///              easier internal implementaion (no more optionals :])
+    ///              and less failable `StorageModel` initialization.
     public var persistentStoreCoordinator: NSPersistentStoreCoordinator {
         get {
             return self._initializedStore()
         }
-    }
-    
-    /// Resets the current state of `self` with specified parameter.
-    ///
-    /// Useful for reusing one StorageModel after handling an external
-    /// error which could not be detected by the storage model.
-    public func resetModelWith(
-        @autoclosure(escaping) managedObjectModel: () -> NSManagedObjectModel = _NullManagedObjectModel(),
-        @autoclosure(escaping) persistentStoreCoordinator: () -> NSPersistentStoreCoordinator,
-        lazyEvaluation beLazy: Bool = true) {
-            // Reset previous values
-            self._model = nil
-            self._store = nil
-            // Set new values initializer
-            self._createModel = managedObjectModel
-            self._createStore = persistentStoreCoordinator
-            // Evaluate values if not lazy evaluation
-            guard beLazy == false else { return }
-            
-            self._store = self._initializedStore()
-            self._model = self._initializedModel()
+        
+        set {
+            self._store = newValue
+        }
     }
 }

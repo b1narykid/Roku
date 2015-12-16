@@ -46,7 +46,7 @@ import CoreData
 ///              You may wish to inherit from this class to make your custom stack.
 ///
 /// - SeeAlso:   `BaseStackTemplate`, `NestedStack`, `IndependentStack`
-public class BaseStack: BaseStackTemplate, StorageModelBased, StorageModelConvertible {
+public class BaseStack: StorageModelBasedStack {
     /// Initialize with `StorageModel` instance.
     public required init(storage: StorageModel) {
         self.storage = storage
