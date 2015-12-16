@@ -25,33 +25,56 @@
 import Swift
 import CoreData
 
-private enum ObservedParentStore {
+internal enum ObservedStore {
     case MOC(NSManagedObjectContext)
     case PSC(NSPersistentStoreCoordinator)
-    /// Error: No storage
     case Error
 }
 
 /// An observer for `NSManagedObjectContext` context
 /// where context is `ObservableContext`.
 ///
-/// Merges all changes with `NSManagedObjectContextDidSaveNotification`
+/// Merges all changes in `NSManagedObjectContextDidSaveNotification`
 /// notification from `ObservableContext` contexts to `observedObject`.
+///
+/// - Note: To prevent unexpected behaviour in other contexts,
+///         `ContextObserver` merges changes only from `NSManagedObjectContext`
+///         instances that conform to `ObservableContext` protocol.
 public class ContextObserver {
     /// Observed object.
     ///
     /// - Note: Weak reference. Receiving a notification when 
-    ///         the object, pointed by reference is `nil`
-    public internal(set) weak var observedObject: NSManagedObjectContext?
-    
-    // MARK: Multithreading
-    
-    /// Asynchronous changes merging
-    public var asynchronous: Bool {
+    ///         the object, pointed by this reference is `nil`
+    ///         will cause the removal of notification observer.
+    public internal(set) weak var observedObject: NSManagedObjectContext? {
         willSet {
-            let max = NSOperationQueueDefaultMaxConcurrentOperationCount
-            self._queue.maxConcurrentOperationCount = newValue ? max : 1
+            // ToDo: Create protocol-orientated version of CoreData :]
+            guard newValue is ObservableContext else { fatalError("observedObject should be ObservableContext") }
         }
+    }
+    
+    /// An opaque object to act as the observer.
+    internal private(set) var _observer: NSObjectProtocol?
+    /// Max number of concurrent change merges.
+    internal private(set) var maxConcurrentMergesCount: Int {
+        get { return self._queue.maxConcurrentOperationCount }
+        set { self._queue.maxConcurrentOperationCount = newValue }
+    }
+    
+    /// Observed store type. Read-only.
+    ///
+    /// - Remark: Does not handle error.
+    internal var observedStore: ObservedStore {
+        guard let observedObject = self.observedObject else { return .Error }
+        // Parent context should not be an `ObservableContext`
+        // (unless we need to merge changes from parent context).
+        if let moc = observedObject.parentContext { return .MOC(moc) }
+        // iff child context, than the following is true:
+        // `persistentStoreCoordinator` === `parentContext.persistentStoreCoordinator`
+        if let psc = observedObject.persistentStoreCoordinator
+            where observedObject.parentContext == nil { return .PSC(psc) }
+        // Error... Unexpected error...
+        return .Error
     }
     
     /// Underlying operations queue
@@ -60,80 +83,56 @@ public class ContextObserver {
         return NSOperationQueue.factory.createOprationQueue(name: name)
     }()
     
-    
-    /// Observer for `managedObjectContext` context.
-    ///
-    /// Starts observing and merging changes
-    public init<Context: NSManagedObjectContext where Context: ObservableContext>(
-        managedObjectContext pmoc: Context,
-        asynchronous: Bool = false) {
+    /// Initialize observer for `managedObjectContext` context.
+    public init<Context: NSManagedObjectContext where Context: ObservableContext>(managedObjectContext pmoc: Context) {
         self.observedObject = pmoc
-        self.asynchronous = asynchronous
         self.beginObserving()
     }
     
-    // MARK: Private
-    
-    private var observedStore: ObservedParentStore {
-        get {
-            guard let observedObject = self.observedObject else {
-                return .Error
-            }
-            
-            // Initilizing context with persistent as a child context 
-            // also initializes its `persistentStoreCoordinator` (or it is getter).
-            if let moc = observedObject.parentContext where moc is ObservableContext {
-                return .MOC(moc)
-            }
-            
-            if let psc = observedObject.persistentStoreCoordinator where observedObject.parentContext == nil {
-                return .PSC(psc)
-            }
-            
-            return .Error
-        }
-    }
-    
-    private var _observer: NSObjectProtocol?
-    
-    private func beginObserving(notificationCenter: NSNotificationCenter = .defaultCenter()) {
+    /// Begins observing on `notificationCenter`.
+    internal func beginObserving(notificationCenter: NSNotificationCenter = .defaultCenter()) {
         let name = NSManagedObjectContextDidSaveNotification
         // Add observer for name using block
-        notificationCenter.addObserverForName(name,
+        self._observer = notificationCenter.addObserverForName(name,
             object: nil,
             queue: self._queue,
             usingBlock: self.saveNotification
         )
     }
     
+    /// Private notification handler.
     private func saveNotification(notific: NSNotification) {
         guard notific.name == NSManagedObjectContextDidSaveNotification else { return }
-        // Assert that the observed object is not released.
-        guard let obj = self.observedObject else { return self.endObserving() }
-        guard let sender = notific.object where sender is ObservableContext && sender !== obj else { return }
-        
+        // Assert that the observed object is not released. Else end observing.
+        guard let obsrvd = self.observedObject else { return self.endObserving() }
+        guard let sender = notific.object
+            where sender is ObservableContext && sender !== obsrvd else { return }
+        // Check if sender is correct
         switch self.observedStore {
+        // Should be context on the same 'layer' 
+        // or parent context (where parent is `ObservableContext`).
         case .MOC(let moc):
-            // Context on the same 'layer' or parent context.
-            guard sender.parentContext === moc || sender ===  moc else { break }
+            guard sender.parentContext === moc
+               || (sender ===  moc && moc is ObservableContext) else { return }
+        // `persistentStoreCoordinator == parentContext.persistentStoreCoordinator`.
         case .PSC(let psc):
-            // `persistentStoreCoordinator == parentContext.persistentStoreCoordinator`
             guard sender.persistentStoreCoordinator === psc
-                && sender.parentContext == nil else { break }
+               && sender.parentContext == nil else { return }
+        // Remove observer by default.
         default: return self.endObserving()
         }
-        
-        // Anyway, there is no need in `performBlock()`
-        // if we are on background queue.
-        obj.performBlockAndWait {
-            obj.mergeChangesFromContextDidSaveNotification(notific)
+        // Merge changes if all checks passed.
+        obsrvd.performBlockAndWait {
+            obsrvd.mergeChangesFromContextDidSaveNotification(notific)
         }
     }
     
-    /// Remove observer
-    private func endObserving(notificationCenter: NSNotificationCenter = .defaultCenter()) {
-        guard let observer = self._observer else { return }
-        notificationCenter.removeObserver(observer)
+    /// Remove observer.
+    internal func endObserving(notificationCenter: NSNotificationCenter = .defaultCenter()) {
+        if let observer = self._observer {
+            notificationCenter.removeObserver(observer)
+            self._observer = nil
+        }
     }
 
     deinit {

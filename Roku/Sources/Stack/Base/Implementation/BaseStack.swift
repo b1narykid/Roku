@@ -27,23 +27,26 @@ import CoreData
 
 /// Default `CoreData` stack implementation.
 ///
-/// This stack consists of a main managed object context
-/// initialized with the `MainQueueConcurrencyType`, and a background
-/// managed object context initialized with the `PrivateQueueConcurrencyType`.
-/// The main context is configured to be the parent context of the background context.
+/// This stack consists of one root managed object context
+/// initialized with the `PrivateQueueConcurrencyType`.
 ///
-/// - Warning:   This is a not so smart solution you sometimes see or read about.
-///              I included this stack implementation as a superclass for other stacks.
+/// Creating contexts on the same layer 
+/// with changes automatic merging is supported.
+/// You may add as much child background contexts as needed.
 ///
-/// - Attention: In this setup the background context
+/// - Warning:   I included this stack implementation as a superclass for other stacks.
+///              But this stack can be used in multiple persistent store coordinators stacks
+///              with `Roku` (its `masterObjectContext` is `PrivateQueueConcurrencyType`).
+///
+/// - Attention: In this setup the background or root context
 ///              should be used for the data import.
 ///
 /// - Remark:    All properties are lazy-initialized.
 ///              All `ManagedObjectContext`'s changes are fully synchronized.
 ///              You may wish to inherit from this class to make your custom stack.
 ///
-/// - SeeAlso:   `BaseStackTemplate`, `NestedStack`, `IndependentStack`, [Illustration](http://floriankugler.com/images/cd-stack-1-dabcc12e.png)
-public class BaseStack: StorageModelBased, BaseStackTemplate, StorageModelConvertible {
+/// - SeeAlso:   `BaseStackTemplate`, `NestedStack`, `IndependentStack`
+public class BaseStack: BaseStackTemplate, StorageModelBased, StorageModelConvertible {
     /// Initialize with `StorageModel` instance.
     public required init(storage: StorageModel) {
         self.storage = storage
@@ -52,12 +55,12 @@ public class BaseStack: StorageModelBased, BaseStackTemplate, StorageModelConver
     /// Storage used by managed object contexts.
     public internal(set) var storage: StorageModel
     
-    /// Root (main) managed object context.
+    /// Root managed object context.
     ///
     /// - Note:   Independent and works with `self.persistentStoreCoordinator`.
-    /// - Remark: Main queue concurrency type.
+    /// - Remark: Private queue concurrency type.
     public internal(set) lazy var masterObjectContext: NSManagedObjectContext = {
-        let context = ManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        let context = ManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
         context.persistentStoreCoordinator = self.persistentStoreCoordinator
         return context
     }()

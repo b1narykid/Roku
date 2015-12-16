@@ -27,6 +27,7 @@ import CoreData
 
 /// `NSManagedObjectContext` focused on store changes observing.
 public class ManagedObjectContext: NSManagedObjectContext, ObservableContext {
+    /// Observer of `self`.
     public var observer: ContextObserver?
     
     public override var persistentStoreCoordinator: NSPersistentStoreCoordinator? {

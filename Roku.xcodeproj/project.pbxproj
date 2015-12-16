@@ -12,7 +12,7 @@
 		7786476B1C1F0AB700483361 /* ManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778647441C1F0AB700483361 /* ManagedObjectContext.swift */; };
 		7786476C1C1F0AB700483361 /* ObservableContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778647461C1F0AB700483361 /* ObservableContext.swift */; };
 		7786476D1C1F0AB700483361 /* ContextObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778647481C1F0AB700483361 /* ContextObserver.swift */; };
-		7786476E1C1F0AB700483361 /* _Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7786474B1C1F0AB700483361 /* _Queue.swift */; };
+		7786476E1C1F0AB700483361 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7786474B1C1F0AB700483361 /* Queue.swift */; };
 		7786476F1C1F0AB700483361 /* OperationQueueFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7786474C1C1F0AB700483361 /* OperationQueueFactory.swift */; };
 		778647701C1F0AB700483361 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7786474D1C1F0AB700483361 /* Provider.swift */; };
 		778647711C1F0AB700483361 /* NullObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7786474F1C1F0AB700483361 /* NullObject.swift */; };
@@ -60,7 +60,7 @@
 		778647441C1F0AB700483361 /* ManagedObjectContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectContext.swift; sourceTree = "<group>"; };
 		778647461C1F0AB700483361 /* ObservableContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableContext.swift; sourceTree = "<group>"; };
 		778647481C1F0AB700483361 /* ContextObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextObserver.swift; sourceTree = "<group>"; };
-		7786474B1C1F0AB700483361 /* _Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Queue.swift; sourceTree = "<group>"; };
+		7786474B1C1F0AB700483361 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		7786474C1C1F0AB700483361 /* OperationQueueFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueueFactory.swift; sourceTree = "<group>"; };
 		7786474D1C1F0AB700483361 /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		7786474F1C1F0AB700483361 /* NullObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullObject.swift; sourceTree = "<group>"; };
@@ -194,7 +194,7 @@
 		7786474A1C1F0AB700483361 /* Internal */ = {
 			isa = PBXGroup;
 			children = (
-				7786474B1C1F0AB700483361 /* _Queue.swift */,
+				7786474B1C1F0AB700483361 /* Queue.swift */,
 				7786474C1C1F0AB700483361 /* OperationQueueFactory.swift */,
 				7786474D1C1F0AB700483361 /* Provider.swift */,
 			);
@@ -449,7 +449,7 @@
 				778647721C1F0AB700483361 /* Roku.swift in Sources */,
 				7786477C1C1F0AB700483361 /* NestedStackTemplate.swift in Sources */,
 				778647781C1F0AB700483361 /* IndependentStackTemplate.swift in Sources */,
-				7786476E1C1F0AB700483361 /* _Queue.swift in Sources */,
+				7786476E1C1F0AB700483361 /* Queue.swift in Sources */,
 				778647741C1F0AB700483361 /* BaseStackTemplate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

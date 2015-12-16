@@ -27,24 +27,27 @@ import CoreData
 
 /// Default `CoreData` stack template.
 ///
-/// This stack consists of a main managed object context
-/// initialized with the `MainQueueConcurrencyType`, and a background
-/// managed object context initialized with the `PrivateQueueConcurrencyType`.
-/// The main context is configured to be the parent context of the background context.
+/// This stack consists of one root managed object context
+/// initialized with the `PrivateQueueConcurrencyType`.
 ///
-/// - Warning:   This is a not so smart solution you sometimes see or read about.
-///              I included this stack as a template for other stacks.
+/// Creating contexts on the same layer
+/// with changes automatic merging is supported.
+/// You may add as much child background contexts as needed.
 ///
-/// - Attention: In this setup the background context
+/// - Remark:    I included this stack as a template for other stacks.
+///              This stack template can be used for designing stacks
+///              with multiple persistent store coordinators for `Roku`.
+///
+/// - Attention: In this setup the background or root context
 ///              should be used for the data import.
 ///
-/// - SeeAlso: `BaseStack`, `NestedStackTemplate`, `IndependentStackTemplate`, [Illustration](http://floriankugler.com/images/cd-stack-1-dabcc12e.png)
+/// - SeeAlso: `BaseStack`, `NestedStackTemplate`, `IndependentStackTemplate`
 public protocol BaseStackTemplate {
     /// Persistent store coordinator used by managed object contexts.
     var persistentStoreCoordinator: NSPersistentStoreCoordinator { get }
     /// Root managed object context.
     ///
-    /// - Note: Should be with `MainQueueConcurrencyType` concurrency type.
+    /// - Note: Should be with `PrivateQueueConcurrencyType` concurrency type.
     var masterObjectContext: NSManagedObjectContext { get }
     /// Save changes in contexts to the persistent store coordinator.
     ///
@@ -77,6 +80,8 @@ public extension BaseStackTemplate {
         return context
     }
 }
+
+// MARK: Saving support
 
 internal extension BaseStackTemplate {
     /// Try saving context.

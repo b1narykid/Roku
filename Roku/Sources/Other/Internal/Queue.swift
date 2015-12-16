@@ -1,5 +1,5 @@
 //
-//  _Queue.swift
+//  Queue.swift
 //  Roku
 //
 // Copyright © 2015 Ivan Trubach

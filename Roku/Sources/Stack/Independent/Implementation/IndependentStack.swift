@@ -46,24 +46,7 @@ import CoreData
 ///              All `ManagedObjectContext`'s changes are fully synchronized.
 ///
 /// - SeeAlso:  `IndependentStackTemplate`, `BaseStack`, `NestedStack`, [Illustration](http://floriankugler.com/images/cd-stack-3-d53fc6f6.png)
-public final class IndependentStack: StorageModelBased, IndependentStackTemplate, StorageModelConvertible {
-    /// Initialize with `StorageModel` instance.
-    public init(storage: StorageModel) {
-        self.storage = storage
-    }
-    
-    /// Storage used by managed object contexts.
-    public internal(set) var storage: StorageModel
-    
-    /// Root managed object context.
-    ///
-    /// - Note:   Independent and works with `self.persistentStoreCoordinator`.
-    /// - Remark: Private queue concurrency type.
-    public internal(set) lazy var masterObjectContext: NSManagedObjectContext = {
-        let context = ManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-        context.persistentStoreCoordinator = self.persistentStoreCoordinator
-        return context
-    }()
+public final class IndependentStack: BaseStack, IndependentStackTemplate {
     /// Main managed object context.
     ///
     /// - Note:   Independent and works with `self.persistentStoreCoordinator`.

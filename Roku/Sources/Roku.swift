@@ -35,12 +35,12 @@ import Swift
 ///
 /// [Article]: http://floriankugler.com/2013/04/29/concurrent-core-data-stack-performance-shootout/
 public class Roku<ContextStack: StorageModelBasedStack>: StorageModelBased, StorageModelConvertible {
+    /// Storage model used by `CoreData` stack.
     public internal(set) var storage: StorageModel
-    
     /// `CoreData` stack.
     private var _stack: ContextStack
-    /// Context provider
-    private lazy var _provider: Provider<NSManagedObjectContext> = {
+    /// Contexts provider.
+    public internal(set) lazy var provider: Provider<NSManagedObjectContext> = {
         // Wrapper over context creation function.
         let provide = {
             return self._stack.createWorkerContext(concurrencyType: .PrivateQueueConcurrencyType)
@@ -77,19 +77,23 @@ public class Roku<ContextStack: StorageModelBasedStack>: StorageModelBased, Stor
     ///                   (and handle an errors) in this function.
     public func withBackgroundContext<R>(@noescape body: NSManagedObjectContext throws -> R, save: NSManagedObjectContext -> Void = { _ = try? $0.save() }) rethrows -> R {
         // Take worker from provider
-        let worker = self._provider.take()
+        let worker = self.provider.take()
         
         defer {
             // Capture `_provider`, save opration and worker in background queue block.
-            self._saveOprations.addOperationWithBlock { [weak _provider, save, worker] in
+            self._saveOprations.addOperationWithBlock { [weak self, save, worker] in
                 // Perform `save(c)` handled by user.
                 worker.performBlockAndWait { save(worker) }
-                guard let provider = _provider else { return }
-                provider.transmit(worker)
+                guard let this = self else { return }
+                this.provider.transmit(worker)
             }
         }
         
         return try body(worker)
+    }
+    
+    public func take() {
+        
     }
     
     /// Save data to persistent store.
