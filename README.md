@@ -6,11 +6,12 @@
 CoreData's concurrent stacks made easy.
 
 ### `StorageModel`
-A small layer between `Roku` framework and the external services.
 
 > `StorageModel` API is currently in development.
 
-##### Usage
+A small layer between `Roku` framework and the external services.
+
+#### Usage
 
 Initializing storage model (recomended).
 ```swift
@@ -28,7 +29,7 @@ let dontBeLazy = false
 let storage = StorageModel(persistentStoreCoordinator: createPersistentStore, lazyEvaluation: dontBeLazy)
 ```
 
-###### Error handling
+#### Error handling
 
 `Roku` relies on existence of persistent store coordinator.
 Writing a lot of `guard` and `if`-`else` conditions and then letting the user
@@ -59,16 +60,16 @@ if storage.persistentStoreCoordinator is NullObject {
 }
 ```
 
-##### Related protocols
+#### Related protocols
 
-###### `StorageModelConvertible`
+##### `StorageModelConvertible`
 Describes an object, that could be initialized with `StorageModel` instance.
 
-###### `StorageModelBased`
+##### `StorageModelBased`
 Describes an object, that could be initialized with `StorageModel` instance
 and its behavior relies on storage model.
 
-###### `StorageModelBasedStack`
+##### `StorageModelBasedStack`
 Describes a contexts stack that could be initialized with `StorageModel`
 instance and its behavior relies on storage model.
 Type alias of two protocols:
