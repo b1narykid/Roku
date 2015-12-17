@@ -42,8 +42,8 @@ import CoreData
 ///              to the `NSManagedObjectContextDidSaveNotification` and calling
 ///              `mergeChangesFromContextDidSaveNotification()` on the other context.
 ///
-/// - SeeAlso:   `IndependentStack`, `BaseStackTemplate`, `NestedStackTemplate`, [Illustration](http://floriankugler.com/images/cd-stack-3-d53fc6f6.png)
-public protocol IndependentStackTemplate: BaseStackTemplate {
+/// - SeeAlso:   `IndependentStack`, `BaseStackTemplate`, `NestedStackTemplate`
+public protocol IndependentStackTemplate: BaseStackTemplate, MainQueueContextStack {
     /// Persistent store coordinator used by managed object contexts.
     var persistentStoreCoordinator: NSPersistentStoreCoordinator { get }
     /// Root managed object context.
@@ -52,20 +52,20 @@ public protocol IndependentStackTemplate: BaseStackTemplate {
     var masterObjectContext: NSManagedObjectContext { get }
     /// Main managed object context.
     ///
-    /// - Note: Should be independent and only work
-    ///         with `self.persistentStoreCoordinator`.
+    /// - Note: Should be independent with `.MainQueueConcurrencyType`
+    ///         and work only with `self.persistentStoreCoordinator`.
     var mainObjectContext: NSManagedObjectContext { get }
     /// Save changes in all contexts implemented in template
     /// to the persistent store coordinator.
     mutating func trySave(repeatOnError error: ErrorType -> Bool)
     /// Create new worker context for this template.
-    mutating func createWorkerContext(concurrencyType ct: NSManagedObjectContextConcurrencyType) -> NSManagedObjectContext
+    mutating func createContext(concurrencyType: NSManagedObjectContextConcurrencyType) -> NSManagedObjectContext
 }
 
 public extension IndependentStackTemplate {
     /// Save changes in all contexts (implemented in this template) to persistent store.
     ///
-    /// - Note: Main queue context is being not save in this method.
+    /// - Note: Main queue context is not saved in this method.
     ///
     /// - Parameter repeatOnError: Callback closure. Informs caller about the error.
     ///                            Should return `true` if can retry context save.
@@ -85,8 +85,8 @@ public extension IndependentStackTemplate {
     ///
     /// - Parameter concurrencyType: `NSManagedObjectContextConcurrencyType` of new managed object context.
     ///                              The default value is `PrivateQueueConcurrencyType`.
-    public mutating func createWorkerContext(concurrencyType ct: NSManagedObjectContextConcurrencyType = .PrivateQueueConcurrencyType) -> NSManagedObjectContext {
-        let context = ManagedObjectContext(concurrencyType: ct)
+    public mutating func createContext(concurrencyType: NSManagedObjectContextConcurrencyType = .PrivateQueueConcurrencyType) -> NSManagedObjectContext {
+        let context = ManagedObjectContext(concurrencyType: concurrencyType)
         context.persistentStoreCoordinator = self.persistentStoreCoordinator
         return context
     }

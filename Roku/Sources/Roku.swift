@@ -25,39 +25,46 @@
 import Swift
 @exported import CoreData
 
-/// Wrapper over the `StorageModelBasedStack` `CoreData` stack.
+/// Encapsulates the `CoreData` stack.
 ///
 /// Provides a convenience API for the `CoreData`'s context stacks.
 ///
-/// - SeeAlso: `BaseStack`, `BaseStackTemplate`, `NestedStack`, `NestedStackTemplate`, `IndependentStack`, `IndependentStackTemplate`
-///
-/// [Choosing `CoreData` stack for your purposes.][Article]
-///
-/// [Article]: http://floriankugler.com/2013/04/29/concurrent-core-data-stack-performance-shootout/
-public class Roku<ContextStack: StorageModelBasedStack>: StorageModelBased, StorageModelConvertible {
+/// - SeeAlso: `BaseStack`, `NestedStack`, `IndependentStack`
+public class Roku<ContextStack: StorageModelBasedStack>: StorageModelBased {
     /// Storage model used by `CoreData` stack.
     public internal(set) var storage: StorageModel
-    /// `CoreData` stack.
-    private var _stack: ContextStack
-    /// Contexts provider.
+    /// Encapsulated `CoreData` stack.
+    internal private(set) var _stack: ContextStack
+    /// `NSManagedObjectContext` provider.
     public internal(set) lazy var provider: Provider<NSManagedObjectContext> = {
-        // Wrapper over context creation function.
-        let provide = {
-            return self._stack.createWorkerContext(concurrencyType: .PrivateQueueConcurrencyType)
+        let provide = { () -> NSManagedObjectContext in
+            let context = self._stack.createContext(.PrivateQueueConcurrencyType)
+            #if os(OSX)
+            // see OSX docs, it is not nil by default
+            context.undoManager = nil
+            #endif
+            return context
         }
         
         return Provider(provider: provide)
     }()
     
-    private lazy var _saveOprations: NSOperationQueue = {
-        return NSOperationQueue.factory.createOprationQueue(
+    final private lazy var _saveOprations: NSOperationQueue = {
+        let oq = NSOperationQueue.factory.createOprationQueue(
             name: "com.b1nary.Roku.roku_save_oq_\(unsafeAddressOf(self))"
         )
+        oq.maxConcurrentOperationCount = 1
+        return oq
     }()
     
-    public required init(storage: StorageModel) {
-        self.storage = storage
-        self._stack = ContextStack(storage: self.storage)
+    public required convenience init(storage: StorageModel) {
+        let stack = ContextStack(storage: storage)
+        self.init(stack: stack)
+    }
+    
+    public init(stack: ContextStack) {
+        self._stack  = stack
+        self.storage = stack.storage
     }
     
     /// Call `body(c)`, where `c` is a temporary background `NSManagedObjectContext`.
@@ -65,16 +72,17 @@ public class Roku<ContextStack: StorageModelBasedStack>: StorageModelBased, Stor
     /// The temporary context is poped from the unused contexts queue.
     /// If no such context exists in queue, it is first created.
     ///
-    /// - Note: Use the `body(c)` call to import/export data into/from context.
-    ///         The save is handled by `Roku` in private background operation queue.
-    ///         Don not rely on the context `c` beacause it may be reused by `Roku`.
-    ///         External changes in `c` outside of `body(c)` may cause unexpected behaviours.
+    /// - Parameters:
+    ///   - body: Use the `body(c)` call to import/export data into/from context.
+    ///           The save is handled by `Roku` in private background operation queue.
+    ///           Don not rely on the context `c` beacause it may be reused by `Roku`.
+    ///           External changes in `c` outside of `body(c)` may cause unexpected behaviours.
     ///
-    /// - Parameter save: Save operation for context `c`. `save(c)` will be executed
-    ///                   on the private context's background queue by `Roku`,
-    ///                   you don not have to call `c.performBlock` to save cotnext
-    ///                   in `save(c)` function. Just 'describe' how you want to save
-    ///                   (and handle an errors) in this function.
+    ///   - save: Save operation for context `c`. `save(c)` will be executed
+    ///           on a private context's background queue by `Roku`,
+    ///           you don not have to call `c.performBlock` to save cotnext
+    ///           in `save(c)` function. Just 'describe' how you want to save
+    ///           (and handle an errors) in this function.
     public func withBackgroundContext<R>(@noescape body: NSManagedObjectContext throws -> R, save: NSManagedObjectContext -> Void = { _ = try? $0.save() }) rethrows -> R {
         // Take worker from provider
         let worker = self.provider.take()
@@ -94,9 +102,18 @@ public class Roku<ContextStack: StorageModelBasedStack>: StorageModelBased, Stor
     
     /// Save data to persistent store.
     ///
-    /// - Parameter errorCallback: Error callback. Should return `true` iff the error
-    ///                            was handled (and 'fixed') and/or `Roku` may retry saving.
-    public func persist(errorCallback: ErrorType -> Bool) {
-        self._stack.trySave(repeatOnError: errorCallback)
+    /// - Parameter withError: Error callback. Should return `true` iff the error
+    ///                        was handled and/or `Roku` may retry saving.
+    public final func persist(withError error: ErrorType -> Bool) {
+        self._saveOprations.addOperationWithBlock {
+            self._stack.trySave(repeatOnError: error)
+        }
+    }
+}
+
+public extension Roku where ContextStack: MainQueueContextStack {
+    /// Main queue managed object context.
+    final public var mainObjectContext: NSManagedObjectContext {
+        return self._stack.mainObjectContext
     }
 }

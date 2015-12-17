@@ -1,5 +1,5 @@
 //
-//  IndependentStack.swift
+//  MainQueueContextStack.swift
 //  Roku
 //
 // Copyright © 2015 Ivan Trubach
@@ -25,22 +25,10 @@
 import Swift
 import CoreData
 
-/// Storage model based stack.
-public typealias StorageModelBasedStack = protocol<BaseStackTemplate, StorageModelBased>
-
-/// Describes an object which behaviour is based on `StorageModel`.
-public protocol StorageModelBased: StorageModelConvertible {
-    /// Initialize with `StorageModel` instance.
-    init(storage: StorageModel)
-    /// Storage used by managed object contexts.
-    var storage: StorageModel { get }
-}
-
-public extension StorageModelBased where Self: BaseStackTemplate {
-    /// Storage used by managed object contexts.
+/// Describes a context stack with a main queue context.
+public protocol MainQueueContextStack {
+    /// Main managed object context.
     ///
-    /// - Note: Equal to `self.storage.persistentStoreCoordinator`.
-    public var persistentStoreCoordinator: NSPersistentStoreCoordinator {
-        get { return self.storage.persistentStoreCoordinator }
-    }
+    /// - Important: Main queue concurrency type.
+    var mainObjectContext: NSManagedObjectContext { get }
 }

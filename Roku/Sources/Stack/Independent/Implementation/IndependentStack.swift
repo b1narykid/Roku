@@ -45,7 +45,7 @@ import CoreData
 /// - Remark:    All properties are lazy-initialized.
 ///              All `ManagedObjectContext`'s changes are fully synchronized.
 ///
-/// - SeeAlso:  `IndependentStackTemplate`, `BaseStack`, `NestedStack`, [Illustration](http://floriankugler.com/images/cd-stack-3-d53fc6f6.png)
+/// - SeeAlso:  `IndependentStackTemplate`, `BaseStack`, `NestedStack`
 public final class IndependentStack: BaseStack, IndependentStackTemplate {
     /// Main managed object context.
     ///

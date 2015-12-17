@@ -31,7 +31,7 @@ import CoreData
 /// initialized with the `PrivateQueueConcurrencyType`.
 ///
 /// Creating contexts on the same layer 
-/// with changes automatic merging is supported.
+/// with automatic changes merging is supported.
 /// You may add as much child background contexts as needed.
 ///
 /// - Warning:   I included this stack implementation as a superclass for other stacks.

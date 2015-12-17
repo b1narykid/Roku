@@ -1,5 +1,5 @@
 //
-//  IndependentStack.swift
+//  ContextFactoryStack.swift
 //  Roku
 //
 // Copyright © 2015 Ivan Trubach
@@ -25,22 +25,8 @@
 import Swift
 import CoreData
 
-/// Storage model based stack.
-public typealias StorageModelBasedStack = protocol<BaseStackTemplate, StorageModelBased>
-
-/// Describes an object which behaviour is based on `StorageModel`.
-public protocol StorageModelBased: StorageModelConvertible {
-    /// Initialize with `StorageModel` instance.
-    init(storage: StorageModel)
-    /// Storage used by managed object contexts.
-    var storage: StorageModel { get }
-}
-
-public extension StorageModelBased where Self: BaseStackTemplate {
-    /// Storage used by managed object contexts.
-    ///
-    /// - Note: Equal to `self.storage.persistentStoreCoordinator`.
-    public var persistentStoreCoordinator: NSPersistentStoreCoordinator {
-        get { return self.storage.persistentStoreCoordinator }
-    }
+/// Describes a context stack which may produce contexts for itself.
+public protocol ContextFactoryStack {
+    /// Create new context for `Self` stack.
+    mutating func createContext(concurrencyType: NSManagedObjectContextConcurrencyType) -> NSManagedObjectContext
 }

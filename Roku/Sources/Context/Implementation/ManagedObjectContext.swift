@@ -25,19 +25,37 @@
 import Swift
 import CoreData
 
-/// `NSManagedObjectContext` focused on store changes observing.
+/// `NSManagedObjectContext` subclass, focused on
+/// store changes observing and automatic merging.
+///
+/// - Note: As an additional optimization, initialization of context with
+///         `.MainQueueConcurrencyType` will disable automatic merging.
+///         Changes in this context are still observed by default.
+///
+/// - SeeAlso: [WWDC13 Session 211][WWDC Video], 28:40 (m:s).
+///
+/// [WWDC Video]: https://developer.apple.com/videos/play/wwdc2013-211/
 public class ManagedObjectContext: NSManagedObjectContext, ObservableContext {
-    /// Observer of `self`.
-    public var observer: ContextObserver?
+    /// Object, that handles observing of other contexts
+    /// and merges changes into `self`.
+    public internal(set) var observer: ContextObserver?
     
     public override var persistentStoreCoordinator: NSPersistentStoreCoordinator? {
-        didSet {
-            self.observer = ContextObserver(managedObjectContext: self)
-        }
+        didSet { self.becomeObserver() }
     }
     
     public override var parentContext: NSManagedObjectContext? {
-        didSet {
+        didSet { self.becomeObserver() }
+    }
+    
+    /// Create object, that handles observing of other contexts 
+    /// and merges changes into `self`. Removes the current observer.
+    ///
+    /// - Remark: Will not become observer iff `concurrencyType`
+    ///           is `.MainQueueConcurrencyType`.
+    internal func becomeObserver() {
+        self.observer = nil
+        if self.concurrencyType == .MainQueueConcurrencyType {
             self.observer = ContextObserver(managedObjectContext: self)
         }
     }

@@ -33,20 +33,20 @@ public final class StorageModel {
     ///
     /// Initializes with function that returns `NSPersistentStoreCoordinator`.
     ///
-    /// - Note: You may wish to transmit your `CoreData`'s
+    /// - Note: You may wish to transmit existing `CoreData`'s
     ///         storage model to `Roku` with this initializer.
     ///
-    /// - Parameter persistentStoreCoordinator: Persistent store coordinator instance.
-    ///                                         You may either transmit an persistent store coordinator
-    ///                                         to the `Roku` framework or create a new one in a function.
+    /// - Parameters:
+    ///   - persistentStoreCoordinator: Function, returning a persistent store
+    ///                                 coordinator instance.
     ///
-    /// - Parameter lazyEvaluation:             Uses lazy evaluation iff `true`. Otherwise,
-    ///                                         the values will be computed at the initialization.
-    ///                                         Default value is `true`.
+    ///   - beLazy:                     Lazy evaluation is used iff `true`.
+    ///                                 Otherwise, the values will be computed
+    ///                                 at the initialization. Defaults to `true`.
     public init(persistentStoreCoordinator: () -> NSPersistentStoreCoordinator = StorageModel.nullStore, beLazy: Bool = true) {
         self._createStore = persistentStoreCoordinator
-        // Evaluate values if not lazy evaluation
         if beLazy == true { return }
+        // Evaluate value if not lazy evaluation
         self._store = self._createStore()
     }
     
@@ -90,19 +90,22 @@ public final class StorageModel {
     
     /// Persistent store coordinator.
     ///
-    /// - Important: Check of the returned value type is required
+    /// - Important: Check of the returned value type is recommended
     ///              before using this property. `StorageModel`
     ///              by default initializes `NullObject`
     ///              persistent store coordinator. This behaviour allows
     ///              easier internal implementaion (no more optionals :])
-    ///              and less failable `StorageModel` initialization.
+    ///              and easier `StorageModel` initialization.
+    ///
+    /// - Note:      Setting this value will force the use of lazy evaluation.
     public var persistentStoreCoordinator: NSPersistentStoreCoordinator {
         get {
             return self._initializedStore()
         }
         
         set {
-            self._store = newValue
+            self._store = nil
+            self._createStore = { return newValue }
         }
     }
 }

@@ -5,90 +5,48 @@
 
 CoreData's concurrent stacks made easy.
 
-### `StorageModel`
+> Inspired by
+> [Concurrent Core Data Stacks][Performance] article,
+> [WWDC2013 Session 211][HighPerformance]
+> and [Seru][Seru] CoreData stack by @kostiakoval.
 
-> `StorageModel` API is currently in development.
+## Usage
 
-A small layer between `Roku` framework and the external services.
-
-#### Error handling
-
-`Roku` relies on existence of persistent store coordinator.
-Writing a lot of `guard` and `if`-`else` conditions and then letting the user
-to handle the error was not the best solution.
-
-`StorageModel`, by default initializes its properties to internal subclasses,
-conforming to `NullObject` protocol.
-
-You can get instances of those internal subclasses by calling
+Initialize `StorageModel` (see also: [StorageModel.md][StorageModel.md])
 ```swift
-StorageModel.nullStore() // -> NSPersistentStoreCoordinator, NullObject
-```
-or
-```swift
-StorageModel.nullModel() // -> NSManagedObjectModel, NullObject
-```
-
-Example of handling errors on `StorageModel` initialization.
-```swift
-let storage = StorageModel()
-
-// Initialization of persistent store coordinator...
-// Don't assign any value to `persistentStoreCoordinator` if an error occurs
-
-if storage.persistentStoreCoordinator is NullObject {
-    // Persistent store coordinator was not initialized by user
-    // Handle an error
-}
-```
-
-#### Usage
-
-##### Overriding lazy initialization.
-
-By default, `StorageModel` initializes its values lazily.
-
-```swift
-let dontBeLazy = false
-let storage = StorageModel(persistentStoreCoordinator: createPersistentStore, beLazy: dontBeLazy)
-```
-
-##### Initializing storage model (recomended way).
-```swift
-func createPersistentStore() -> NSPersistentStoreCoordinator {
-    let persistentStoreCoordinator: NSPersistentStoreCoordinator
-    // Create persistent store coordinator
-    // ...
-    if let error = error {
-        // Handle error.
-        // And return `NullObject`.
-        return StorageModel.nullStore()
-    }
-    // Return new persistent store coordinator
-    return persistentStoreCoordinator
+func newPersistentStoreCoordinator() -> NSPersistentStoreCoordinator {
+    // Create and return new persistent store coordinator
 }
 
-let storage = StorageModel(persistentStoreCoordinator: createPersistentStore)
+let storage = StorageModel(persistentStoreCoordinator: newPersistentStoreCoordinator)
 ```
 
-#### Related protocols
+Initialize `Roku` stack (see also: [Roku.md][Roku.md]) with base stack
+```swift
+let baseStack = Roku<BaseStack>(storage: storage)
+```
+or nested stack
+```swift
+let nestedStack = Roku<NestedStack>(storage: storage)
+```
+or independent stack.
+```swift
+let independentStack = Roku<IndependentStack>(storage: storage)
+```
 
-##### `StorageModelConvertible`
-Describes an object, that could be initialized with `StorageModel` instance.
+Be happy :]
+```swift
+nestedStack.withBackgroundContext { context in
+    // Do heavy import operations on the background context
+}
 
-##### `StorageModelBased`
-Describes an object, that could be initialized with `StorageModel` instance
-and its behavior relies on storage model.
+independentStack.withBackgroundContext { context in
+    // Do another heavy import operations on the background context
+}
 
-##### `StorageModelBasedStack`
-Describes a contexts stack that could be initialized with `StorageModel`
-instance and its behavior relies on storage model.
-Type alias of two protocols:
-`BaseStackTemplate`
-`StorageModelBased`
-All default implementations conform to this protocol.
-Your custom implementations have to conform to this protocol
-to be used with `Roku` class.
+nestedStack.mainObjectContext      // main queue context
+independentStack.mainObjectContext // main queue context
+```
 
 ## TODO
 - [x] Implement observable NSManagedObjectContext.
@@ -124,3 +82,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+[Seru]: https://github.com/kostiakoval/Seru
+[Performance]: http://floriankugler.com/2013/04/29/concurrent-core-data-stack-performance-shootout/
+[HighPerformance]: https://developer.apple.com/videos/play/wwdc2013-211/
+
+[StorageModel.md]: http://github.com/b1nary/Roku/HowToUse/StorageModel.md
+[Roku.md]: http://github.com/b1nary/Roku/HowToUse/Roku.md

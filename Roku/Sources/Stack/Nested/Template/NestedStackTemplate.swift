@@ -41,8 +41,8 @@ import CoreData
 /// - Note:      There may be multiple contexts on the second and third layers.
 ///              Also, there may be worker contexts on the second layer.
 ///
-/// - SeeAlso:   `NestedStack`, `BaseStackTemplate`, `IndependentStackTemplate`, [Illustration](http://floriankugler.com/images/cd-stack-2-e225ea48.png)
-public protocol NestedStackTemplate: BaseStackTemplate {
+/// - SeeAlso:   `NestedStack`, `BaseStackTemplate`, `IndependentStackTemplate`
+public protocol NestedStackTemplate: BaseStackTemplate, MainQueueContextStack {
     /// Persistent store coordinator used by managed object contexts.
     var persistentStoreCoordinator: NSPersistentStoreCoordinator { get }
     /// Root managed object context.
@@ -51,14 +51,14 @@ public protocol NestedStackTemplate: BaseStackTemplate {
     var masterObjectContext: NSManagedObjectContext { get }
     /// Main managed object context.
     ///
-    /// - Note: Should be with `MainQueueConcurrencyType` and
+    /// - Note: Should be with `.MainQueueConcurrencyType` and
     ///         child context of `self.masterObjectContext`.
     var mainObjectContext: NSManagedObjectContext { get }
     /// Save changes in all contexts implemented in template
     /// to the persistent store coordinator.
     mutating func trySave(repeatOnError: ErrorType -> Bool)
     /// Create new worker context for this template.
-    mutating func createWorkerContext(concurrencyType ct: NSManagedObjectContextConcurrencyType) -> NSManagedObjectContext
+    mutating func createContext(concurrencyType: NSManagedObjectContextConcurrencyType) -> NSManagedObjectContext
 }
 
 public extension NestedStackTemplate {
@@ -82,9 +82,9 @@ public extension NestedStackTemplate {
     /// - Note: New managed object context is a child of `self.mainObjectContext`.
     ///
     /// - Parameter concurrencyType: `NSManagedObjectContextConcurrencyType` of new managed object context.
-    ///                              The default value is `PrivateQueueConcurrencyType`.
-    public mutating func createWorkerContext(concurrencyType ct: NSManagedObjectContextConcurrencyType = .PrivateQueueConcurrencyType) -> NSManagedObjectContext {
-        let context = ManagedObjectContext(concurrencyType: ct)
+    ///                              Defaults to `.PrivateQueueConcurrencyType`.
+    public mutating func createContext(concurrencyType: NSManagedObjectContextConcurrencyType = .PrivateQueueConcurrencyType) -> NSManagedObjectContext {
+        let context = ManagedObjectContext(concurrencyType: concurrencyType)
         context.parentContext = self.mainObjectContext
         return context
     }
