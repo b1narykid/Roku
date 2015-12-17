@@ -1,7 +1,7 @@
-# Roku
-
 > Warning:
 > This project is currently in development.
+
+# Roku ([六](https://en.wiktionary.org/wiki/六#Numeral))
 
 CoreData's concurrent stacks made easy.
 
@@ -13,6 +13,7 @@ CoreData's concurrent stacks made easy.
 ## Usage
 
 Initialize `StorageModel` (see also: [StorageModel.md][StorageModel.md])
+
 ```swift
 func newPersistentStoreCoordinator() -> NSPersistentStoreCoordinator {
     // Create and return new persistent store coordinator
@@ -21,31 +22,41 @@ func newPersistentStoreCoordinator() -> NSPersistentStoreCoordinator {
 let storage = StorageModel(persistentStoreCoordinator: newPersistentStoreCoordinator)
 ```
 
-Initialize `Roku` stack (see also: [Roku.md][Roku.md]) with base stack
+
+Initialize `Roku` stack (see also: [Roku.md][Roku.md]) with a base stack
+
 ```swift
 let baseStack = Roku<BaseStack>(storage: storage)
 ```
-or nested stack
+
+or with a nested stack
+
 ```swift
 let nestedStack = Roku<NestedStack>(storage: storage)
 ```
-or independent stack.
+
+or with an independent stack.
+
 ```swift
 let independentStack = Roku<IndependentStack>(storage: storage)
 ```
 
-Be happy :]
+Enjoy `Roku`'s features :tada:
+
 ```swift
-nestedStack.withBackgroundContext { context in
+stack.mainObjectContext // Main queue managed object context
+
+stack.withBackgroundContext { context in
     // Do heavy import operations on the background context
 }
 
-independentStack.withBackgroundContext { context in
-    // Do another heavy import operations on the background context
+stack.persist { error -> Bool in
+    // Handle an error and try fixing it
+    
+    // If error was successfully fixed, 
+    // `Roku` will repeat save.
+    return errorHandled && errorFixed
 }
-
-nestedStack.mainObjectContext      // main queue context
-independentStack.mainObjectContext // main queue context
 ```
 
 ## TODO
