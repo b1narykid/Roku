@@ -83,10 +83,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-[User]: https://github.com/kostiakoval
-[Seru]: https://github.com/kostiakoval/Seru
-[Performance]: http://floriankugler.com/2013/04/29/concurrent-core-data-stack-performance-shootout/
+[User]:            https://github.com/kostiakoval
+[Seru]:            https://github.com/kostiakoval/Seru
+
+[Performance]:     http://floriankugler.com/2013/04/29/concurrent-core-data-stack-performance-shootout/
 [HighPerformance]: https://developer.apple.com/videos/play/wwdc2013-211/
 
-[StorageModel.md]: HowToUse/StorageModel.md
-[Roku.md]:         HowToUse/Roku.md
+[StorageModel.md]: Docs/StorageModel.md
+[Roku.md]:         Docs/Roku.md
