@@ -23,16 +23,16 @@
 // THE SOFTWARE.
 
 import Swift
-import Foundation
+import Dispatch.queue
+import Foundation.NSOperation
 
-/// Wraps the proccess of `NSOperationQueue` creation
-/// for multiple platforms and OS versions.
+/// Encapsulates the proccess of `NSOperationQueue` and `OS_dispatch_queue`
+/// creation for multiple platforms and OS versions.
 internal class OperationQueueFactory {
-    internal func createOprationQueue(name name: String? = nil, queue: dispatch_queue_t? = nil) -> NSOperationQueue {
+    func createOprationQueue(name name: String? = nil, queue: dispatch_queue_t? = nil) -> NSOperationQueue {
         let oq = NSOperationQueue()
-        if let name = name {
-            oq.name = name
-        }
+        let name = name ?? "com.b1nary.Roku.factory\(unsafeAddressOf(oq))"
+        oq.name = name
         
         if #available(iOS 8.0, OSX 10.10, tvOS 9.0, *) {
             oq.underlyingQueue = queue ?? self.createDispatchQueue(identifier: name)
@@ -41,15 +41,20 @@ internal class OperationQueueFactory {
         return oq
     }
     
-    @available(iOS 8.0, OSX 10.10, tvOS 9.0, *)
-    internal func createDispatchQueue(identifier identifier: String? = nil) -> dispatch_queue_t {
-        let queueAttrs = dispatch_queue_attr_make_with_qos_class(
-            DISPATCH_QUEUE_SERIAL,
-            QOS_CLASS_UTILITY,
-            -1
-        )
+    func createDispatchQueue(identifier identifier: String) -> dispatch_queue_t {
+        let attributes: dispatch_queue_attr_t!
         
-        return dispatch_queue_create(identifier ?? "dq_by_fctry_\(unsafeAddressOf(self))", queueAttrs)
+        if #available(iOS 8.0, OSX 10.10, tvOS 9.0, *) {
+            attributes = dispatch_queue_attr_make_with_qos_class(
+                DISPATCH_QUEUE_SERIAL,
+                QOS_CLASS_UTILITY,
+                -2
+            )
+        } else {
+            attributes = nil
+        }
+        
+        return dispatch_queue_create(identifier, attributes)
 
     }
 }

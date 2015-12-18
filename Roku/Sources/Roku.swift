@@ -36,23 +36,30 @@ public class Roku<ContextStack: StorageModelBasedStack>: StorageModelBased {
     /// Encapsulated `CoreData` stack.
     internal private(set) var _stack: ContextStack
     /// `NSManagedObjectContext` provider.
+    ///
+    /// - Note: Provided contexts do not have any undo manager.
     public internal(set) lazy var provider: Provider<NSManagedObjectContext> = {
-        let provide = { () -> NSManagedObjectContext in
+        let newContext = { () -> NSManagedObjectContext in
             let context = self._stack.createContext(.PrivateQueueConcurrencyType)
-            #if os(OSX)
-            // see OSX docs, it is not nil by default
+            #if !os(iOS) // || !os(tvOS)
+            // See OSX docs, it is not nil by default.
+            // Not sure about tvOS,
+            // set it to `nil` on both OSX and tvOS.
             context.undoManager = nil
             #endif
             return context
         }
         
-        return Provider(provider: provide)
+        return Provider(providing: newContext)
     }()
-    
-    final private lazy var _saveOprations: NSOperationQueue = {
+    /// Save operations queue.
+    ///
+    /// Synchronous (maxConcurrentOperationCount = 1).
+    final private lazy var _saves: NSOperationQueue = {
         let oq = NSOperationQueue.factory.createOprationQueue(
             name: "com.b1nary.Roku.roku_save_oq_\(unsafeAddressOf(self))"
         )
+        // Required for synchronous saves (not on main queue)
         oq.maxConcurrentOperationCount = 1
         return oq
     }()
@@ -67,10 +74,13 @@ public class Roku<ContextStack: StorageModelBasedStack>: StorageModelBased {
         self.storage = stack.storage
     }
     
-    /// Call `body(c)`, where `c` is a temporary background `NSManagedObjectContext`.
+    /// Call `body(c)`, where `c` is a temporary background managed object context.
     ///
-    /// The temporary context is poped from the unused contexts queue.
+    /// The temporary context is poped from queue of unused contexts.
     /// If no such context exists in queue, it is first created.
+    ///
+    /// - Remark: `save(c)` is called to save context
+    ///           even if the `body(c)` throws an error.
     ///
     /// - Parameters:
     ///   - body: Use the `body(c)` call to import/export data into/from context.
@@ -83,17 +93,20 @@ public class Roku<ContextStack: StorageModelBasedStack>: StorageModelBased {
     ///           you don not have to call `c.performBlock` to save cotnext
     ///           in `save(c)` function. Just 'describe' how you want to save
     ///           (and handle an errors) in this function.
-    public func withBackgroundContext<R>(@noescape body: NSManagedObjectContext throws -> R, save: NSManagedObjectContext -> Void = { _ = try? $0.save() }) rethrows -> R {
+    public func withBackgroundContext<R>(
+        @noescape body: NSManagedObjectContext throws -> R,
+        save: NSManagedObjectContext -> Void = doSave) rethrows -> R {
         // Take worker from provider
         let worker = self.provider.take()
         
         defer {
-            // Capture `_provider`, save opration and worker in background queue block.
-            self._saveOprations.addOperationWithBlock { [weak self, save, worker] in
-                // Perform `save(c)` handled by user.
-                worker.performBlockAndWait { save(worker) }
-                guard let this = self else { return }
-                this.provider.transmit(worker)
+            self._saves.addOperationWithBlock { [weak self] in
+                withExtendedLifetime(worker) {
+                    // Perform `save(c)` handled by user.
+                    worker.performBlockAndWait { save(worker) }
+                    guard let this = self else { return }
+                    this.provider.transmit(worker)
+                }
             }
         }
         
@@ -105,8 +118,8 @@ public class Roku<ContextStack: StorageModelBasedStack>: StorageModelBased {
     /// - Parameter withError: Error callback. Should return `true` iff the error
     ///                        was handled and/or `Roku` may retry saving.
     public final func persist(withError error: ErrorType -> Bool) {
-        self._saveOprations.addOperationWithBlock {
-            self._stack.trySave(repeatOnError: error)
+        self._saves.addOperationWithBlock {
+            self._stack.trySave(stopOnError: error)
         }
     }
 }
@@ -115,5 +128,16 @@ public extension Roku where ContextStack: MainQueueContextStack {
     /// Main queue managed object context.
     final public var mainObjectContext: NSManagedObjectContext {
         return self._stack.mainObjectContext
+    }
+}
+
+/// Perfrom save if `context` has changes.
+private func doSave(context: NSManagedObjectContext) {
+    if context.hasChanges {
+        do {
+            try context.save()
+        } catch _ {
+            
+        }
     }
 }

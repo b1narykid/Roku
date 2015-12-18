@@ -56,7 +56,7 @@ public protocol NestedStackTemplate: BaseStackTemplate, MainQueueContextStack {
     var mainObjectContext: NSManagedObjectContext { get }
     /// Save changes in all contexts implemented in template
     /// to the persistent store coordinator.
-    mutating func trySave(repeatOnError: ErrorType -> Bool)
+    mutating func trySave(stopOnError error: ErrorType -> Bool)
     /// Create new worker context for this template.
     mutating func createContext(concurrencyType: NSManagedObjectContextConcurrencyType) -> NSManagedObjectContext
 }
@@ -70,11 +70,11 @@ public extension NestedStackTemplate {
     ///                            Should return `true` if can retry context save.
     ///                            Otherwise, return false or you will get
     ///                            an infinite save attempts.
-    public mutating func trySave(repeatOnError: ErrorType -> Bool = { _ in return false }) {
+    public mutating func trySave(repeatOnError error: ErrorType -> Bool = { _ in return false }) {
         // Save second (2) layer.
-        self.trySaveContext(self.mainObjectContext, callback: repeatOnError)
+        self.trySaveContext(self.mainObjectContext, callback: error)
         // Save first (1) layer.
-        self.trySaveContext(self.masterObjectContext, callback: repeatOnError)
+        self.trySaveContext(self.masterObjectContext, callback: error)
     }
     
     /// Create new context for this template.

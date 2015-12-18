@@ -57,7 +57,7 @@ public protocol IndependentStackTemplate: BaseStackTemplate, MainQueueContextSta
     var mainObjectContext: NSManagedObjectContext { get }
     /// Save changes in all contexts implemented in template
     /// to the persistent store coordinator.
-    mutating func trySave(repeatOnError error: ErrorType -> Bool)
+    mutating func trySave(stopOnError error: ErrorType -> Bool)
     /// Create new worker context for this template.
     mutating func createContext(concurrencyType: NSManagedObjectContextConcurrencyType) -> NSManagedObjectContext
 }
@@ -71,7 +71,7 @@ public extension IndependentStackTemplate {
     ///                            Should return `true` if can retry context save.
     ///                            Otherwise, return false or you will get
     //                             an infinite save attempts.
-    public mutating func trySave(repeatOnError error: ErrorType -> Bool = { _ in return false }) {
+    public mutating func trySave(stopOnError error: ErrorType -> Bool = { _ in return false }) {
         // Main queue context will be notified about change.
         // There is no need in saving main queue
         // because it is not used for data imports.

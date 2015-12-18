@@ -49,7 +49,7 @@ public protocol BaseStackTemplate: ContextFactoryStack {
     /// Save changes in contexts to the persistent store coordinator.
     ///
     /// - Remark: Does not save worker contexts.
-    mutating func trySave(repeatOnError error: ErrorType -> Bool)
+    mutating func trySave(stopOnError error: ErrorType -> Bool)
     /// Create new context for this template.
     mutating func createContext(concurrencyType: NSManagedObjectContextConcurrencyType) -> NSManagedObjectContext
 }
@@ -61,7 +61,7 @@ public extension BaseStackTemplate {
     ///                            Should return `true` if can retry context save.
     ///                            Otherwise, return false or you will get
     ///                             an infinite save attempts.
-    public mutating func trySave(repeatOnError error: ErrorType -> Bool = { _ in return false }) {
+    public mutating func trySave(stopOnError error: ErrorType -> Bool = { _ in return false }) {
         self.trySaveContext(self.masterObjectContext, callback: error)
     }
     

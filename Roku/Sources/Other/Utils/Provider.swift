@@ -52,8 +52,8 @@ public struct Provider<Object> {
     }
     
     /// Create provider with `provider` function.
-    internal init(provider: () -> Object, _ providedObjects: _Queue<Object> = .Empty) {
+    internal init(providing: () -> Object, _ providedObjects: _Queue<Object> = .Empty) {
         self._objects = providedObjects
-        self._provide = provider
+        self._provide = providing
     }
 }
