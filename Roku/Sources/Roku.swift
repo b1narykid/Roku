@@ -23,7 +23,11 @@
 // THE SOFTWARE.
 
 import Swift
-@exported import CoreData
+// Classes
+import class Foundation.NSOperationQueue
+import class CoreData.NSManagedObjectContext
+// Enums
+import enum CoreData.NSManagedObjectContextConcurrencyType
 
 /// Encapsulates the `CoreData` stack.
 ///

@@ -23,7 +23,9 @@
 // THE SOFTWARE.
 
 import Swift
-import CoreData
+// Classes
+import class CoreData.NSManagedObjectModel
+import class CoreData.NSPersistentStoreCoordinator
 
 /// A small layer between `Roku` framework and the external services.
 ///

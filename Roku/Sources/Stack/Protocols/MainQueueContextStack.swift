@@ -23,7 +23,8 @@
 // THE SOFTWARE.
 
 import Swift
-import CoreData
+// Classes
+import class CoreData.NSManagedObjectContext
 
 /// Describes a context stack with a main queue context.
 public protocol MainQueueContextStack {

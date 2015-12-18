@@ -23,13 +23,22 @@
 // THE SOFTWARE.
 
 import Swift
-import Dispatch.queue
-import Foundation.NSOperation
+// Classes
+import class Foundation.NSOperationQueue
+// Functions
+import func Dispatch.dispatch_queue_attr_make_with_qos_class
+import func Dispatch.dispatch_queue_create
+// Protocols
+import protocol Dispatch.OS_dispatch_queue
+import protocol Dispatch.OS_dispatch_queue_attr
+// Constants
+import let Dispatch.DISPATCH_QUEUE_SERIAL
+import let Dispatch.QOS_CLASS_UTILITY
 
 /// Encapsulates the proccess of `NSOperationQueue` and `OS_dispatch_queue`
 /// creation for multiple platforms and OS versions.
 internal class OperationQueueFactory {
-    func createOprationQueue(name name: String? = nil, queue: dispatch_queue_t? = nil) -> NSOperationQueue {
+    func createOprationQueue(name name: String? = nil, queue: OS_dispatch_queue? = nil) -> NSOperationQueue {
         let oq = NSOperationQueue()
         let name = name ?? "com.b1nary.Roku.factory\(unsafeAddressOf(oq))"
         oq.name = name
@@ -41,8 +50,8 @@ internal class OperationQueueFactory {
         return oq
     }
     
-    func createDispatchQueue(identifier identifier: String) -> dispatch_queue_t {
-        let attributes: dispatch_queue_attr_t!
+    func createDispatchQueue(identifier identifier: String) -> OS_dispatch_queue {
+        let attributes: OS_dispatch_queue_attr!
         
         if #available(iOS 8.0, OSX 10.10, tvOS 9.0, *) {
             attributes = dispatch_queue_attr_make_with_qos_class(

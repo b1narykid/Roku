@@ -23,7 +23,10 @@
 // THE SOFTWARE.
 
 import Swift
-import CoreData
+// Classes
+import class CoreData.NSManagedObjectContext
+// Enums
+import enum CoreData.NSManagedObjectContextConcurrencyType
 
 /// Describes a context stack that has a factory method 
 /// for creating additional contexts (especially 'workers') for `Self`

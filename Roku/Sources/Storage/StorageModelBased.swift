@@ -23,7 +23,8 @@
 // THE SOFTWARE.
 
 import Swift
-import CoreData
+// Classes
+import class CoreData.NSPersistentStoreCoordinator
 
 /// Storage model based stack.
 public typealias StorageModelBasedStack = protocol<BaseStackTemplate, StorageModelBased>

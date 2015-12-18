@@ -23,7 +23,10 @@
 // THE SOFTWARE.
 
 import Swift
-import CoreData
+// Classes
+import class CoreData.NSManagedObjectContext
+// Enums
+import enum CoreData.NSManagedObjectContextConcurrencyType
 
 /// Concurrent stack implementation with nested managed object contexts.
 ///
