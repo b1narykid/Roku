@@ -23,17 +23,8 @@
 // THE SOFTWARE.
 
 import Swift
-// Classes
+import Dispatch
 import class Foundation.NSOperationQueue
-// Functions
-import func Dispatch.dispatch_queue_attr_make_with_qos_class
-import func Dispatch.dispatch_queue_create
-// Protocols
-import protocol Dispatch.OS_dispatch_queue
-import protocol Dispatch.OS_dispatch_queue_attr
-// Constants
-import let Dispatch.DISPATCH_QUEUE_SERIAL
-import let Dispatch.QOS_CLASS_UTILITY
 
 /// Encapsulates the proccess of `NSOperationQueue` and `OS_dispatch_queue`
 /// creation for multiple platforms and OS versions.

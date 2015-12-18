@@ -23,9 +23,7 @@
 // THE SOFTWARE.
 
 import Swift
-// Classes
-import class CoreData.NSManagedObjectContext
-import class CoreData.NSPersistentStoreCoordinator
+import CoreData
 
 /// `NSManagedObjectContext` subclass, focused on
 /// store changes observing and automatic merging.

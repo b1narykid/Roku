@@ -24,7 +24,6 @@
 
 import Swift
 import XCTest
-import CoreData
 @testable import Roku
 
 extension XCTestCase {

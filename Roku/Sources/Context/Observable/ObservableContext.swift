@@ -23,8 +23,7 @@
 // THE SOFTWARE.
 
 import Swift
-// Classes
-import class CoreData.NSManagedObjectContext
+import CoreData
 
 /// Objects conforming to this protocol can be observed with `ContextObserver`.
 ///

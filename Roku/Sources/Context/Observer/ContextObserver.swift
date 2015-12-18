@@ -23,17 +23,13 @@
 // THE SOFTWARE.
 
 import Swift
-
+import CoreData
 // Protocols
 import protocol ObjectiveC.NSObjectProtocol
 // Classes
 import class Foundation.NSNotification
 import class Foundation.NSNotificationCenter
 import class Foundation.NSOperationQueue
-import class CoreData.NSManagedObjectContext
-import class CoreData.NSPersistentStoreCoordinator
-// Constants
-import let CoreData.NSManagedObjectContextDidSaveNotification
 
 internal enum ObservedStore {
     case MOC(NSManagedObjectContext)
