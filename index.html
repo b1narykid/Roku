@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Roku by b1narykid</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Roku</h1>
+        <h2>CoreData&#39;s concurrent stacks made easy.</h2>
+        <a href="https://github.com/b1narykid/Roku" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <blockquote>
+<p>Warning:
+This project is currently in development.</p>
+</blockquote>
+
+<h1>
+<a id="roku-六" class="anchor" href="#roku-%E5%85%AD" aria-hidden="true"><span class="octicon octicon-link"></span></a>Roku (<a href="https://en.wiktionary.org/wiki/%E5%85%AD#Numeral">六</a>)</h1>
+
+<p>CoreData's concurrent stacks made easy.</p>
+
+<blockquote>
+<p>Inspired by
+<a href="http://floriankugler.com/2013/04/29/concurrent-core-data-stack-performance-shootout/">Concurrent Core Data Stacks</a> article,
+<a href="https://developer.apple.com/videos/play/wwdc2013-211/">WWDC2013 Session 211</a>
+and <a href="https://github.com/kostiakoval/Seru">Seru</a> CoreData stack by <a href="https://github.com/kostiakoval">@kostiakoval</a>.</p>
+</blockquote>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Initialize <code>StorageModel</code> (see also: <a href="Docs/StorageModel.md">StorageModel.md</a>)</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">func</span> <span class="pl-en">newPersistentStoreCoordinator</span>() <span class="pl-k">-&gt;</span> NSPersistentStoreCoordinator {
+    <span class="pl-c">// Create and return new persistent store coordinator</span>
+}
+
+<span class="pl-k">let</span> storage <span class="pl-k">=</span> StorageModel(persistentStoreCoordinator: newPersistentStoreCoordinator)</pre></div>
+
+<p>Initialize <code>Roku</code> stack (see also: <a href="Docs/Roku.md">Roku.md</a>) with a base stack</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> baseStack <span class="pl-k">=</span> Roku<span class="pl-k">&lt;</span>BaseStack<span class="pl-k">&gt;</span>(storage: storage)</pre></div>
+
+<p>or with a nested stack</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> nestedStack <span class="pl-k">=</span> Roku<span class="pl-k">&lt;</span>NestedStack<span class="pl-k">&gt;</span>(storage: storage)</pre></div>
+
+<p>or with an independent stack.</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> independentStack <span class="pl-k">=</span> Roku<span class="pl-k">&lt;</span>IndependentStack<span class="pl-k">&gt;</span>(storage: storage)</pre></div>
+
+<p>Enjoy <code>Roku</code>'s features <img class="emoji" title=":tada:" alt=":tada:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png" height="20" width="20" align="absmiddle"></p>
+
+<div class="highlight highlight-source-swift"><pre>stack<span class="pl-k">.</span>mainObjectContext <span class="pl-c">// Main queue managed object context</span>
+
+stack<span class="pl-k">.</span>withBackgroundContext { context <span class="pl-k">in</span>
+    <span class="pl-c">// Do heavy import operations on the background context</span>
+}
+
+stack<span class="pl-k">.</span>persist { error <span class="pl-k">-&gt;</span> <span class="pl-c1">Bool</span> <span class="pl-k">in</span>
+    <span class="pl-c">// Handle an error and try fixing it</span>
+
+    <span class="pl-c">// If error was successfully fixed, </span>
+    <span class="pl-c">// `Roku` will repeat save.</span>
+    <span class="pl-k">return</span> errorHandled <span class="pl-k">&amp;&amp;</span> errorFixed
+}</pre></div>
+
+<h2>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h2>
+
+<ul>
+<li>[x] Implement observable NSManagedObjectContext.</li>
+<li>[x] Implement templates and default implementations.</li>
+<li>[ ] Implement all functionality of <code>Roku</code> class.</li>
+<li>[ ] Finish writing README.md file.</li>
+<li>[ ] Add examples of custom stack templates and implementations.</li>
+<li>[ ] Feature: implement manager for stack with multiple persistent store coordinators.</li>
+<li>[ ] Write unit tests.</li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<pre><code>The MIT License (MIT)
+
+Copyright © 2015 Ivan Trubach
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</code></pre>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/b1narykid/Roku/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/b1narykid/Roku/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/b1narykid/Roku"></a> is maintained by <a href="https://github.com/b1narykid">b1narykid</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
