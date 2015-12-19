@@ -24,19 +24,19 @@
 
 import Swift
 
-internal enum _Queue<Element> {
-    indirect case Node(Element, predecessor: _Queue<Element>)
+internal enum Queue<Element> {
+    indirect case Node(Element, predecessor: Queue<Element>)
     case Empty
 }
 
-internal extension _Queue {
+internal extension Queue {
     internal var isEmpty: Bool {
         switch self {
         case .Empty: return true
         default: return false
         }
     }
-    
+
     internal var isEnd: Bool {
         switch self {
         case .Node(_, predecessor: let predecessor) where predecessor.isEmpty:
@@ -45,12 +45,12 @@ internal extension _Queue {
             return false
         }
     }
-    
+
     /// Enqueue element to `self`.
     internal mutating func enqueue(newElement: Element) {
         self = .Node(newElement, predecessor: self)
     }
-    
+
     /// Dequeue element from `self`.
     @warn_unused_result
     internal mutating func dequeue() -> Element? {
@@ -62,4 +62,3 @@ internal extension _Queue {
         }
     }
 }
-

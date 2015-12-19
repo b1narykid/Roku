@@ -7,337 +7,257 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		771CCF281C1F057F002C7411 /* Roku.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771CCF1D1C1F057C002C7411 /* Roku.framework */; };
-		771CCF2D1C1F057F002C7411 /* RokuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771CCF2C1C1F057F002C7411 /* RokuTests.swift */; };
-		7786476B1C1F0AB700483361 /* ManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778647441C1F0AB700483361 /* ManagedObjectContext.swift */; };
-		7786476C1C1F0AB700483361 /* ObservableContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778647461C1F0AB700483361 /* ObservableContext.swift */; };
-		7786476D1C1F0AB700483361 /* ContextObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778647481C1F0AB700483361 /* ContextObserver.swift */; };
-		7786476E1C1F0AB700483361 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7786474B1C1F0AB700483361 /* Queue.swift */; };
-		7786476F1C1F0AB700483361 /* OperationQueueFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7786474C1C1F0AB700483361 /* OperationQueueFactory.swift */; };
-		778647701C1F0AB700483361 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7786474D1C1F0AB700483361 /* Provider.swift */; };
-		778647711C1F0AB700483361 /* NullObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7786474F1C1F0AB700483361 /* NullObject.swift */; };
-		778647721C1F0AB700483361 /* Roku.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778647501C1F0AB700483361 /* Roku.swift */; };
-		778647731C1F0AB700483361 /* BaseStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778647541C1F0AB700483361 /* BaseStack.swift */; };
-		778647741C1F0AB700483361 /* BaseStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778647561C1F0AB700483361 /* BaseStackTemplate.swift */; };
-		778647761C1F0AB700483361 /* IndependentStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7786475A1C1F0AB700483361 /* IndependentStack.swift */; };
-		778647781C1F0AB700483361 /* IndependentStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7786475D1C1F0AB700483361 /* IndependentStackTemplate.swift */; };
-		7786477A1C1F0AB700483361 /* NestedStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778647611C1F0AB700483361 /* NestedStack.swift */; };
-		7786477C1C1F0AB700483361 /* NestedStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778647641C1F0AB700483361 /* NestedStackTemplate.swift */; };
-		7786477D1C1F0AB700483361 /* StorageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778647661C1F0AB700483361 /* StorageModel.swift */; };
-		7786477E1C1F0AB700483361 /* StorageModelBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778647671C1F0AB700483361 /* StorageModelBased.swift */; };
-		7786477F1C1F0AB700483361 /* StorageModelConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778647681C1F0AB700483361 /* StorageModelConvertible.swift */; };
-		778647851C1F0CF100483361 /* StorageModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778647831C1F0CF100483361 /* StorageModelTests.swift */; };
-		778647861C1F0CF100483361 /* Supporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778647841C1F0CF100483361 /* Supporting.swift */; };
-		77CC18C01C2309490025C60C /* MainQueueContextStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CC18BF1C2309490025C60C /* MainQueueContextStack.swift */; };
-		77CC18C31C23578A0025C60C /* ContextFactoryStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CC18C21C23578A0025C60C /* ContextFactoryStack.swift */; };
+		77C2C5331C25B7A800448829 /* BaseStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5201C25B7A800448829 /* BaseStack.swift */; };
+		77C2C5341C25B7A800448829 /* BaseStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5201C25B7A800448829 /* BaseStack.swift */; };
+		77C2C5351C25B7A800448829 /* BaseStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5201C25B7A800448829 /* BaseStack.swift */; };
+		77C2C5361C25B7A800448829 /* BaseStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5211C25B7A800448829 /* BaseStackTemplate.swift */; };
+		77C2C5371C25B7A800448829 /* BaseStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5211C25B7A800448829 /* BaseStackTemplate.swift */; };
+		77C2C5381C25B7A800448829 /* BaseStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5211C25B7A800448829 /* BaseStackTemplate.swift */; };
+		77C2C5391C25B7A800448829 /* ContextFactoryStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5221C25B7A800448829 /* ContextFactoryStack.swift */; };
+		77C2C53A1C25B7A800448829 /* ContextFactoryStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5221C25B7A800448829 /* ContextFactoryStack.swift */; };
+		77C2C53B1C25B7A800448829 /* ContextFactoryStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5221C25B7A800448829 /* ContextFactoryStack.swift */; };
+		77C2C53C1C25B7A800448829 /* ContextObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5231C25B7A800448829 /* ContextObserver.swift */; };
+		77C2C53D1C25B7A800448829 /* ContextObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5231C25B7A800448829 /* ContextObserver.swift */; };
+		77C2C53E1C25B7A800448829 /* ContextObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5231C25B7A800448829 /* ContextObserver.swift */; };
+		77C2C53F1C25B7A800448829 /* IndependentStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5241C25B7A800448829 /* IndependentStack.swift */; };
+		77C2C5401C25B7A800448829 /* IndependentStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5241C25B7A800448829 /* IndependentStack.swift */; };
+		77C2C5411C25B7A800448829 /* IndependentStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5241C25B7A800448829 /* IndependentStack.swift */; };
+		77C2C5421C25B7A800448829 /* IndependentStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5251C25B7A800448829 /* IndependentStackTemplate.swift */; };
+		77C2C5431C25B7A800448829 /* IndependentStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5251C25B7A800448829 /* IndependentStackTemplate.swift */; };
+		77C2C5441C25B7A800448829 /* IndependentStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5251C25B7A800448829 /* IndependentStackTemplate.swift */; };
+		77C2C5451C25B7A800448829 /* MainQueueContextStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5261C25B7A800448829 /* MainQueueContextStack.swift */; };
+		77C2C5461C25B7A800448829 /* MainQueueContextStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5261C25B7A800448829 /* MainQueueContextStack.swift */; };
+		77C2C5471C25B7A800448829 /* MainQueueContextStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5261C25B7A800448829 /* MainQueueContextStack.swift */; };
+		77C2C5481C25B7A800448829 /* ManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5271C25B7A800448829 /* ManagedObjectContext.swift */; };
+		77C2C5491C25B7A800448829 /* ManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5271C25B7A800448829 /* ManagedObjectContext.swift */; };
+		77C2C54A1C25B7A800448829 /* ManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5271C25B7A800448829 /* ManagedObjectContext.swift */; };
+		77C2C54B1C25B7A800448829 /* NestedStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5281C25B7A800448829 /* NestedStack.swift */; };
+		77C2C54C1C25B7A800448829 /* NestedStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5281C25B7A800448829 /* NestedStack.swift */; };
+		77C2C54D1C25B7A800448829 /* NestedStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5281C25B7A800448829 /* NestedStack.swift */; };
+		77C2C54E1C25B7A800448829 /* NestedStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5291C25B7A800448829 /* NestedStackTemplate.swift */; };
+		77C2C54F1C25B7A800448829 /* NestedStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5291C25B7A800448829 /* NestedStackTemplate.swift */; };
+		77C2C5501C25B7A800448829 /* NestedStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5291C25B7A800448829 /* NestedStackTemplate.swift */; };
+		77C2C5511C25B7A800448829 /* NullObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52A1C25B7A800448829 /* NullObject.swift */; };
+		77C2C5521C25B7A800448829 /* NullObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52A1C25B7A800448829 /* NullObject.swift */; };
+		77C2C5531C25B7A800448829 /* NullObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52A1C25B7A800448829 /* NullObject.swift */; };
+		77C2C5541C25B7A800448829 /* ObservableContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52B1C25B7A800448829 /* ObservableContext.swift */; };
+		77C2C5551C25B7A800448829 /* ObservableContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52B1C25B7A800448829 /* ObservableContext.swift */; };
+		77C2C5561C25B7A800448829 /* ObservableContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52B1C25B7A800448829 /* ObservableContext.swift */; };
+		77C2C5571C25B7A800448829 /* OperationQueueFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52C1C25B7A800448829 /* OperationQueueFactory.swift */; };
+		77C2C5581C25B7A800448829 /* OperationQueueFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52C1C25B7A800448829 /* OperationQueueFactory.swift */; };
+		77C2C5591C25B7A800448829 /* OperationQueueFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52C1C25B7A800448829 /* OperationQueueFactory.swift */; };
+		77C2C55A1C25B7A800448829 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52D1C25B7A800448829 /* Provider.swift */; };
+		77C2C55B1C25B7A800448829 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52D1C25B7A800448829 /* Provider.swift */; };
+		77C2C55C1C25B7A800448829 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52D1C25B7A800448829 /* Provider.swift */; };
+		77C2C55D1C25B7A800448829 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52E1C25B7A800448829 /* Queue.swift */; };
+		77C2C55E1C25B7A800448829 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52E1C25B7A800448829 /* Queue.swift */; };
+		77C2C55F1C25B7A800448829 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52E1C25B7A800448829 /* Queue.swift */; };
+		77C2C5601C25B7A800448829 /* Roku.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52F1C25B7A800448829 /* Roku.swift */; };
+		77C2C5611C25B7A800448829 /* Roku.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52F1C25B7A800448829 /* Roku.swift */; };
+		77C2C5621C25B7A800448829 /* Roku.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52F1C25B7A800448829 /* Roku.swift */; };
+		77C2C5631C25B7A800448829 /* StorageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5301C25B7A800448829 /* StorageModel.swift */; };
+		77C2C5641C25B7A800448829 /* StorageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5301C25B7A800448829 /* StorageModel.swift */; };
+		77C2C5651C25B7A800448829 /* StorageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5301C25B7A800448829 /* StorageModel.swift */; };
+		77C2C5661C25B7A800448829 /* StorageModelBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5311C25B7A800448829 /* StorageModelBased.swift */; };
+		77C2C5671C25B7A800448829 /* StorageModelBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5311C25B7A800448829 /* StorageModelBased.swift */; };
+		77C2C5681C25B7A800448829 /* StorageModelBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5311C25B7A800448829 /* StorageModelBased.swift */; };
+		77C2C5691C25B7A800448829 /* StorageModelConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5321C25B7A800448829 /* StorageModelConvertible.swift */; };
+		77C2C56A1C25B7A800448829 /* StorageModelConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5321C25B7A800448829 /* StorageModelConvertible.swift */; };
+		77C2C56B1C25B7A800448829 /* StorageModelConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5321C25B7A800448829 /* StorageModelConvertible.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		771CCF291C1F057F002C7411 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 771CCF141C1F057C002C7411 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 771CCF1C1C1F057C002C7411;
-			remoteInfo = Roku;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		772BD3BF1C1F5D8700195974 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 7;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		771CCF1D1C1F057C002C7411 /* Roku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Roku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		771CCF271C1F057F002C7411 /* RokuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RokuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		771CCF2C1C1F057F002C7411 /* RokuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RokuTests.swift; sourceTree = "<group>"; };
-		771CCF2E1C1F0580002C7411 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		778647441C1F0AB700483361 /* ManagedObjectContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectContext.swift; sourceTree = "<group>"; };
-		778647461C1F0AB700483361 /* ObservableContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableContext.swift; sourceTree = "<group>"; };
-		778647481C1F0AB700483361 /* ContextObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextObserver.swift; sourceTree = "<group>"; };
-		7786474B1C1F0AB700483361 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
-		7786474C1C1F0AB700483361 /* OperationQueueFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueueFactory.swift; sourceTree = "<group>"; };
-		7786474D1C1F0AB700483361 /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Provider.swift; path = Utils/Provider.swift; sourceTree = "<group>"; };
-		7786474F1C1F0AB700483361 /* NullObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullObject.swift; sourceTree = "<group>"; };
-		778647501C1F0AB700483361 /* Roku.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roku.swift; sourceTree = "<group>"; };
-		778647541C1F0AB700483361 /* BaseStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseStack.swift; sourceTree = "<group>"; };
-		778647561C1F0AB700483361 /* BaseStackTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseStackTemplate.swift; sourceTree = "<group>"; };
-		7786475A1C1F0AB700483361 /* IndependentStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndependentStack.swift; sourceTree = "<group>"; };
-		7786475D1C1F0AB700483361 /* IndependentStackTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndependentStackTemplate.swift; sourceTree = "<group>"; };
-		778647611C1F0AB700483361 /* NestedStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedStack.swift; sourceTree = "<group>"; };
-		778647641C1F0AB700483361 /* NestedStackTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedStackTemplate.swift; sourceTree = "<group>"; };
-		778647661C1F0AB700483361 /* StorageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageModel.swift; sourceTree = "<group>"; };
-		778647671C1F0AB700483361 /* StorageModelBased.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageModelBased.swift; sourceTree = "<group>"; };
-		778647681C1F0AB700483361 /* StorageModelConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageModelConvertible.swift; sourceTree = "<group>"; };
-		7786476A1C1F0AB700483361 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		778647831C1F0CF100483361 /* StorageModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageModelTests.swift; sourceTree = "<group>"; };
-		778647841C1F0CF100483361 /* Supporting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Supporting.swift; sourceTree = "<group>"; };
-		77CC18BF1C2309490025C60C /* MainQueueContextStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainQueueContextStack.swift; path = Protocols/MainQueueContextStack.swift; sourceTree = "<group>"; };
-		77CC18C21C23578A0025C60C /* ContextFactoryStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContextFactoryStack.swift; path = Protocols/ContextFactoryStack.swift; sourceTree = "<group>"; };
+		77C2C4A61C25B68C00448829 /* Roku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Roku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		77C2C4AA1C25B68C00448829 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		77C2C4B51C25B70900448829 /* Roku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Roku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		77C2C4C51C25B77400448829 /* Roku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Roku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		77C2C5201C25B7A800448829 /* BaseStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseStack.swift; sourceTree = "<group>"; };
+		77C2C5211C25B7A800448829 /* BaseStackTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseStackTemplate.swift; sourceTree = "<group>"; };
+		77C2C5221C25B7A800448829 /* ContextFactoryStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextFactoryStack.swift; sourceTree = "<group>"; };
+		77C2C5231C25B7A800448829 /* ContextObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextObserver.swift; sourceTree = "<group>"; };
+		77C2C5241C25B7A800448829 /* IndependentStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndependentStack.swift; sourceTree = "<group>"; };
+		77C2C5251C25B7A800448829 /* IndependentStackTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndependentStackTemplate.swift; sourceTree = "<group>"; };
+		77C2C5261C25B7A800448829 /* MainQueueContextStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainQueueContextStack.swift; sourceTree = "<group>"; };
+		77C2C5271C25B7A800448829 /* ManagedObjectContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectContext.swift; sourceTree = "<group>"; };
+		77C2C5281C25B7A800448829 /* NestedStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedStack.swift; sourceTree = "<group>"; };
+		77C2C5291C25B7A800448829 /* NestedStackTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedStackTemplate.swift; sourceTree = "<group>"; };
+		77C2C52A1C25B7A800448829 /* NullObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullObject.swift; sourceTree = "<group>"; };
+		77C2C52B1C25B7A800448829 /* ObservableContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableContext.swift; sourceTree = "<group>"; };
+		77C2C52C1C25B7A800448829 /* OperationQueueFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueueFactory.swift; sourceTree = "<group>"; };
+		77C2C52D1C25B7A800448829 /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		77C2C52E1C25B7A800448829 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		77C2C52F1C25B7A800448829 /* Roku.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roku.swift; sourceTree = "<group>"; };
+		77C2C5301C25B7A800448829 /* StorageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageModel.swift; sourceTree = "<group>"; };
+		77C2C5311C25B7A800448829 /* StorageModelBased.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageModelBased.swift; sourceTree = "<group>"; };
+		77C2C5321C25B7A800448829 /* StorageModelConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageModelConvertible.swift; sourceTree = "<group>"; };
+		77C2C5791C25D56900448829 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		77C2C57B1C25EA9100448829 /* Roku.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = Roku.modulemap; path = Sources/Roku.modulemap; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		771CCF191C1F057C002C7411 /* Frameworks */ = {
+		77C2C4A21C25B68C00448829 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		771CCF241C1F057F002C7411 /* Frameworks */ = {
+		77C2C4B11C25B70900448829 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				771CCF281C1F057F002C7411 /* Roku.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77C2C4C11C25B77400448829 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		771CCF131C1F057C002C7411 = {
+		77C2C48C1C25B5E400448829 = {
 			isa = PBXGroup;
 			children = (
-				771CCF1F1C1F057C002C7411 /* Roku */,
-				771CCF2B1C1F057F002C7411 /* RokuTests */,
-				771CCF1E1C1F057C002C7411 /* Products */,
+				77C2C5791C25D56900448829 /* Package.swift */,
+				77C2C51F1C25B7A800448829 /* Roku */,
+				77C2C4AE1C25B69A00448829 /* Supporting Files */,
+				77C2C4991C25B64800448829 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		771CCF1E1C1F057C002C7411 /* Products */ = {
+		77C2C4991C25B64800448829 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				771CCF1D1C1F057C002C7411 /* Roku.framework */,
-				771CCF271C1F057F002C7411 /* RokuTests.xctest */,
+				77C2C4A61C25B68C00448829 /* Roku.framework */,
+				77C2C4B51C25B70900448829 /* Roku.framework */,
+				77C2C4C51C25B77400448829 /* Roku.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		771CCF1F1C1F057C002C7411 /* Roku */ = {
+		77C2C4AE1C25B69A00448829 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				778647411C1F0AB700483361 /* Sources */,
-				778647691C1F0AB700483361 /* Supporting Files */,
+				77C2C57B1C25EA9100448829 /* Roku.modulemap */,
+				77C2C4AA1C25B68C00448829 /* Info.plist */,
 			);
-			path = Roku;
+			name = "Supporting Files";
+			path = "Roku-OSX";
 			sourceTree = "<group>";
 		};
-		771CCF2B1C1F057F002C7411 /* RokuTests */ = {
+		77C2C51F1C25B7A800448829 /* Roku */ = {
 			isa = PBXGroup;
 			children = (
-				771CCF2C1C1F057F002C7411 /* RokuTests.swift */,
-				778647831C1F0CF100483361 /* StorageModelTests.swift */,
-				778647841C1F0CF100483361 /* Supporting.swift */,
-				771CCF2E1C1F0580002C7411 /* Info.plist */,
+				77C2C52F1C25B7A800448829 /* Roku.swift */,
+				77C2C52D1C25B7A800448829 /* Provider.swift */,
+				77C2C5721C25CFCC00448829 /* Base Stack */,
+				77C2C5731C25CFD800448829 /* Stack Protocols */,
+				77C2C5761C25D00100448829 /* Observing */,
+				77C2C5711C25CFC100448829 /* Independent Stack */,
+				77C2C5701C25CFB600448829 /* Nested Stack */,
+				77C2C5751C25CFF800448829 /* Storage Model */,
+				77C2C5781C25D03A00448829 /* Patterns */,
+				77C2C5741C25CFEA00448829 /* Internals */,
 			);
-			path = RokuTests;
-			sourceTree = "<group>";
-		};
-		77456DAD1C21DE3700719C24 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				7786474D1C1F0AB700483361 /* Provider.swift */,
-			);
-			name = Utils;
-			sourceTree = "<group>";
-		};
-		778647411C1F0AB700483361 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				778647501C1F0AB700483361 /* Roku.swift */,
-				778647511C1F0AB700483361 /* Stack */,
-				778647421C1F0AB700483361 /* Context */,
-				778647651C1F0AB700483361 /* Storage */,
-				778647491C1F0AB700483361 /* Other */,
-			);
+			name = Roku;
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		778647421C1F0AB700483361 /* Context */ = {
+		77C2C5701C25CFB600448829 /* Nested Stack */ = {
 			isa = PBXGroup;
 			children = (
-				778647431C1F0AB700483361 /* Implementation */,
-				778647451C1F0AB700483361 /* Observable */,
-				778647471C1F0AB700483361 /* Observer */,
+				77C2C5281C25B7A800448829 /* NestedStack.swift */,
+				77C2C5291C25B7A800448829 /* NestedStackTemplate.swift */,
 			);
-			path = Context;
+			name = "Nested Stack";
 			sourceTree = "<group>";
 		};
-		778647431C1F0AB700483361 /* Implementation */ = {
+		77C2C5711C25CFC100448829 /* Independent Stack */ = {
 			isa = PBXGroup;
 			children = (
-				778647441C1F0AB700483361 /* ManagedObjectContext.swift */,
+				77C2C5241C25B7A800448829 /* IndependentStack.swift */,
+				77C2C5251C25B7A800448829 /* IndependentStackTemplate.swift */,
 			);
-			path = Implementation;
+			name = "Independent Stack";
 			sourceTree = "<group>";
 		};
-		778647451C1F0AB700483361 /* Observable */ = {
+		77C2C5721C25CFCC00448829 /* Base Stack */ = {
 			isa = PBXGroup;
 			children = (
-				778647461C1F0AB700483361 /* ObservableContext.swift */,
+				77C2C5201C25B7A800448829 /* BaseStack.swift */,
+				77C2C5211C25B7A800448829 /* BaseStackTemplate.swift */,
 			);
-			path = Observable;
+			name = "Base Stack";
 			sourceTree = "<group>";
 		};
-		778647471C1F0AB700483361 /* Observer */ = {
+		77C2C5731C25CFD800448829 /* Stack Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				778647481C1F0AB700483361 /* ContextObserver.swift */,
+				77C2C5221C25B7A800448829 /* ContextFactoryStack.swift */,
+				77C2C5261C25B7A800448829 /* MainQueueContextStack.swift */,
 			);
-			path = Observer;
+			name = "Stack Protocols";
 			sourceTree = "<group>";
 		};
-		778647491C1F0AB700483361 /* Other */ = {
+		77C2C5741C25CFEA00448829 /* Internals */ = {
 			isa = PBXGroup;
 			children = (
-				7786474A1C1F0AB700483361 /* Internal */,
-				7786474E1C1F0AB700483361 /* Patterns */,
-				77456DAD1C21DE3700719C24 /* Utils */,
+				77C2C52C1C25B7A800448829 /* OperationQueueFactory.swift */,
+				77C2C52E1C25B7A800448829 /* Queue.swift */,
 			);
-			path = Other;
+			name = Internals;
 			sourceTree = "<group>";
 		};
-		7786474A1C1F0AB700483361 /* Internal */ = {
+		77C2C5751C25CFF800448829 /* Storage Model */ = {
 			isa = PBXGroup;
 			children = (
-				7786474B1C1F0AB700483361 /* Queue.swift */,
-				7786474C1C1F0AB700483361 /* OperationQueueFactory.swift */,
+				77C2C5301C25B7A800448829 /* StorageModel.swift */,
+				77C2C5311C25B7A800448829 /* StorageModelBased.swift */,
+				77C2C5321C25B7A800448829 /* StorageModelConvertible.swift */,
 			);
-			path = Internal;
+			name = "Storage Model";
 			sourceTree = "<group>";
 		};
-		7786474E1C1F0AB700483361 /* Patterns */ = {
+		77C2C5761C25D00100448829 /* Observing */ = {
 			isa = PBXGroup;
 			children = (
-				7786474F1C1F0AB700483361 /* NullObject.swift */,
+				77C2C5271C25B7A800448829 /* ManagedObjectContext.swift */,
+				77C2C5231C25B7A800448829 /* ContextObserver.swift */,
+				77C2C52B1C25B7A800448829 /* ObservableContext.swift */,
 			);
-			path = Patterns;
+			name = Observing;
 			sourceTree = "<group>";
 		};
-		778647511C1F0AB700483361 /* Stack */ = {
+		77C2C5781C25D03A00448829 /* Patterns */ = {
 			isa = PBXGroup;
 			children = (
-				778647521C1F0AB700483361 /* Base */,
-				778647571C1F0AB700483361 /* Independent */,
-				7786475E1C1F0AB700483361 /* Nested */,
-				77CC18C11C23094D0025C60C /* Protocols */,
+				77C2C52A1C25B7A800448829 /* NullObject.swift */,
 			);
-			path = Stack;
-			sourceTree = "<group>";
-		};
-		778647521C1F0AB700483361 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				778647531C1F0AB700483361 /* Implementation */,
-				778647551C1F0AB700483361 /* Template */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
-		778647531C1F0AB700483361 /* Implementation */ = {
-			isa = PBXGroup;
-			children = (
-				778647541C1F0AB700483361 /* BaseStack.swift */,
-			);
-			path = Implementation;
-			sourceTree = "<group>";
-		};
-		778647551C1F0AB700483361 /* Template */ = {
-			isa = PBXGroup;
-			children = (
-				778647561C1F0AB700483361 /* BaseStackTemplate.swift */,
-			);
-			path = Template;
-			sourceTree = "<group>";
-		};
-		778647571C1F0AB700483361 /* Independent */ = {
-			isa = PBXGroup;
-			children = (
-				778647581C1F0AB700483361 /* Implementation */,
-				7786475B1C1F0AB700483361 /* Template */,
-			);
-			path = Independent;
-			sourceTree = "<group>";
-		};
-		778647581C1F0AB700483361 /* Implementation */ = {
-			isa = PBXGroup;
-			children = (
-				7786475A1C1F0AB700483361 /* IndependentStack.swift */,
-			);
-			path = Implementation;
-			sourceTree = "<group>";
-		};
-		7786475B1C1F0AB700483361 /* Template */ = {
-			isa = PBXGroup;
-			children = (
-				7786475D1C1F0AB700483361 /* IndependentStackTemplate.swift */,
-			);
-			path = Template;
-			sourceTree = "<group>";
-		};
-		7786475E1C1F0AB700483361 /* Nested */ = {
-			isa = PBXGroup;
-			children = (
-				7786475F1C1F0AB700483361 /* Implementation */,
-				778647621C1F0AB700483361 /* Template */,
-			);
-			path = Nested;
-			sourceTree = "<group>";
-		};
-		7786475F1C1F0AB700483361 /* Implementation */ = {
-			isa = PBXGroup;
-			children = (
-				778647611C1F0AB700483361 /* NestedStack.swift */,
-			);
-			path = Implementation;
-			sourceTree = "<group>";
-		};
-		778647621C1F0AB700483361 /* Template */ = {
-			isa = PBXGroup;
-			children = (
-				778647641C1F0AB700483361 /* NestedStackTemplate.swift */,
-			);
-			path = Template;
-			sourceTree = "<group>";
-		};
-		778647651C1F0AB700483361 /* Storage */ = {
-			isa = PBXGroup;
-			children = (
-				778647661C1F0AB700483361 /* StorageModel.swift */,
-				778647671C1F0AB700483361 /* StorageModelBased.swift */,
-				778647681C1F0AB700483361 /* StorageModelConvertible.swift */,
-			);
-			path = Storage;
-			sourceTree = "<group>";
-		};
-		778647691C1F0AB700483361 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				7786476A1C1F0AB700483361 /* Info.plist */,
-			);
-			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		77CC18C11C23094D0025C60C /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				77CC18BF1C2309490025C60C /* MainQueueContextStack.swift */,
-				77CC18C21C23578A0025C60C /* ContextFactoryStack.swift */,
-			);
-			name = Protocols;
+			name = Patterns;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		771CCF1A1C1F057C002C7411 /* Headers */ = {
+		77C2C4A31C25B68C00448829 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77C2C4B21C25B70900448829 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77C2C4C21C25B77400448829 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -347,89 +267,117 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		771CCF1C1C1F057C002C7411 /* Roku */ = {
+		77C2C4A51C25B68C00448829 /* Roku-OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 771CCF311C1F0580002C7411 /* Build configuration list for PBXNativeTarget "Roku" */;
+			buildConfigurationList = 77C2C4AB1C25B68C00448829 /* Build configuration list for PBXNativeTarget "Roku-OSX" */;
 			buildPhases = (
-				771CCF181C1F057C002C7411 /* Sources */,
-				771CCF191C1F057C002C7411 /* Frameworks */,
-				771CCF1A1C1F057C002C7411 /* Headers */,
-				771CCF1B1C1F057C002C7411 /* Resources */,
-				772BD3BE1C1F4AD400195974 /* ShellScript */,
-				772BD3BF1C1F5D8700195974 /* CopyFiles */,
+				77C2C4A11C25B68C00448829 /* Sources */,
+				77C2C4A21C25B68C00448829 /* Frameworks */,
+				77C2C4A31C25B68C00448829 /* Headers */,
+				77C2C4A41C25B68C00448829 /* Resources */,
+				77C2C56D1C25BDB500448829 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Roku;
-			productName = Roku;
-			productReference = 771CCF1D1C1F057C002C7411 /* Roku.framework */;
+			name = "Roku-OSX";
+			productName = "Roku-OSX";
+			productReference = 77C2C4A61C25B68C00448829 /* Roku.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		771CCF261C1F057F002C7411 /* RokuTests */ = {
+		77C2C4B41C25B70900448829 /* Roku-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 771CCF341C1F0580002C7411 /* Build configuration list for PBXNativeTarget "RokuTests" */;
+			buildConfigurationList = 77C2C4BA1C25B70900448829 /* Build configuration list for PBXNativeTarget "Roku-iOS" */;
 			buildPhases = (
-				771CCF231C1F057F002C7411 /* Sources */,
-				771CCF241C1F057F002C7411 /* Frameworks */,
-				771CCF251C1F057F002C7411 /* Resources */,
+				77C2C4B01C25B70900448829 /* Sources */,
+				77C2C4B11C25B70900448829 /* Frameworks */,
+				77C2C4B21C25B70900448829 /* Headers */,
+				77C2C4B31C25B70900448829 /* Resources */,
+				77C2C56E1C25BEE200448829 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				771CCF2A1C1F057F002C7411 /* PBXTargetDependency */,
 			);
-			name = RokuTests;
-			productName = RokuTests;
-			productReference = 771CCF271C1F057F002C7411 /* RokuTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
+			name = "Roku-iOS";
+			productName = "Roku-iOS";
+			productReference = 77C2C4B51C25B70900448829 /* Roku.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		77C2C4C41C25B77400448829 /* Roku-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77C2C4CA1C25B77400448829 /* Build configuration list for PBXNativeTarget "Roku-tvOS" */;
+			buildPhases = (
+				77C2C4C01C25B77400448829 /* Sources */,
+				77C2C4C11C25B77400448829 /* Frameworks */,
+				77C2C4C21C25B77400448829 /* Headers */,
+				77C2C4C31C25B77400448829 /* Resources */,
+				77C2C56F1C25BEF000448829 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Roku-tvOS";
+			productName = "Roku-tvOS";
+			productReference = 77C2C4C51C25B77400448829 /* Roku.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		771CCF141C1F057C002C7411 /* Project object */ = {
+		77C2C48D1C25B5E400448829 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
-				ORGANIZATIONNAME = "Ivan Trubach";
 				TargetAttributes = {
-					771CCF1C1C1F057C002C7411 = {
+					77C2C4A51C25B68C00448829 = {
 						CreatedOnToolsVersion = 7.1;
 					};
-					771CCF261C1F057F002C7411 = {
+					77C2C4B41C25B70900448829 = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					77C2C4C41C25B77400448829 = {
 						CreatedOnToolsVersion = 7.1;
 					};
 				};
 			};
-			buildConfigurationList = 771CCF171C1F057C002C7411 /* Build configuration list for PBXProject "Roku" */;
+			buildConfigurationList = 77C2C4901C25B5E400448829 /* Build configuration list for PBXProject "Roku" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 771CCF131C1F057C002C7411;
-			productRefGroup = 771CCF1E1C1F057C002C7411 /* Products */;
+			mainGroup = 77C2C48C1C25B5E400448829;
+			productRefGroup = 77C2C4991C25B64800448829 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				771CCF1C1C1F057C002C7411 /* Roku */,
-				771CCF261C1F057F002C7411 /* RokuTests */,
+				77C2C4A51C25B68C00448829 /* Roku-OSX */,
+				77C2C4B41C25B70900448829 /* Roku-iOS */,
+				77C2C4C41C25B77400448829 /* Roku-tvOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		771CCF1B1C1F057C002C7411 /* Resources */ = {
+		77C2C4A41C25B68C00448829 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		771CCF251C1F057F002C7411 /* Resources */ = {
+		77C2C4B31C25B70900448829 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77C2C4C31C25B77400448829 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -439,7 +387,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		772BD3BE1C1F4AD400195974 /* ShellScript */ = {
+		77C2C56D1C25BDB500448829 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -450,59 +398,135 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		77C2C56E1C25BEE200448829 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		77C2C56F1C25BEF000448829 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		771CCF181C1F057C002C7411 /* Sources */ = {
+		77C2C4A11C25B68C00448829 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				778647711C1F0AB700483361 /* NullObject.swift in Sources */,
-				778647761C1F0AB700483361 /* IndependentStack.swift in Sources */,
-				7786477E1C1F0AB700483361 /* StorageModelBased.swift in Sources */,
-				7786476F1C1F0AB700483361 /* OperationQueueFactory.swift in Sources */,
-				7786476C1C1F0AB700483361 /* ObservableContext.swift in Sources */,
-				7786477A1C1F0AB700483361 /* NestedStack.swift in Sources */,
-				778647731C1F0AB700483361 /* BaseStack.swift in Sources */,
-				7786477F1C1F0AB700483361 /* StorageModelConvertible.swift in Sources */,
-				7786476B1C1F0AB700483361 /* ManagedObjectContext.swift in Sources */,
-				7786476D1C1F0AB700483361 /* ContextObserver.swift in Sources */,
-				7786477D1C1F0AB700483361 /* StorageModel.swift in Sources */,
-				778647701C1F0AB700483361 /* Provider.swift in Sources */,
-				778647721C1F0AB700483361 /* Roku.swift in Sources */,
-				7786477C1C1F0AB700483361 /* NestedStackTemplate.swift in Sources */,
-				778647781C1F0AB700483361 /* IndependentStackTemplate.swift in Sources */,
-				77CC18C01C2309490025C60C /* MainQueueContextStack.swift in Sources */,
-				7786476E1C1F0AB700483361 /* Queue.swift in Sources */,
-				77CC18C31C23578A0025C60C /* ContextFactoryStack.swift in Sources */,
-				778647741C1F0AB700483361 /* BaseStackTemplate.swift in Sources */,
+				77C2C5541C25B7A800448829 /* ObservableContext.swift in Sources */,
+				77C2C5391C25B7A800448829 /* ContextFactoryStack.swift in Sources */,
+				77C2C55A1C25B7A800448829 /* Provider.swift in Sources */,
+				77C2C5631C25B7A800448829 /* StorageModel.swift in Sources */,
+				77C2C53C1C25B7A800448829 /* ContextObserver.swift in Sources */,
+				77C2C5331C25B7A800448829 /* BaseStack.swift in Sources */,
+				77C2C5571C25B7A800448829 /* OperationQueueFactory.swift in Sources */,
+				77C2C5601C25B7A800448829 /* Roku.swift in Sources */,
+				77C2C54B1C25B7A800448829 /* NestedStack.swift in Sources */,
+				77C2C5421C25B7A800448829 /* IndependentStackTemplate.swift in Sources */,
+				77C2C53F1C25B7A800448829 /* IndependentStack.swift in Sources */,
+				77C2C5451C25B7A800448829 /* MainQueueContextStack.swift in Sources */,
+				77C2C55D1C25B7A800448829 /* Queue.swift in Sources */,
+				77C2C5661C25B7A800448829 /* StorageModelBased.swift in Sources */,
+				77C2C5511C25B7A800448829 /* NullObject.swift in Sources */,
+				77C2C5691C25B7A800448829 /* StorageModelConvertible.swift in Sources */,
+				77C2C54E1C25B7A800448829 /* NestedStackTemplate.swift in Sources */,
+				77C2C5481C25B7A800448829 /* ManagedObjectContext.swift in Sources */,
+				77C2C5361C25B7A800448829 /* BaseStackTemplate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		771CCF231C1F057F002C7411 /* Sources */ = {
+		77C2C4B01C25B70900448829 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				771CCF2D1C1F057F002C7411 /* RokuTests.swift in Sources */,
-				778647851C1F0CF100483361 /* StorageModelTests.swift in Sources */,
-				778647861C1F0CF100483361 /* Supporting.swift in Sources */,
+				77C2C5551C25B7A800448829 /* ObservableContext.swift in Sources */,
+				77C2C53A1C25B7A800448829 /* ContextFactoryStack.swift in Sources */,
+				77C2C55B1C25B7A800448829 /* Provider.swift in Sources */,
+				77C2C5641C25B7A800448829 /* StorageModel.swift in Sources */,
+				77C2C53D1C25B7A800448829 /* ContextObserver.swift in Sources */,
+				77C2C5341C25B7A800448829 /* BaseStack.swift in Sources */,
+				77C2C5581C25B7A800448829 /* OperationQueueFactory.swift in Sources */,
+				77C2C5611C25B7A800448829 /* Roku.swift in Sources */,
+				77C2C54C1C25B7A800448829 /* NestedStack.swift in Sources */,
+				77C2C5431C25B7A800448829 /* IndependentStackTemplate.swift in Sources */,
+				77C2C5401C25B7A800448829 /* IndependentStack.swift in Sources */,
+				77C2C5461C25B7A800448829 /* MainQueueContextStack.swift in Sources */,
+				77C2C55E1C25B7A800448829 /* Queue.swift in Sources */,
+				77C2C5671C25B7A800448829 /* StorageModelBased.swift in Sources */,
+				77C2C5521C25B7A800448829 /* NullObject.swift in Sources */,
+				77C2C56A1C25B7A800448829 /* StorageModelConvertible.swift in Sources */,
+				77C2C54F1C25B7A800448829 /* NestedStackTemplate.swift in Sources */,
+				77C2C5491C25B7A800448829 /* ManagedObjectContext.swift in Sources */,
+				77C2C5371C25B7A800448829 /* BaseStackTemplate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77C2C4C01C25B77400448829 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77C2C5561C25B7A800448829 /* ObservableContext.swift in Sources */,
+				77C2C53B1C25B7A800448829 /* ContextFactoryStack.swift in Sources */,
+				77C2C55C1C25B7A800448829 /* Provider.swift in Sources */,
+				77C2C5651C25B7A800448829 /* StorageModel.swift in Sources */,
+				77C2C53E1C25B7A800448829 /* ContextObserver.swift in Sources */,
+				77C2C5351C25B7A800448829 /* BaseStack.swift in Sources */,
+				77C2C5591C25B7A800448829 /* OperationQueueFactory.swift in Sources */,
+				77C2C5621C25B7A800448829 /* Roku.swift in Sources */,
+				77C2C54D1C25B7A800448829 /* NestedStack.swift in Sources */,
+				77C2C5441C25B7A800448829 /* IndependentStackTemplate.swift in Sources */,
+				77C2C5411C25B7A800448829 /* IndependentStack.swift in Sources */,
+				77C2C5471C25B7A800448829 /* MainQueueContextStack.swift in Sources */,
+				77C2C55F1C25B7A800448829 /* Queue.swift in Sources */,
+				77C2C5681C25B7A800448829 /* StorageModelBased.swift in Sources */,
+				77C2C5531C25B7A800448829 /* NullObject.swift in Sources */,
+				77C2C56B1C25B7A800448829 /* StorageModelConvertible.swift in Sources */,
+				77C2C5501C25B7A800448829 /* NestedStackTemplate.swift in Sources */,
+				77C2C54A1C25B7A800448829 /* ManagedObjectContext.swift in Sources */,
+				77C2C5381C25B7A800448829 /* BaseStackTemplate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		771CCF2A1C1F057F002C7411 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 771CCF1C1C1F057C002C7411 /* Roku */;
-			targetProxy = 771CCF291C1F057F002C7411 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		771CCF2F1C1F0580002C7411 /* Debug */ = {
+		77C2C4911C25B5E400448829 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MODULEMAP_FILE = "$(SRCROOT)/Sources/Roku.modulemap";
+				PRODUCT_NAME = Roku;
+			};
+			name = Debug;
+		};
+		77C2C4921C25B5E400448829 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MODULEMAP_FILE = "$(SRCROOT)/Sources/Roku.modulemap";
+				PRODUCT_NAME = Roku;
+			};
+			name = Release;
+		};
+		77C2C4AC1C25B68C00448829 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -520,9 +544,125 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MODULEMAP_FILE = "$(inherited)";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.b1narykid.Roku;
+				PRODUCT_NAME = "$(inherited)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		77C2C4AD1C25B68C00448829 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MODULEMAP_FILE = "$(inherited)";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.b1narykid.Roku;
+				PRODUCT_NAME = "$(inherited)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		77C2C4BB1C25B70900448829 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -539,20 +679,25 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MODULEMAP_FILE = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "$(inherited)";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
-				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.b1narykid.Roku-iOS";
+				PRODUCT_NAME = "$(inherited)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		771CCF301C1F0580002C7411 /* Release */ = {
+		77C2C4BC1C25B70900448829 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -569,10 +714,14 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -583,112 +732,172 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MODULEMAP_FILE = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "$(inherited)";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = macosx;
-				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.b1narykid.Roku-iOS";
+				PRODUCT_NAME = "$(inherited)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		771CCF321C1F0580002C7411 /* Debug */ = {
+		77C2C4CB1C25B77400448829 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "$(SRCROOT)/Roku/Supporting Files/Info.plist";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MODULEMAP_FILE = Roku/Roku.modulemap;
-				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.b1narykid.Roku;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "$(inherited)";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.b1narykid.Roku-tvOS";
+				PRODUCT_NAME = "$(inherited)";
+				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		771CCF331C1F0580002C7411 /* Release */ = {
+		77C2C4CC1C25B77400448829 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "$(SRCROOT)/Roku/Supporting Files/Info.plist";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MODULEMAP_FILE = Roku/Roku.modulemap;
-				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.b1narykid.Roku;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "$(inherited)";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.b1narykid.Roku-tvOS";
+				PRODUCT_NAME = "$(inherited)";
+				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		771CCF351C1F0580002C7411 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = RokuTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.b1narykid.RokuTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		771CCF361C1F0580002C7411 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = RokuTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.b1narykid.RokuTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		771CCF171C1F057C002C7411 /* Build configuration list for PBXProject "Roku" */ = {
+		77C2C4901C25B5E400448829 /* Build configuration list for PBXProject "Roku" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				771CCF2F1C1F0580002C7411 /* Debug */,
-				771CCF301C1F0580002C7411 /* Release */,
+				77C2C4911C25B5E400448829 /* Debug */,
+				77C2C4921C25B5E400448829 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		771CCF311C1F0580002C7411 /* Build configuration list for PBXNativeTarget "Roku" */ = {
+		77C2C4AB1C25B68C00448829 /* Build configuration list for PBXNativeTarget "Roku-OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				771CCF321C1F0580002C7411 /* Debug */,
-				771CCF331C1F0580002C7411 /* Release */,
+				77C2C4AC1C25B68C00448829 /* Debug */,
+				77C2C4AD1C25B68C00448829 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		771CCF341C1F0580002C7411 /* Build configuration list for PBXNativeTarget "RokuTests" */ = {
+		77C2C4BA1C25B70900448829 /* Build configuration list for PBXNativeTarget "Roku-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				771CCF351C1F0580002C7411 /* Debug */,
-				771CCF361C1F0580002C7411 /* Release */,
+				77C2C4BB1C25B70900448829 /* Debug */,
+				77C2C4BC1C25B70900448829 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		77C2C4CA1C25B77400448829 /* Build configuration list for PBXNativeTarget "Roku-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77C2C4CB1C25B77400448829 /* Debug */,
+				77C2C4CC1C25B77400448829 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 771CCF141C1F057C002C7411 /* Project object */;
+	rootObject = 77C2C48D1C25B5E400448829 /* Project object */;
 }

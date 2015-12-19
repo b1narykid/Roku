@@ -33,18 +33,18 @@ internal class OperationQueueFactory {
         let oq = NSOperationQueue()
         let name = name ?? "com.b1nary.Roku.factory\(unsafeAddressOf(oq))"
         oq.name = name
-        
-        if #available(iOS 8.0, OSX 10.10, tvOS 9.0, *) {
+
+        if #available(iOS 8.0, OSX 10.10, /*tvOS 9.0,*/ *) {
             oq.underlyingQueue = queue ?? self.createDispatchQueue(identifier: name)
         }
-        
+
         return oq
     }
-    
+
     func createDispatchQueue(identifier identifier: String) -> OS_dispatch_queue {
         let attributes: OS_dispatch_queue_attr!
-        
-        if #available(iOS 8.0, OSX 10.10, tvOS 9.0, *) {
+
+        if #available(iOS 8.0, OSX 10.10, /*tvOS 9.0,*/ *) {
             attributes = dispatch_queue_attr_make_with_qos_class(
                 DISPATCH_QUEUE_SERIAL,
                 QOS_CLASS_UTILITY,
@@ -53,7 +53,7 @@ internal class OperationQueueFactory {
         } else {
             attributes = nil
         }
-        
+
         return dispatch_queue_create(identifier, attributes)
 
     }

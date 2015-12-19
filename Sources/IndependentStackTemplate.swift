@@ -77,7 +77,7 @@ public extension IndependentStackTemplate {
         // because it is not used for data imports.
         self.trySaveContext(self.masterObjectContext, callback: error)
     }
-    
+
     /// Create new context for this template.
     ///
     /// - Note: New managed object context is an independent context with

@@ -39,16 +39,16 @@ public class ManagedObjectContext: NSManagedObjectContext, ObservableContext {
     /// Object, that handles observing of other contexts
     /// and merges changes into `self`.
     public internal(set) var observer: ContextObserver?
-    
+
     public override var persistentStoreCoordinator: NSPersistentStoreCoordinator? {
         didSet { self.becomeObserver() }
     }
-    
+
     public override var parentContext: NSManagedObjectContext? {
         didSet { self.becomeObserver() }
     }
-    
-    /// Create object, that handles observing of other contexts 
+
+    /// Create object, that handles observing of other contexts
     /// and merges changes into `self`. Removes the current observer.
     ///
     /// - Remark: Will not become observer iff `concurrencyType`

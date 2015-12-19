@@ -57,20 +57,22 @@ public protocol BaseStackTemplate: ContextFactoryStack {
 public extension BaseStackTemplate {
     /// Save changes in all contexts (implemented in this template) to persistent store.
     ///
-    /// - Parameter repeatOnError: Callback closure. Informs caller about the error.
-    ///                            Should return `true` if can retry context save.
-    ///                            Otherwise, return false or you will get
-    ///                             an infinite save attempts.
+    /// - Parameter stopOnError: Callback closure. Informs caller about the error.
+    ///                          Should return `true` if can retry context save.
+    ///                          Otherwise, return false or you will get
+    ///                          an infinite save attempts.
     public mutating func trySave(stopOnError error: ErrorType -> Bool = { _ in return false }) {
         self.trySaveContext(self.masterObjectContext, callback: error)
     }
-    
+
     /// Create new context for this template.
     ///
-    /// - Note: New managed object context is a child of `self.masterObjectContext`.
+    /// - Parameters:
+    ///   - concurrencyType: Concurrency type of the new managed object context.
+    ///                      Defaults to `PrivateQueueConcurrencyType`.
     ///
-    /// - Parameter concurrencyType: `NSManagedObjectContextConcurrencyType` of new managed object context.
-    ///                              The default value is `PrivateQueueConcurrencyType`.
+    /// - Returns: New `ManagedObjectContext` instance as
+    ///            a child of `self.masterObjectContext`.
     public mutating func createContext(concurrencyType: NSManagedObjectContextConcurrencyType = .PrivateQueueConcurrencyType) -> NSManagedObjectContext {
         let context = ManagedObjectContext(concurrencyType: concurrencyType)
         context.parentContext = self.masterObjectContext
@@ -78,14 +80,11 @@ public extension BaseStackTemplate {
     }
 }
 
-// MARK: Saving support
-
 internal extension BaseStackTemplate {
     /// Try saving context.
     ///
-    /// Provides the internal functionality 
-    /// for saving single context from stack
-    /// with synchrounous saving and error callback.
+    /// Provides an internal synchrounous saving and error callback
+    /// functionality for single context from stack.
     internal mutating func trySaveContext(context: NSManagedObjectContext, callback: ErrorType -> Bool) {
         self.masterObjectContext.performBlockAndWait {
             do {

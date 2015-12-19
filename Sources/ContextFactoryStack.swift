@@ -1,5 +1,5 @@
 //
-//  IndependentStack.swift
+//  ContextFactoryStack.swift
 //  Roku
 //
 // Copyright © 2015 Ivan Trubach
@@ -23,10 +23,11 @@
 // THE SOFTWARE.
 
 import Swift
+import CoreData
 
-/// Types conforming to this protocol 
-/// may be intialized with `StorageModel` instance.
-public protocol StorageModelConvertible {
-    /// Initialize with `StorageModel` instance.
-    init(storage: StorageModel)
+/// Describes a context stack that has a factory method
+/// for creating additional contexts (especially 'workers') for `Self`
+public protocol ContextFactoryStack {
+    /// Create new context for `Self` stack.
+    mutating func createContext(concurrencyType: NSManagedObjectContextConcurrencyType) -> NSManagedObjectContext
 }

@@ -32,14 +32,14 @@ public typealias StorageModelBasedStack = protocol<BaseStackTemplate, StorageMod
 public protocol StorageModelBased: StorageModelConvertible {
     /// Initialize with `StorageModel` instance.
     init(storage: StorageModel)
-    /// Storage used by managed object contexts.
+    /// Storage model on which `self` is based.
+    ///
+    /// Should be equal to storage model from `init(storage: _)`.
     var storage: StorageModel { get }
 }
 
 public extension StorageModelBased where Self: BaseStackTemplate {
-    /// Storage used by managed object contexts.
-    ///
-    /// - Note: Equal to `self.storage.persistentStoreCoordinator`.
+    /// Persistent store coordinator from storage model.
     public var persistentStoreCoordinator: NSPersistentStoreCoordinator {
         get { return self.storage.persistentStoreCoordinator }
     }

@@ -32,7 +32,7 @@ public protocol ObservableContext: class {
     /// An object that observes changes of contexts with
     /// identical parent context or persistent store coordinator.
     var observer: ContextObserver? { get }
-    
+
     /// Bool value indicating whether the parent context's
     /// changes are observed or not (read-only value).
     var parentObserved: Bool { get }
@@ -49,7 +49,7 @@ extension ObservableContext where Self: NSManagedObjectContext {
             return self.parentContext != nil && self.observer != nil
         }
     }
-    
+
     /// Bool value indicating whether the persistent store coordinator's
     /// changes are observed or not (read-only value).
     public var storeObserved: Bool {

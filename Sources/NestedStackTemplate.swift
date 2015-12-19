@@ -35,7 +35,7 @@ import CoreData
 /// Third layer consists of one or multiple worker contexts
 /// as children of the main context in the private queue.
 ///
-/// - Attention: In this setup the worker contexts on 
+/// - Attention: In this setup the worker contexts on
 ///              the third layer are used to import the data.
 ///
 /// - Note:      There may be multiple contexts on the second and third layers.
@@ -76,7 +76,7 @@ public extension NestedStackTemplate {
         // Save first (1) layer.
         self.trySaveContext(self.masterObjectContext, callback: error)
     }
-    
+
     /// Create new context for this template.
     ///
     /// - Note: New managed object context is a child of `self.mainObjectContext`.

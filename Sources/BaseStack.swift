@@ -30,7 +30,7 @@ import CoreData
 /// This stack consists of one root managed object context
 /// initialized with the `PrivateQueueConcurrencyType`.
 ///
-/// Creating contexts on the same layer 
+/// Creating contexts on the same layer
 /// with automatic changes merging is supported.
 /// You may add as much child background contexts as needed.
 ///
@@ -48,13 +48,16 @@ import CoreData
 /// - SeeAlso:   `BaseStackTemplate`, `NestedStack`, `IndependentStack`
 public class BaseStack: StorageModelBasedStack {
     /// Initialize with `StorageModel` instance.
+    ///
+    /// - Parameters:
+    ///   - storage: Storage used by `self`.
     public required init(storage: StorageModel) {
         self.storage = storage
     }
-    
+
     /// Storage used by managed object contexts.
     public internal(set) var storage: StorageModel
-    
+
     /// Root managed object context.
     ///
     /// - Note:   Independent and works with `self.persistentStoreCoordinator`.

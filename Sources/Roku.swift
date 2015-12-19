@@ -50,13 +50,13 @@ public class Roku<ContextStack: StorageModelBasedStack>: StorageModelBased {
             #endif
             return context
         }
-        
+
         return Provider(providing: newContext)
     }()
     /// Save operations queue.
     ///
     /// Synchronous (maxConcurrentOperationCount = 1).
-    final private lazy var _saves: NSOperationQueue = {
+    final internal private(set) lazy var _saves: NSOperationQueue = {
         let oq = NSOperationQueue.factory.createOprationQueue(
             name: "com.b1nary.Roku.roku_save_oq_\(unsafeAddressOf(self))"
         )
@@ -64,17 +64,25 @@ public class Roku<ContextStack: StorageModelBasedStack>: StorageModelBased {
         oq.maxConcurrentOperationCount = 1
         return oq
     }()
-    
+
+    /// Initialize with `StorageModel` instance.
     public required convenience init(storage: StorageModel) {
         let stack = ContextStack(storage: storage)
         self.init(stack: stack)
     }
-    
+
+    /// Initialize with existing stack.
+    ///
+    /// - Warning: Not recommended, consider using the generic initialization,
+    ///            letting `Roku` handle the initialization and management
+    ///            of the new encapsulated generic stack.
+    ///            Use this `init` only if it is required
+    ///            to have a full control over the stack.
     public init(stack: ContextStack) {
         self._stack  = stack
         self.storage = stack.storage
     }
-    
+
     /// Call `body(c)`, where `c` is a temporary background managed object context.
     ///
     /// The temporary context is poped from queue of unused contexts.
@@ -99,7 +107,7 @@ public class Roku<ContextStack: StorageModelBasedStack>: StorageModelBased {
         save: NSManagedObjectContext -> Void = doSave) rethrows -> R {
         // Take worker from provider
         let worker = self.provider.take()
-        
+
         defer {
             self._saves.addOperationWithBlock { [weak self] in
                 withExtendedLifetime(worker) {
@@ -110,10 +118,10 @@ public class Roku<ContextStack: StorageModelBasedStack>: StorageModelBased {
                 }
             }
         }
-        
+
         return try body(worker)
     }
-    
+
     /// Save data to persistent store.
     ///
     /// - Parameter withError: Error callback. Should return `true` iff the error
@@ -138,7 +146,7 @@ private func doSave(context: NSManagedObjectContext) {
         do {
             try context.save()
         } catch _ {
-            
+
         }
     }
 }

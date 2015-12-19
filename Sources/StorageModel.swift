@@ -49,20 +49,20 @@ public final class StorageModel {
         // Evaluate value if not lazy evaluation
         self._store = self._createStore()
     }
-    
+
     /// Return `_NullPSC` instance.
     public static func nullStore() -> NSPersistentStoreCoordinator {
         /// `NSPersistentStoreCoordinator`. Null object pattern.
         final class _NullPSC: NSPersistentStoreCoordinator, NullObject {}
         return _NullPSC()
     }
-    
+
     /// Return `_NullMOMD` instance.
     public static func nullModel() -> NSManagedObjectModel {
         final class _NullMOMD: NSManagedObjectModel, NullObject {}
         return _NullMOMD()
     }
-    
+
     /// Creates persistent store coordinator (by user).
     internal private(set) var _createStore: () -> NSPersistentStoreCoordinator
     /// Private persistent store coordinator storage.
@@ -72,12 +72,12 @@ public final class StorageModel {
         if self._store == nil {
             self._store = self._createStore()
         }
-        
+
         return self._store
     }
-    
+
     // MARK: Public API
-    
+
     /// The managed object model for the application.
     public var managedObjectModel: NSManagedObjectModel {
         get {
@@ -87,7 +87,7 @@ public final class StorageModel {
             return self.persistentStoreCoordinator.managedObjectModel
         }
     }
-    
+
     /// Persistent store coordinator.
     ///
     /// - Important: Check of the returned value type is recommended
@@ -102,7 +102,7 @@ public final class StorageModel {
         get {
             return self._initializedStore()
         }
-        
+
         set {
             self._store = nil
             self._createStore = { return newValue }

@@ -28,31 +28,31 @@ import Swift
 ///
 /// Backed by internal stack object.
 public struct Provider<Object> {
-    private var _objects: _Queue<Object>
+    private var _objects: Queue<Object>
     private var _provide: () -> Object
-    
+
     /// Transmit ('give') an object to the provider.
     public mutating func transmit(newObject: Object) {
         self._objects.enqueue(newObject)
     }
-    
+
     /// Take provided object from provider.
     public mutating func take() -> Object {
         if self._objects.isEmpty {
             let newObject = self._provide()
             self.transmit(newObject)
         }
-        
+
         return self._objects.dequeue()!
     }
-    
+
     /// Change provider function.
     internal mutating func changeProvider(newProvider: () -> Object) {
         self._provide = newProvider
     }
-    
+
     /// Create provider with `provider` function.
-    internal init(providing: () -> Object, _ providedObjects: _Queue<Object> = .Empty) {
+    internal init(providing: () -> Object, _ providedObjects: Queue<Object> = .Empty) {
         self._objects = providedObjects
         self._provide = providing
     }
