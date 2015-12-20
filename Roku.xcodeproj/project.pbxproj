@@ -514,6 +514,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				MODULEMAP_FILE = "$(SRCROOT)/Sources/Roku.modulemap";
+				OTHER_SWIFT_FLAGS = "-DXcodeBuild";
 				PRODUCT_NAME = Roku;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 			};
@@ -523,6 +524,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				MODULEMAP_FILE = "$(SRCROOT)/Sources/Roku.modulemap";
+				OTHER_SWIFT_FLAGS = "-DXcodeBuild";
 				PRODUCT_NAME = Roku;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 			};

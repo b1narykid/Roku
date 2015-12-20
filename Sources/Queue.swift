@@ -82,8 +82,15 @@ internal extension Queue {
 extension Queue: SequenceType {
     internal func generate() -> AnyGenerator<Element> {
         var queue = self
+#if XcodeBuild
         return anyGenerator {
             return queue.dequeue()
         }
+#else
+        return AnyGenerator {
+                return queue.dequeue()
+        }
+#endif
+        
     }
 }
