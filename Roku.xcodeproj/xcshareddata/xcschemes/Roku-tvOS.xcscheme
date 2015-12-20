@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "771CCF1C1C1F057C002C7411"
+               BlueprintIdentifier = "77C2C4C41C25B77400448829"
                BuildableName = "Roku.framework"
-               BlueprintName = "Roku"
+               BlueprintName = "Roku-tvOS"
                ReferencedContainer = "container:Roku.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "771CCF261C1F057F002C7411"
-               BuildableName = "RokuTests.xctest"
-               BlueprintName = "RokuTests"
-               ReferencedContainer = "container:Roku.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "771CCF1C1C1F057C002C7411"
-            BuildableName = "Roku.framework"
-            BlueprintName = "Roku"
-            ReferencedContainer = "container:Roku.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -64,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "771CCF1C1C1F057C002C7411"
+            BlueprintIdentifier = "77C2C4C41C25B77400448829"
             BuildableName = "Roku.framework"
-            BlueprintName = "Roku"
+            BlueprintName = "Roku-tvOS"
             ReferencedContainer = "container:Roku.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "771CCF1C1C1F057C002C7411"
+            BlueprintIdentifier = "77C2C4C41C25B77400448829"
             BuildableName = "Roku.framework"
-            BlueprintName = "Roku"
+            BlueprintName = "Roku-tvOS"
             ReferencedContainer = "container:Roku.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

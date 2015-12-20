@@ -26,8 +26,9 @@ import Swift
 import CoreData
 import class Foundation.NSOperationQueue
 
-/// Encapsulates the `CoreData` stack.
+/// Wrapper over `StorageModelBasedStack` stack with unified API.
 ///
+/// Encapsulates the `CoreData` stack.
 /// Provides a convenience API for the `CoreData`'s context stacks.
 ///
 /// - SeeAlso: `BaseStack`, `NestedStack`, `IndependentStack`
@@ -124,9 +125,9 @@ public class Roku<ContextStack: StorageModelBasedStack>: StorageModelBased {
 
     /// Save data to persistent store.
     ///
-    /// - Parameter withError: Error callback. Should return `true` iff the error
-    ///                        was handled and/or `Roku` may retry saving.
-    public final func persist(withError error: ErrorType -> Bool) {
+    /// - Parameter stopOnError: Error callback. Should return `true`
+    ///                          iff `Roku` can retry saving.
+    public final func persist(stopOnError error: ErrorType -> Bool) {
         self._saves.addOperationWithBlock {
             self._stack.trySave(stopOnError: error)
         }

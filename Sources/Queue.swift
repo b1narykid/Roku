@@ -24,8 +24,8 @@
 
 import Swift
 
-internal enum Queue<Element> {
-    indirect case Node(Element, predecessor: Queue<Element>)
+internal indirect enum Queue<Element> {
+    case Node(Element, predecessor: Queue<Element>)
     case Empty
 }
 
@@ -48,17 +48,42 @@ internal extension Queue {
 
     /// Enqueue element to `self`.
     internal mutating func enqueue(newElement: Element) {
-        self = .Node(newElement, predecessor: self)
+        self = self.enqueuing(newElement)
     }
 
     /// Dequeue element from `self`.
     @warn_unused_result
     internal mutating func dequeue() -> Element? {
-        if case .Node(let element, predecessor: let predecessor) = self {
+        switch self {
+        case .Node(let element, predecessor: let predecessor):
             self = predecessor
             return element
-        } else {
+        case .Empty:
             return nil
+        }
+    }
+
+    /// Enqueue element to copy of `self`.
+    internal nonmutating func enqueuing(newElement: Element) -> Queue<Element> {
+        return .Node(newElement, predecessor: self)
+    }
+
+    /// Dequeue element from `self` nondestructively.
+    internal nonmutating func dequeuing() -> Element? {
+        switch self {
+        case .Node(let element, predecessor: _):
+            return element
+        case .Empty:
+            return nil
+        }
+    }
+}
+
+extension Queue: SequenceType {
+    internal func generate() -> AnyGenerator<Element> {
+        var queue = self
+        return anyGenerator {
+            return queue.dequeue()
         }
     }
 }

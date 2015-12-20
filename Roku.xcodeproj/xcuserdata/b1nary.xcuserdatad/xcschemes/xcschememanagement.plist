@@ -4,20 +4,40 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Roku.xcscheme</key>
+		<key>Roku-OSX.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>Roku-iOS.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>Roku-tvOS.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>771CCF1C1C1F057C002C7411</key>
+		<key>77C2C4971C25B64800448829</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>771CCF261C1F057F002C7411</key>
+		<key>77C2C4A51C25B68C00448829</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>77C2C4B41C25B70900448829</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>77C2C4C41C25B77400448829</key>
 		<dict>
 			<key>primary</key>
 			<true/>
