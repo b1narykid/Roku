@@ -48,11 +48,12 @@ public class Provider<Object> {
         return self._objects.dequeue() ?? self.provide()
     }
 
+    /// Create provider with `provider` function.
     public convenience required init(providing: () -> Object) {
         self.init(providing: providing, Queue())
     }
 
-    /// Create provider with `provider` function.
+    /// Create provider with `provider` function and queue of existing object.
     internal init(providing: () -> Object, _ providedObjects: Queue) {
         self._objects = Queue()
         self._provide = providing

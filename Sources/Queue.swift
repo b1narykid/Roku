@@ -24,6 +24,7 @@
 
 import Swift
 
+/// Describes basic methods for queue data structure.
 public protocol QueueSequenceType: SequenceType {
     /// Enqueue element into `self`.
     mutating func enqueue(newElement: Self.Generator.Element)
