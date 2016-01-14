@@ -33,14 +33,12 @@ import CoreData
 /// the other one on a background queue.
 ///
 /// - Attention: In this setup the background context is used for the data import.
-///              The setup is a more conservative stack which does not use
-///              the relatively new feature of nested managed object contexts.
-///              According to the [stacks perfomance comparison][Perfomance],
-///              this is the fastest stack setup.
+///   The setup is a more conservative stack which does not use
+///   the relatively new feature of nested managed object contexts.
 ///
-/// - Note:      Change propagation between the contexts is achieved by subscribing
-///              to the `NSManagedObjectContextDidSaveNotification` and calling
-///              `mergeChangesFromContextDidSaveNotification()` on the other context.
+/// - Remark: Change propagation between the contexts is achieved by subscribing
+///   to the `NSManagedObjectContextDidSaveNotification` and calling
+///   `mergeChangesFromContextDidSaveNotification()` on the other context.
 ///
 /// - SeeAlso:   `IndependentStack`, `BaseStackTemplate`, `NestedStackTemplate`
 public protocol IndependentStackTemplate: BaseStackTemplate, MainQueueContextStack {
@@ -48,12 +46,12 @@ public protocol IndependentStackTemplate: BaseStackTemplate, MainQueueContextSta
     var persistentStoreCoordinator: NSPersistentStoreCoordinator { get }
     /// Root managed object context.
     ///
-    /// - Note: Should be with `PrivateQueueConcurrencyType` concurrency type.
+    /// - Important: Managed object context has private queue concurrency type.
     var masterObjectContext: NSManagedObjectContext { get }
     /// Main managed object context.
     ///
     /// - Note: Should be independent with `.MainQueueConcurrencyType`
-    ///         and work only with `self.persistentStoreCoordinator`.
+    ///   and work only with `self.persistentStoreCoordinator`.
     var mainObjectContext: NSManagedObjectContext { get }
     /// Save changes in all contexts implemented in template
     /// to the persistent store coordinator.
@@ -65,12 +63,11 @@ public protocol IndependentStackTemplate: BaseStackTemplate, MainQueueContextSta
 public extension IndependentStackTemplate {
     /// Save changes in all contexts (implemented in this template) to persistent store.
     ///
-    /// - Note: Main queue context is not saved in this method.
+    /// - Attention: Main queue context is not saved in this method.
     ///
     /// - Parameter repeatOnError: Callback closure. Informs caller about the error.
-    ///                            Should return `true` if can retry context save.
-    ///                            Otherwise, return false or you will get
-    //                             an infinite save attempts.
+    ///   Should return `true` if should retry context save.
+    ///   Otherwise, return false or you will get an infinite save attempts.
     public mutating func trySave(stopOnError error: ErrorType -> Bool = { _ in return false }) {
         // Main queue context will be notified about change.
         // There is no need in saving main queue
@@ -80,11 +77,11 @@ public extension IndependentStackTemplate {
 
     /// Create new context for this template.
     ///
-    /// - Note: New managed object context is an independent context with
-    ///        `self.persistentStoreCoordinator` persistent store coordinator.
+    /// - Parameter concurrencyType: Concurrency type of managed object context.
+    ///   Defaults to `PrivateQueueConcurrencyType`.
     ///
-    /// - Parameter concurrencyType: `NSManagedObjectContextConcurrencyType` of new managed object context.
-    ///                              The default value is `PrivateQueueConcurrencyType`.
+    /// - Returns: New independent managed object context with
+    ///   `self.persistentStoreCoordinator` persistent store coordinator.
     public mutating func createContext(concurrencyType: NSManagedObjectContextConcurrencyType = .PrivateQueueConcurrencyType) -> NSManagedObjectContext {
         let context = ManagedObjectContext(concurrencyType: concurrencyType)
         context.persistentStoreCoordinator = self.persistentStoreCoordinator

@@ -34,18 +34,17 @@ import CoreData
 /// with automatic changes merging is supported.
 /// You may add as much child background contexts as needed.
 ///
-/// - Warning:   I included this stack implementation as a superclass for other stacks.
-///              But this stack can be used in multiple persistent store coordinators stacks
-///              with `Roku` (its `masterObjectContext` is `PrivateQueueConcurrencyType`).
+/// All properties are lazy-initialized.
+/// You may wish to inherit from this class to make your custom stack.
+///
+/// - Note: I included this stack as a superclass for other stacks.
+///   This stack can be used in multiple persistent store coordinators stacks
+///   with `Roku` (its `masterObjectContext` is `PrivateQueueConcurrencyType`).
 ///
 /// - Attention: In this setup the background or root context
-///              should be used for the data import.
+///   should be used for the data import.
 ///
-/// - Remark:    All properties are lazy-initialized.
-///              All `ManagedObjectContext`'s changes are fully synchronized.
-///              You may wish to inherit from this class to make your custom stack.
-///
-/// - SeeAlso:   `BaseStackTemplate`, `NestedStack`, `IndependentStack`
+/// - SeeAlso: `BaseStackTemplate`, `NestedStack`, `IndependentStack`
 public class BaseStack: StorageModelBasedStack {
     /// Initialize with `StorageModel` instance.
     ///
@@ -60,8 +59,8 @@ public class BaseStack: StorageModelBasedStack {
 
     /// Root managed object context.
     ///
-    /// - Note:   Independent and works with `self.persistentStoreCoordinator`.
-    /// - Remark: Private queue concurrency type.
+    /// - Note: Independent and works with `self.persistentStoreCoordinator`.
+    ///   Managed object context has private queue concurrency type.
     public internal(set) lazy var masterObjectContext: NSManagedObjectContext = {
         let context = ManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
         context.persistentStoreCoordinator = self.persistentStoreCoordinator

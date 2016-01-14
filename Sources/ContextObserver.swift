@@ -41,18 +41,17 @@ internal enum ObservedStore {
 /// Merges all changes in `NSManagedObjectContextDidSaveNotification`
 /// notification from `ObservableContext` contexts to `observedObject`.
 ///
-/// - Note: To prevent unexpected behaviour in other contexts,
-///         `ContextObserver` merges changes only from `NSManagedObjectContext`
-///         instances that conform to `ObservableContext` protocol.
+/// - Remark: To prevent unexpected behaviour in other contexts,
+///   `ContextObserver` merges changes only from `NSManagedObjectContext`
+///   instances that conform to `ObservableContext` protocol.
 public class ContextObserver {
     /// Observed object.
     ///
-    /// - Note: Weak reference. Receiving a notification when
-    ///         the object, pointed by this reference is `nil`
-    ///         will cause the removal of notification observer.
+    /// - Remark: Weak reference. Receiving a notification when
+    ///   the object, pointed by this reference is `nil`
+    ///   will cause the removal of notification observer.
     public internal(set) weak var observedObject: NSManagedObjectContext? {
         willSet {
-            // ToDo: Create protocol-orientated version of CoreData :]
             guard newValue is ObservableContext else {
                 fatalError("observedObject should be ObservableContext")
             }
@@ -69,7 +68,7 @@ public class ContextObserver {
 
     /// Observed store type. Read-only.
     ///
-    /// - Remark: Does not handle error.
+    /// - Warning: Does not handle error.
     internal var observedStore: ObservedStore {
         guard let observedObject = self.observedObject else { return .Error }
         // Parent context should not be an `ObservableContext`
@@ -92,16 +91,13 @@ public class ContextObserver {
     /// Initialize observer of `managedObjectContext` context.
     ///
     /// - Parameters:
-    ///   - managedObjectContext: `NSManagedObjectContext, ObservableContext`
-    ///                           which will be observed.
+    ///   - managedObjectContext: `NSManagedObjectContext`
+    ///     conforming to `ObservableContext` which will be observed.
     ///
-    ///   - beginObserving:       Begin observing immediately iff `true`.
-    public init
-        <
-        Context: NSManagedObjectContext
-        where Context: ObservableContext
-        >
-        (managedObjectContext pmoc: Context, beginObserving: Bool = true) {
+    ///   - beginObserving: Begin observing immediately iff `true`.
+    public init<
+        Context: NSManagedObjectContext where Context: ObservableContext
+    > (managedObjectContext pmoc: Context, beginObserving: Bool = true) {
         self.observedObject = pmoc
         if beginObserving {
             self.beginObserving()
@@ -110,11 +106,11 @@ public class ContextObserver {
 
     /// Begins observing on `notificationCenter`.
     ///
-    /// - Parameters:
-    ///   - notificationCenter: Notification center where `self` should
-    ///                         begin observing of notifications with
-    ///                        `NSManagedObjectContextDidSaveNotification` name.
-    internal func beginObserving(notificationCenter: NSNotificationCenter = .defaultCenter()) {
+    /// - Parameter notificationCenter: Notification center where `self` should
+    ///   begin observing context save notifications.
+    internal func beginObserving(
+        notificationCenter: NSNotificationCenter = .defaultCenter()
+    ) {
         let name = NSManagedObjectContextDidSaveNotification
         // Add observer for name using block
         self._observer = notificationCenter.addObserverForName(name,
@@ -124,19 +120,21 @@ public class ContextObserver {
         )
     }
 
-    /// Handles `notific` 'didSave' notification.
+    /// Handles context save notification `notification`.
     ///
-    /// - Parameters:
-    ///   - notific: Notification sent by `NSManagedObjectContext` with name
-    ///              `NSManagedObjectContextDidSaveNotification`
-    ///              Notifications sent by `self.observedObject`
-    ///              or with invalid name are ignored.
-    private func saveNotification(notific: NSNotification) {
-        guard notific.name == NSManagedObjectContextDidSaveNotification else { return }
+    /// - Remark: Notifications sent by `self.observedObject`.
+    ///
+    /// - Parameters notification: Context save notification sent by object
+    ///   that conforms to `ObservableContext`.
+    private func saveNotification(notification: NSNotification) {
+        guard notification.name == NSManagedObjectContextDidSaveNotification else { return }
         // Assert that the observed object is not released. Else end observing.
-        guard let obsrvd = self.observedObject else { return self.endObserving() }
-        guard let sender = notific.object
-            where sender is ObservableContext && sender !== obsrvd else { return }
+        guard let obsrvd = self.observedObject else {
+            return self.endObserving()
+        }
+        guard let sender = notification.object
+            where sender is ObservableContext
+               && sender !== obsrvd else { return }
         // Check if sender is correct
         switch self.observedStore {
         // Should be context on the same 'layer'
@@ -153,16 +151,14 @@ public class ContextObserver {
         }
         // Merge changes if all checks passed.
         obsrvd.performBlockAndWait {
-            obsrvd.mergeChangesFromContextDidSaveNotification(notific)
+            obsrvd.mergeChangesFromContextDidSaveNotification(notification)
         }
     }
 
-    /// Remove observer `self` from .
+    /// Remove observer `self` from `notificationCenter`.
     ///
-    /// - Parameters:
-    ///   - notificationCenter: Notification center where `self` should
-    ///                         end observing of notifications with
-    ///                        `NSManagedObjectContextDidSaveNotification` name.
+    /// - Parameter notificationCenter: Notification center where `self` should
+    ///   end observing of context save notifications.
     internal func endObserving(notificationCenter: NSNotificationCenter = .defaultCenter()) {
         if let observer = self._observer {
             notificationCenter.removeObserver(observer)

@@ -34,9 +34,9 @@ import CoreData
 /// with automatic changes merging is supported.
 /// You may add as much child background contexts as needed.
 ///
-/// - Remark:    I included this stack as a template for other stacks.
-///              This stack template can be used for designing stacks
-///              with multiple persistent store coordinators for `Roku`.
+/// - Note: I included this stack as a template for other stacks.
+///   This stack template can be used for designing stacks
+///   with multiple persistent store coordinators for `Roku`.
 ///
 /// - SeeAlso: `BaseStack`, `NestedStackTemplate`, `IndependentStackTemplate`
 public protocol BaseStackTemplate: ContextFactoryStack {
@@ -48,7 +48,7 @@ public protocol BaseStackTemplate: ContextFactoryStack {
     var masterObjectContext: NSManagedObjectContext { get }
     /// Save changes in contexts to the persistent store coordinator.
     ///
-    /// - Remark: Does not save worker contexts.
+    /// - Warning: Worker contexts are not saved.
     mutating func trySave(stopOnError error: ErrorType -> Bool)
     /// Create new context for this template.
     mutating func createContext(concurrencyType: NSManagedObjectContextConcurrencyType) -> NSManagedObjectContext
@@ -58,21 +58,19 @@ public extension BaseStackTemplate {
     /// Save changes in all contexts (implemented in this template) to persistent store.
     ///
     /// - Parameter stopOnError: Callback closure. Informs caller about the error.
-    ///                          Should return `true` if can retry context save.
-    ///                          Otherwise, return false or you will get
-    ///                          an infinite save attempts.
+    ///   Should return `true` if can retry context save.
+    ///   Otherwise, return false or you will get an infinite save attempts.
     public mutating func trySave(stopOnError error: ErrorType -> Bool = { _ in return false }) {
         self.trySaveContext(self.masterObjectContext, callback: error)
     }
 
     /// Create new context for this template.
     ///
-    /// - Parameters:
-    ///   - concurrencyType: Concurrency type of the new managed object context.
-    ///                      Defaults to `PrivateQueueConcurrencyType`.
+    /// - Parameter concurrencyType: Concurrency type of managed object context.
+    ///   Defaults to `PrivateQueueConcurrencyType`.
     ///
     /// - Returns: New `ManagedObjectContext` instance as
-    ///            a child of `self.masterObjectContext`.
+    ///   a child of `self.masterObjectContext`.
     public mutating func createContext(concurrencyType: NSManagedObjectContextConcurrencyType = .PrivateQueueConcurrencyType) -> NSManagedObjectContext {
         let context = ManagedObjectContext(concurrencyType: concurrencyType)
         context.parentContext = self.masterObjectContext

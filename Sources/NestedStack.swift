@@ -35,22 +35,18 @@ import CoreData
 /// Third layer consists of one or multiple worker contexts
 /// as children of the main context in the private queue.
 ///
-/// - Attention: In this setup the worker contexts on
-///              the third layer are used to import the data.
+/// - Remark: In this setup the worker contexts on
+///   the third layer are used to import the data.
 ///
-/// - Note:      There may be multiple contexts on the second and third layers.
-///              Also, there may be worker contexts on the second layer.
+/// - Note: There may be multiple contexts on the second
+///   and third layers and worker contexts on the second layer.
 ///
-/// - Remark:    All properties are lazy-initialized.
-///              All `ManagedObjectContext`'s changes are fully synchronized.
-///
-/// - SeeAlso:   `NestedStackTemplate`, `BaseStack`, `IndependentStack`
+/// - SeeAlso: `NestedStackTemplate`, `BaseStack`, `IndependentStack`
 public final class NestedStack: BaseStack, NestedStackTemplate {
     /// Main managed object context.
     ///
-    /// - Note:   `self.masterObjectContext` is configured
-    ///           to be parent of `self.mainObjectContext`.
-    /// - Remark: Main queue concurrency type.
+    /// - Note: `self.masterObjectContext` is parent of `self.mainObjectContext`.
+    ///   Managed object context has main queue concurrency type.
     public internal(set) lazy var mainObjectContext: NSManagedObjectContext = {
         let context = ManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         context.parentContext = self.masterObjectContext

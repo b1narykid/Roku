@@ -33,24 +33,19 @@ import CoreData
 /// the other one on a background queue.
 ///
 /// - Attention: In this setup the background context is used for the data import.
-///              The setup is a more conservative stack which does not use
-///              the relatively new feature of nested managed object contexts.
-///              According to the [stacks perfomance comparison][Perfomance],
-///              this is the fastest stack setup.
+///   The setup is a more conservative stack which does not use
+///   the relatively new feature of nested managed object contexts.
 ///
-/// - Note:      Change propagation between the contexts is achieved by subscribing
-///              to the `NSManagedObjectContextDidSaveNotification` and calling
-///              `mergeChangesFromContextDidSaveNotification()` on the other context.
+/// - Remark: Change propagation between the contexts is achieved by subscribing
+///   to the `NSManagedObjectContextDidSaveNotification` and calling
+///   `mergeChangesFromContextDidSaveNotification()` on the other context.
 ///
-/// - Remark:    All properties are lazy-initialized.
-///              All `ManagedObjectContext`'s changes are fully synchronized.
-///
-/// - SeeAlso:  `IndependentStackTemplate`, `BaseStack`, `NestedStack`
+/// - SeeAlso: `IndependentStackTemplate`, `BaseStack`, `NestedStack`
 public final class IndependentStack: BaseStack, IndependentStackTemplate {
     /// Main managed object context.
     ///
-    /// - Note:   Independent and works with `self.persistentStoreCoordinator`.
-    /// - Remark: Main queue concurrency type.
+    /// - Note: Independent and works with `self.persistentStoreCoordinator`.
+    ///   Managed object context has main queue concurrency type.
     public internal(set) lazy var mainObjectContext: NSManagedObjectContext = {
         let context = ManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         context.persistentStoreCoordinator = self.persistentStoreCoordinator

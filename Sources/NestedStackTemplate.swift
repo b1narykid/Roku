@@ -35,11 +35,11 @@ import CoreData
 /// Third layer consists of one or multiple worker contexts
 /// as children of the main context in the private queue.
 ///
-/// - Attention: In this setup the worker contexts on
-///              the third layer are used to import the data.
+/// - Remark: In this setup the worker contexts on
+///   the third layer are used to import the data.
 ///
-/// - Note:      There may be multiple contexts on the second and third layers.
-///              Also, there may be worker contexts on the second layer.
+/// - Note: There may be multiple contexts on the second
+///   and third layers and worker contexts on the second layer.
 ///
 /// - SeeAlso:   `NestedStack`, `BaseStackTemplate`, `IndependentStackTemplate`
 public protocol NestedStackTemplate: BaseStackTemplate, MainQueueContextStack {
@@ -64,12 +64,9 @@ public protocol NestedStackTemplate: BaseStackTemplate, MainQueueContextStack {
 public extension NestedStackTemplate {
     /// Save changes in all contexts (implemented in this template) to persistent store.
     ///
-    /// - Note: Worker contexts are being not saved in this method.
-    ///
-    /// - Parameter repeatOnError: Callback closure. Informs caller about the error.
-    ///                            Should return `true` if can retry context save.
-    ///                            Otherwise, return false or you will get
-    ///                            an infinite save attempts.
+    /// - Parameter stopOnError: Callback closure. Informs caller about the error.
+    ///   Should return `true` if can retry context save.
+    ///   Otherwise, return false or you will get an infinite save attempts.
     public mutating func trySave(repeatOnError error: ErrorType -> Bool = { _ in return false }) {
         // Save second (2) layer.
         self.trySaveContext(self.mainObjectContext, callback: error)
@@ -79,10 +76,10 @@ public extension NestedStackTemplate {
 
     /// Create new context for this template.
     ///
-    /// - Note: New managed object context is a child of `self.mainObjectContext`.
+    /// - Parameter concurrencyType: Concurrency type of managed object context.
+    ///   Defaults to `PrivateQueueConcurrencyType`.
     ///
-    /// - Parameter concurrencyType: `NSManagedObjectContextConcurrencyType` of new managed object context.
-    ///                              Defaults to `.PrivateQueueConcurrencyType`.
+    /// - Returns: New managed object context with `self.mainObjectContext` as a parent.
     public mutating func createContext(concurrencyType: NSManagedObjectContextConcurrencyType = .PrivateQueueConcurrencyType) -> NSManagedObjectContext {
         let context = ManagedObjectContext(concurrencyType: concurrencyType)
         context.parentContext = self.mainObjectContext

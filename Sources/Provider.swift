@@ -26,29 +26,35 @@ import Swift
 
 /// Object provider.
 ///
-/// Backed by internal stack object.
-public struct Provider<Object> {
-    private var objects: Queue<Object>
-    private var provide: () -> Object
+/// Stores provided objects in generic queue.
+public class Provider<Object> {
+    internal typealias Queue = Array<Object> // QueueSequenceType
+
+    internal private(set) var _objects: Queue
+    internal private(set) var _provide: () -> Object
+
+    /// Provide a new object.
+    public func provide() -> Object {
+        return self._provide()
+    }
 
     /// Transmit ('give') an object to the provider.
-    public mutating func transmit(newObject: Object) {
-        self.objects.enqueue(newObject)
+    public func transmit(newObject: Object) {
+        self._objects.enqueue(newObject)
     }
 
     /// Take provided object from provider.
-    public mutating func take() -> Object {
-        return self.objects.dequeue() ?? self.provide()
+    public func take() -> Object {
+        return self._objects.dequeue() ?? self.provide()
     }
 
-    /// Change provider function.
-    internal mutating func changeProvider(newProvider: () -> Object) {
-        self.provide = newProvider
+    public convenience required init(providing: () -> Object) {
+        self.init(providing: providing, Queue())
     }
 
     /// Create provider with `provider` function.
-    internal init(providing: () -> Object, _ providedObjects: Queue<Object> = .Empty) {
-        self.objects = providedObjects
-        self.provide = providing
+    internal init(providing: () -> Object, _ providedObjects: Queue) {
+        self._objects = Queue()
+        self._provide = providing
     }
 }

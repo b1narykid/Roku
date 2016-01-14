@@ -29,12 +29,12 @@ import CoreData
 /// store changes observing and automatic merging.
 ///
 /// - Note: As an additional optimization, initialization of context with
-///         `.MainQueueConcurrencyType` will disable automatic merging.
-///         Changes in this context are still observed by default.
+///   `.MainQueueConcurrencyType` will disable automatic merging.
+///   Changes in this context are still observed by default.
 ///
-/// - SeeAlso: [WWDC13 Session 211][WWDC Video], 28:40 (m:s).
+/// - SeeAlso: [WWDC13 Session 211][Video], 28:40 (m:s).
 ///
-/// [WWDC Video]: https://developer.apple.com/videos/play/wwdc2013-211/
+/// [Video]: https://developer.apple.com/videos/play/wwdc2013-211/
 public class ManagedObjectContext: NSManagedObjectContext, ObservableContext {
     /// Object, that handles observing of other contexts
     /// and merges changes into `self`.
@@ -52,7 +52,7 @@ public class ManagedObjectContext: NSManagedObjectContext, ObservableContext {
     /// and merges changes into `self`. Removes the current observer.
     ///
     /// - Remark: Will not become observer iff `concurrencyType`
-    ///           is `.MainQueueConcurrencyType`.
+    ///   is `.MainQueueConcurrencyType`.
     internal func becomeObserver() {
         self.observer = nil
         if self.concurrencyType == .MainQueueConcurrencyType {

@@ -25,7 +25,7 @@
 import Swift
 
 /// Types conforming to this protocol
-/// may be intialized with `StorageModel` instance.
+/// could be intialized with `StorageModel` instance.
 public protocol StorageModelConvertible {
     /// Initialize with `StorageModel` instance.
     init(storage: StorageModel)

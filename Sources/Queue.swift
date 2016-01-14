@@ -24,73 +24,21 @@
 
 import Swift
 
-internal indirect enum Queue<Element> {
-    case Node(Element, predecessor: Queue<Element>)
-    case Empty
+public protocol QueueSequenceType: SequenceType {
+    /// Enqueue element into `self`.
+    mutating func enqueue(newElement: Self.Generator.Element)
+    /// Dequeue element from `self`.
+    mutating func dequeue() -> Self.Generator.Element?
 }
 
-internal extension Queue {
-    internal var isEmpty: Bool {
-        switch self {
-        case .Empty: return true
-        default: return false
-        }
-    }
-
-    internal var isEnd: Bool {
-        switch self {
-        case .Node(_, predecessor: let predecessor) where predecessor.isEmpty:
-            return true
-        default:
-            return false
-        }
-    }
-
-    /// Enqueue element to `self`.
-    internal mutating func enqueue(newElement: Element) {
-        self = self.enqueuing(newElement)
+extension Array: QueueSequenceType {
+    /// Enqueue element into `self`.
+    public mutating func enqueue(newElement: Array.Generator.Element) {
+        self.append(newElement)
     }
 
     /// Dequeue element from `self`.
-    @warn_unused_result
-    internal mutating func dequeue() -> Element? {
-        switch self {
-        case .Node(let element, predecessor: let predecessor):
-            self = predecessor
-            return element
-        case .Empty:
-            return nil
-        }
-    }
-
-    /// Enqueue element to copy of `self`.
-    internal nonmutating func enqueuing(newElement: Element) -> Queue<Element> {
-        return .Node(newElement, predecessor: self)
-    }
-
-    /// Dequeue element from `self` nondestructively.
-    internal nonmutating func dequeuing() -> Element? {
-        switch self {
-        case .Node(let element, predecessor: _):
-            return element
-        case .Empty:
-            return nil
-        }
-    }
-}
-
-extension Queue: SequenceType {
-    internal func generate() -> AnyGenerator<Element> {
-        var queue = self
-#if XcodeBuild
-        return anyGenerator {
-            return queue.dequeue()
-        }
-#else
-        return AnyGenerator {
-                return queue.dequeue()
-        }
-#endif
-        
+    public mutating func dequeue() -> Array.Generator.Element? {
+        return self.popLast()
     }
 }

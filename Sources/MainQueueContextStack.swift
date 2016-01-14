@@ -29,6 +29,6 @@ import CoreData
 public protocol MainQueueContextStack {
     /// Main managed object context.
     ///
-    /// - Important: Main queue concurrency type.
+    /// - Important: Managed object context has main queue concurrency type.
     var mainObjectContext: NSManagedObjectContext { get }
 }

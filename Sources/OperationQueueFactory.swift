@@ -26,10 +26,15 @@ import Swift
 import Dispatch
 import class Foundation.NSOperationQueue
 
-/// Encapsulates the proccess of `NSOperationQueue` and `OS_dispatch_queue`
+/// Encapsulates the proccess of `NSOperationQueue` and serial `OS_dispatch_queue`
 /// creation for multiple platforms and OS versions.
 internal class OperationQueueFactory {
-    func createOprationQueue(name name: String? = nil, queue: OS_dispatch_queue? = nil) -> NSOperationQueue {
+    /// Create operation queue with identifier.
+    ///
+    /// On `'iOS 8.0, OSX 10.10 < *'` optionally use custom dispatch queue.
+    func createOprationQueue(
+        name name: String? = nil, queue: OS_dispatch_queue? = nil
+    ) -> NSOperationQueue {
         let oq = NSOperationQueue()
         let name = name ?? "com.b1nary.Roku.factory\(unsafeAddressOf(oq))"
         oq.name = name
@@ -41,6 +46,10 @@ internal class OperationQueueFactory {
         return oq
     }
 
+    /// Create serial dispatch queue with identifier.
+    ///
+    /// On `'iOS 8.0, OSX 10.10 < *'` use attributes
+    /// `{ DISPATCH_QUEUE_SERIAL, QOS_CLASS_UTILITY, -2 }`.
     func createDispatchQueue(identifier identifier: String) -> OS_dispatch_queue {
         let attributes: OS_dispatch_queue_attr!
 
@@ -55,10 +64,9 @@ internal class OperationQueueFactory {
         }
 
         return dispatch_queue_create(identifier, attributes)
-
     }
 }
 
-extension NSOperationQueue {
+internal extension NSOperationQueue {
     internal static let factory = OperationQueueFactory()
 }
