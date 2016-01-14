@@ -144,7 +144,9 @@ public class ContextObserver {
                || (sender ===  moc && moc is ObservableContext) else { return }
         // `persistentStoreCoordinator == parentContext.persistentStoreCoordinator`.
         case .PSC(let psc):
-            guard sender.persistentStoreCoordinator === psc
+            // Error: Ambiguous use of 'persistentStoreCoordinator'
+            // guard sender.persistentStoreCoordinator === psc
+            guard sender.valueForKey("persistentStoreCoordinator") === psc
                && sender.parentContext == nil else { return }
         // Remove observer by default.
         default: return self.endObserving()
