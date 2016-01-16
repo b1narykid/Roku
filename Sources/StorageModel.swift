@@ -3,7 +3,7 @@
 //  StorageModel.swift
 //  Roku
 //
-// Copyright © 2015 Ivan Trubach
+// Copyright © 2016 Ivan Trubach
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -110,14 +110,17 @@ public final class StorageModel {
     ///   and `StorageModel` initialization.
     public var persistentStoreCoordinator: NSPersistentStoreCoordinator {
         get { return self.initializedStore() }
-        set { self.setLazyPersistentStoreCoordinator(newValue) }
+        set { self.changePersistentStoreCoordinator(newValue) }
     }
 
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
+
     /// Set persistent store coordinator with lazy evaluation.
-    public func setLazyPersistentStoreCoordinator(
-        @autoclosure(escaping) persistentStoreCoordinator: () -> NSPersistentStoreCoordinator
+    public func changePersistentStoreCoordinator(
+        @autoclosure(escaping) persistentStoreCoordinator: () -> NSPersistentStoreCoordinator,
+        beLazy: Bool = true
     ) {
-        self._store = nil
         self._createStore = persistentStoreCoordinator
+        self._store = beLazy ? nil : self._createStore()
     }
 }

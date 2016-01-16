@@ -3,7 +3,7 @@
 //  ContextObserver.swift
 //  Roku
 //
-// Copyright © 2015 Ivan Trubach
+// Copyright © 2016 Ivan Trubach
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -91,6 +91,8 @@ public class ContextObserver {
         return NSOperationQueue.factory.createOprationQueue(name: name)
     }()
 
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
+
     /// Initialize observer of `managedObjectContext` context.
     ///
     /// - Parameters:
@@ -98,14 +100,17 @@ public class ContextObserver {
     ///     conforming to `ObservableContext` which will be observed.
     ///
     ///   - beginObserving: Begin observing immediately iff `true`.
-    public init<
-        Context: NSManagedObjectContext where Context: ObservableContext
-    > (managedObjectContext pmoc: Context, beginObserving: Bool = true) {
+    ///     Defaults to `true`.
+    public init<Context: NSManagedObjectContext where Context: ObservableContext>(
+        managedObjectContext pmoc: Context, beginObserving: Bool = true
+    ) {
         self.observedObject = pmoc
         if beginObserving {
             self.beginObserving()
         }
     }
+
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
     /// Begins observing on `notificationCenter`.
     ///
@@ -122,6 +127,8 @@ public class ContextObserver {
             usingBlock: self.saveNotification
         )
     }
+
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
     /// Handles context save notification `notification`.
     ///
@@ -159,6 +166,8 @@ public class ContextObserver {
             obsrvd.mergeChangesFromContextDidSaveNotification(notification)
         }
     }
+
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
     /// Remove observer `self` from `notificationCenter`.
     ///

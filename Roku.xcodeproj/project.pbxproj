@@ -87,6 +87,7 @@
 		7760F8871C4855CC00AC355A /* SavableStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavableStack.swift; sourceTree = "<group>"; };
 		7760F88E1C485E5A00AC355A /* RokuCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RokuCore.swift; sourceTree = "<group>"; };
 		7760F8921C49DC9B00AC355A /* StorageBased.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageBased.swift; sourceTree = "<group>"; };
+		7760F8991C4A02B700AC355A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		77C2C4A61C25B68C00448829 /* Roku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Roku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C2C4AA1C25B68C00448829 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		77C2C4B51C25B70900448829 /* Roku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Roku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,6 +221,7 @@
 		77C2C4AE1C25B69A00448829 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7760F8991C4A02B700AC355A /* README.md */,
 				77C2C57B1C25EA9100448829 /* Roku.modulemap */,
 				77C2C4AA1C25B68C00448829 /* Info.plist */,
 			);

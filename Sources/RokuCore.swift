@@ -72,7 +72,7 @@ public class RokuCore<
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
     /// Call `body(c)`, where `c` is an incapsulated generic stack.
-    public func withStack<Result>(
+    public func withUnderlyingStack<Result>(
         @noescape body: (inout ContextStack) throws -> Result
         ) rethrows -> Result {
             return try body(&self._stack)

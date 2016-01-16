@@ -12,6 +12,13 @@ CoreData's concurrent stacks made easy.
 
 ## Usage
 
+> Note: `Roku` has a set of flexible protocols for building stacks
+> but I have not documented the usage of them yet.
+
+```swift
+import Roku
+```
+
 Initialize `StorageModel` with a function that creates a new coordinator:
 
 ```swift
@@ -59,11 +66,11 @@ let myAwesomeStack = Roku<AwesomeStack>(storage: storage)
 Enjoy `Roku`'s features :tada:
 
 ```swift
-stack.withBackgroundContext { context in
+myStack.withBackgroundContext { context in
     // Do heavy import operations on the background context
 }
 
-stack.persist { error -> Bool in
+myStack.persist { error -> Bool in
     // Handle an error and try fixing it
 
     // If error was successfully fixed,
@@ -72,12 +79,11 @@ stack.persist { error -> Bool in
 }
 
 // Managed object context with main queue concurrency type
-stack.mainObjectContext
+myStack.mainObjectContext
 
-let result = self.withStack { (inout stack: ContextStack) -> Void in
-    // Do operations with stack
-    // Return result of operations
-    return
+// Get `StorageModel` from encapsulated stack
+let storage = myStack.withUnderlyingStack { (inout stack: ContextStack) in
+    return stack.storage
 }
 ```
 
