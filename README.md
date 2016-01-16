@@ -71,11 +71,11 @@ myStack.withBackgroundContext { context in
 }
 
 myStack.persist { error -> Bool in
-    // Handle an error and try fixing it
+    // Handle an error
 
-    // If error was successfully fixed,
+    // If error was successfully handled,
     // `Roku` will repeat save.
-    return errorHandled && errorFixed
+    return errorHandled && shouldRepeatSave
 }
 
 // Managed object context with main queue concurrency type
