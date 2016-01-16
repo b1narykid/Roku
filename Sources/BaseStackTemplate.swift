@@ -1,3 +1,4 @@
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
 //  BaseStackTemplate.swift
 //  Roku
@@ -21,6 +22,8 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+//
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
 import Swift
 import CoreData
@@ -28,7 +31,7 @@ import CoreData
 /// Default `CoreData` stack template.
 ///
 /// This stack consists of one root managed object context
-/// initialized with the prefered concurrency type.
+/// initialized with the private concurrency type.
 ///
 /// Creating contexts on the same layer
 /// with automatic changes merging is supported.
@@ -39,31 +42,30 @@ import CoreData
 ///   with multiple persistent store coordinators for `Roku`.
 ///
 /// - SeeAlso: `BaseStack`, `NestedStackTemplate`, `IndependentStackTemplate`
-public protocol BaseStackTemplate: ContextFactoryStack {
-    /// Persistent store coordinator used by managed object contexts.
-    var persistentStoreCoordinator: NSPersistentStoreCoordinator { get }
+public protocol BaseStackTemplate: CoreStackTemplate {
     /// Root managed object context.
     ///
     /// - Note: Should be with `PrivateQueueConcurrencyType` concurrency type.
     var masterObjectContext: NSManagedObjectContext { get }
-    /// Save changes in contexts to the persistent store coordinator.
-    ///
-    /// - Warning: Worker contexts are not saved.
-    mutating func trySave(stopOnError error: ErrorType -> Bool)
-    /// Create new context for this template.
-    mutating func createContext(concurrencyType: NSManagedObjectContextConcurrencyType) -> NSManagedObjectContext
 }
 
-public extension BaseStackTemplate {
-    /// Save changes in all contexts (implemented in this template) to persistent store.
+public extension BaseStackTemplate where Self: SavableStack {
+    /// Save changes in all contexts implemented in this template
+    /// to the persistent store.
+    ///
+    /// - Note: Worker contexts are not saved.
     ///
     /// - Parameter stopOnError: Callback closure. Informs caller about the error.
     ///   Should return `true` if can retry context save.
     ///   Otherwise, return false or you will get an infinite save attempts.
-    public mutating func trySave(stopOnError error: ErrorType -> Bool = { _ in return false }) {
-        self.trySaveContext(self.masterObjectContext, callback: error)
+    public mutating func trySave(
+        stopOnError error: ErrorType -> Bool = { _ in return false }
+    ) {
+            self.trySaveContext(self.masterObjectContext, callback: error)
     }
+}
 
+public extension BaseStackTemplate where Self: ContextFactoryStack {
     /// Create new context for this template.
     ///
     /// - Parameter concurrencyType: Concurrency type of managed object context.
@@ -71,29 +73,11 @@ public extension BaseStackTemplate {
     ///
     /// - Returns: New `ManagedObjectContext` instance as
     ///   a child of `self.masterObjectContext`.
-    public mutating func createContext(concurrencyType: NSManagedObjectContextConcurrencyType = .PrivateQueueConcurrencyType) -> NSManagedObjectContext {
+    public mutating func createContext(
+        concurrencyType: NSManagedObjectContextConcurrencyType = .PrivateQueueConcurrencyType
+    ) -> NSManagedObjectContext {
         let context = ManagedObjectContext(concurrencyType: concurrencyType)
         context.parentContext = self.masterObjectContext
         return context
-    }
-}
-
-internal extension BaseStackTemplate {
-    /// Try saving context.
-    ///
-    /// Provides an internal synchrounous saving and error callback
-    /// functionality for single context from stack.
-    internal mutating func trySaveContext(context: NSManagedObjectContext, callback: ErrorType -> Bool) {
-        self.masterObjectContext.performBlockAndWait {
-            do {
-                try context.save()
-            } catch {
-                // Should I (stack instance) retry save again?
-                // May be you (user) want to fix something?
-                guard callback(error) else { return }
-                // Retrying save operation.
-                self.trySaveContext(context, callback: callback)
-            }
-        }
     }
 }

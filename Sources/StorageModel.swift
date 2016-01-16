@@ -1,3 +1,4 @@
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
 //  StorageModel.swift
 //  Roku
@@ -21,6 +22,8 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+//
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
 import Swift
 import CoreData
@@ -29,6 +32,22 @@ import CoreData
 ///
 /// Use it to initialize (or transmit existing) persistent store coordinator.
 public final class StorageModel {
+    /// Creates new persistent store coordinator.
+    internal private(set) var _createStore: () -> NSPersistentStoreCoordinator
+    /// Private persistent store coordinator storage.
+    internal private(set) var _store: NSPersistentStoreCoordinator?
+    /// Initialize and/or return initialized persistent store.
+    internal func initializedStore() -> NSPersistentStoreCoordinator {
+        let store = self._store ?? {
+            self._store = self._createStore()
+            return self._store! // not nil
+        }()
+
+        return store
+    }
+
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
+
     /// Initialize `StorageModel`.
     ///
     /// Initializes with function that returns `NSPersistentStoreCoordinator`.
@@ -43,14 +62,18 @@ public final class StorageModel {
     ///   - beLazy: Lazy evaluation is used iff `true`.
     ///     Otherwise, the values will be computed at the initialization.
     ///     Defaults to `true`.
-    public init(persistentStoreCoordinator: () -> NSPersistentStoreCoordinator = StorageModel.nullStore, beLazy: Bool = true) {
+    public init(
+        @autoclosure(escaping)
+        persistentStoreCoordinator: () -> NSPersistentStoreCoordinator = StorageModel.nullStore(),
+        beLazy: Bool = true
+    ) {
         self._createStore = persistentStoreCoordinator
         if beLazy == true { return }
         // Evaluate value if not lazy evaluation
         self._store = self._createStore()
     }
 
-//===----------------------------------------------------------------------===//
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
     /// Return `_NullPSC` instance.
     public static func nullStore() -> NSPersistentStoreCoordinator {
@@ -65,23 +88,7 @@ public final class StorageModel {
         return _NullMOMD()
     }
 
-//===----------------------------------------------------------------------===//
-
-    /// Creates persistent store coordinator (by user).
-    internal private(set) var _createStore: () -> NSPersistentStoreCoordinator
-    /// Private persistent store coordinator storage.
-    internal private(set) var _store: NSPersistentStoreCoordinator?
-    /// Initialize and/or return initialized persistent store.
-    internal func initializedStore() -> NSPersistentStoreCoordinator {
-        let store = self._store ?? {
-            self._store = self._createStore()
-            return self._store! // not nil
-        }()
-
-        return store
-    }
-
-//===----------------------------------------------------------------------===//
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
     /// The managed object model for the application.
     public var managedObjectModel: NSManagedObjectModel {
@@ -95,22 +102,22 @@ public final class StorageModel {
 
     /// Persistent store coordinator.
     ///
-    /// - Important: Check of the returned value type is recommended
-    ///   before using this property. `StorageModel`
+    /// - Attention: Verification of the returned value type is recommended
+    ///   before accessing this property. `StorageModel`
     ///   by default initializes `NullObject`
     ///   persistent store coordinator. This behaviour allows
     ///   easier internal implementaion (without optionals)
     ///   and `StorageModel` initialization.
-    ///
-    /// - Note: Setting this value will force the use of lazy evaluation.
     public var persistentStoreCoordinator: NSPersistentStoreCoordinator {
-        get {
-            return self.initializedStore()
-        }
+        get { return self.initializedStore() }
+        set { self.setLazyPersistentStoreCoordinator(newValue) }
+    }
 
-        set {
-            self._store = nil
-            self._createStore = { return newValue }
-        }
+    /// Set persistent store coordinator with lazy evaluation.
+    public func setLazyPersistentStoreCoordinator(
+        @autoclosure(escaping) persistentStoreCoordinator: () -> NSPersistentStoreCoordinator
+    ) {
+        self._store = nil
+        self._createStore = persistentStoreCoordinator
     }
 }

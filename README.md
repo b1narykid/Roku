@@ -8,65 +8,89 @@ CoreData's concurrent stacks made easy.
 > Inspired by
 > [Concurrent Core Data Stacks][Performance] article,
 > [WWDC2013 Session 211][HighPerformance]
-> and [Seru][Seru] CoreData stack by [@kostiakoval][User].
+> and [Seru][Seru] CoreData stack by [@kostiakoval][kostiakoval].
 
 ## Usage
 
-Initialize `StorageModel` (see also: [StorageModel.md][StorageModel.md])
+Initialize `StorageModel` with a function that creates a new coordinator:
 
 ```swift
 func newPersistentStoreCoordinator() -> NSPersistentStoreCoordinator {
     // Create and return new persistent store coordinator
 }
 
-let storage = StorageModel(persistentStoreCoordinator: newPersistentStoreCoordinator)
+let storage = StorageModel(persistentStoreCoordinator: newPersistentStoreCoordinator())
 ```
 
+or migrate an existing persistent store coordinator.
 
-Initialize `Roku` stack (see also: [Roku.md][Roku.md]) with a base stack
+```swift
+let storage = StorageModel(persistentStoreCoordinator: oldPersistentStoreCoordinator)
+```
+
+--------------------------------------------------------------------------------
+
+Initialize `Roku` stack with a base stack:
 
 ```swift
 let baseStack = Roku<BaseStack>(storage: storage)
 ```
 
-or with a nested stack
+or with a nested stack...
 
 ```swift
 let nestedStack = Roku<NestedStack>(storage: storage)
 ```
 
-or with an independent stack.
+or with an independent stack...
 
 ```swift
 let independentStack = Roku<IndependentStack>(storage: storage)
 ```
 
+or with a custom stack that conforms to `BaseStackTemplate` and `StorageModelBased` protocols.
+
+```swift
+let myAwesomeStack = Roku<AwesomeStack>(storage: storage)
+```
+
+--------------------------------------------------------------------------------
+
 Enjoy `Roku`'s features :tada:
 
 ```swift
-stack.mainObjectContext // Main queue managed object context
-
 stack.withBackgroundContext { context in
     // Do heavy import operations on the background context
 }
 
 stack.persist { error -> Bool in
     // Handle an error and try fixing it
-    
-    // If error was successfully fixed, 
+
+    // If error was successfully fixed,
     // `Roku` will repeat save.
     return errorHandled && errorFixed
 }
+
+// Managed object context with main queue concurrency type
+stack.mainObjectContext
+
+let result = self.withStack { (inout stack: ContextStack) -> Void in
+    // Do operations with stack
+    // Return result of operations
+    return
+}
 ```
+
+--------------------------------------------------------------------------------
 
 ## TODO
 - [x] Implement observable NSManagedObjectContext.
 - [x] Implement templates and default implementations.
-- [ ] Implement all functionality of `Roku` class.
+- [x] Implement all functionality of `Roku` class.
 - [ ] Finish writing README.md file.
 - [ ] Add examples of custom stack templates and implementations.
 - [ ] Feature: implement manager for stack with multiple persistent store coordinators.
-- [ ] Write unit tests.
+- [ ] Continuous integration.
 
 ## License
 
@@ -94,11 +118,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-[User]:            https://github.com/kostiakoval
+[kostiakoval]:            https://github.com/kostiakoval
 [Seru]:            https://github.com/kostiakoval/Seru
 
 [Performance]:     http://floriankugler.com/2013/04/29/concurrent-core-data-stack-performance-shootout/
 [HighPerformance]: https://developer.apple.com/videos/play/wwdc2013-211/
-
-[StorageModel.md]: Docs/StorageModel.md
-[Roku.md]:         Docs/Roku.md

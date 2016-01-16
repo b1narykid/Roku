@@ -1,3 +1,4 @@
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
 //  MainQueueContextStack.swift
 //  Roku
@@ -21,12 +22,14 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+//
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
 import Swift
 import CoreData
 
 /// Describes a context stack with a main queue context.
-public protocol MainQueueContextStack {
+public protocol MainQueueContextStack: CoreStack {
     /// Main managed object context.
     ///
     /// - Important: Managed object context has main queue concurrency type.

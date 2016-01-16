@@ -1,3 +1,4 @@
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
 //  ObservableContext.swift
 //  Roku
@@ -21,13 +22,17 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+//
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
 import Swift
 import CoreData
 
 /// Objects conforming to this protocol can be observed with `ContextObserver`.
 ///
-/// - Important: Protocol should be applied only to `NSManagedObjectContext` subclasses.
+/// - Important: Only `NSManagedObjectContext` and its subclasses
+///              should conform to this protocol.
+///              Do not use it with other classes.
 public protocol ObservableContext: class {
     /// An object that observes changes of contexts with
     /// identical parent context or persistent store coordinator.

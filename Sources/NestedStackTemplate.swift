@@ -1,3 +1,4 @@
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
 //  NestedStackTemplate.swift
 //  Roku
@@ -21,6 +22,8 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+//
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
 import Swift
 import CoreData
@@ -42,9 +45,7 @@ import CoreData
 ///   and third layers and worker contexts on the second layer.
 ///
 /// - SeeAlso:   `NestedStack`, `BaseStackTemplate`, `IndependentStackTemplate`
-public protocol NestedStackTemplate: BaseStackTemplate, MainQueueContextStack {
-    /// Persistent store coordinator used by managed object contexts.
-    var persistentStoreCoordinator: NSPersistentStoreCoordinator { get }
+public protocol NestedStackTemplate: CoreStackTemplate, MainQueueContextStack {
     /// Root managed object context.
     ///
     /// - Note: Should be with `PrivateQueueConcurrencyType` concurrency type.
@@ -54,33 +55,38 @@ public protocol NestedStackTemplate: BaseStackTemplate, MainQueueContextStack {
     /// - Note: Should be with `.MainQueueConcurrencyType` and
     ///         child context of `self.masterObjectContext`.
     var mainObjectContext: NSManagedObjectContext { get }
-    /// Save changes in all contexts implemented in template
-    /// to the persistent store coordinator.
-    mutating func trySave(stopOnError error: ErrorType -> Bool)
-    /// Create new worker context for this template.
-    mutating func createContext(concurrencyType: NSManagedObjectContextConcurrencyType) -> NSManagedObjectContext
 }
 
-public extension NestedStackTemplate {
-    /// Save changes in all contexts (implemented in this template) to persistent store.
+public extension NestedStackTemplate where Self: SavableStack {
+    /// Save changes in all contexts implemented in this template
+    /// to the persistent store.
+    ///
+    /// - Note: Worker contexts are not saved.
     ///
     /// - Parameter stopOnError: Callback closure. Informs caller about the error.
     ///   Should return `true` if can retry context save.
     ///   Otherwise, return false or you will get an infinite save attempts.
-    public mutating func trySave(repeatOnError error: ErrorType -> Bool = { _ in return false }) {
-        // Save second (2) layer.
+    public mutating func trySave(
+        repeatOnError error: ErrorType -> Bool = { _ in return false }
+    ) {
+        // Save second layer.
         self.trySaveContext(self.mainObjectContext, callback: error)
-        // Save first (1) layer.
+        // Save first layer.
         self.trySaveContext(self.masterObjectContext, callback: error)
     }
+}
 
+public extension NestedStackTemplate where Self: ContextFactoryStack {
     /// Create new context for this template.
     ///
     /// - Parameter concurrencyType: Concurrency type of managed object context.
     ///   Defaults to `PrivateQueueConcurrencyType`.
     ///
-    /// - Returns: New managed object context with `self.mainObjectContext` as a parent.
-    public mutating func createContext(concurrencyType: NSManagedObjectContextConcurrencyType = .PrivateQueueConcurrencyType) -> NSManagedObjectContext {
+    /// - Returns: New `ManagedObjectContext` instance as
+    ///   a child of `self.mainObjectContext`.
+    public mutating func createContext(
+        concurrencyType: NSManagedObjectContextConcurrencyType = .PrivateQueueConcurrencyType
+    ) -> NSManagedObjectContext {
         let context = ManagedObjectContext(concurrencyType: concurrencyType)
         context.parentContext = self.mainObjectContext
         return context

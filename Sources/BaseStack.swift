@@ -1,3 +1,4 @@
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
 //  BaseStack.swift
 //  Roku
@@ -21,6 +22,8 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+//
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
 import Swift
 import CoreData
@@ -45,11 +48,10 @@ import CoreData
 ///   should be used for the data import.
 ///
 /// - SeeAlso: `BaseStackTemplate`, `NestedStack`, `IndependentStack`
-public class BaseStack: StorageModelBasedStack {
+public class BaseStack: BaseStackTemplate, StorageModelBased, ContextFactoryStack, SavableStack {
     /// Initialize with `StorageModel` instance.
     ///
-    /// - Parameters:
-    ///   - storage: Storage used by `self`.
+    /// - Parameters storage: Storage used by `self`.
     public required init(storage: StorageModel) {
         self.storage = storage
     }
@@ -63,7 +65,7 @@ public class BaseStack: StorageModelBasedStack {
     ///   Managed object context has private queue concurrency type.
     public internal(set) lazy var masterObjectContext: NSManagedObjectContext = {
         let context = ManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-        context.persistentStoreCoordinator = self.persistentStoreCoordinator
+        context.persistentStoreCoordinator = self.storage.persistentStoreCoordinator
         return context
     }()
 }

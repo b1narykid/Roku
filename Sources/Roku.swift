@@ -1,3 +1,4 @@
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
 //  StorageController.swift
 //  Roku
@@ -21,6 +22,8 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+//
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
 import Swift
 import CoreData
@@ -32,11 +35,9 @@ import class Foundation.NSOperationQueue
 /// Provides a convenience API for the `CoreData`'s context stacks.
 ///
 /// - SeeAlso: `BaseStack`, `NestedStack`, `IndependentStack`
-public class Roku<ContextStack: StorageModelBasedStack> : StorageModelBased {
-    /// Storage model used by `CoreData` stack.
-    public var storage: StorageModel { return self._stack.storage }
-    /// Encapsulated `CoreData` stack.
-    internal private(set) var _stack: ContextStack
+public class Roku<
+    ContextStack: protocol<ContextFactoryStack, StorageModelBased>
+> : RokuCore<ContextStack> {
     /// `NSManagedObjectContext` provider.
     ///
     /// - Note: Provided contexts do not have any undo manager.
@@ -52,37 +53,8 @@ public class Roku<ContextStack: StorageModelBasedStack> : StorageModelBased {
             return context
         }
     }()
-    /// Save operations queue.
-    ///
-    /// Synchronous (maxConcurrentOperationCount = 1).
-    internal final private(set) lazy var _saves: NSOperationQueue = {
-        let oq = NSOperationQueue.factory.createOprationQueue(
-            name: "com.b1nary.Roku.roku_save_oq_\(unsafeAddressOf(self))"
-        )
-        // Required for synchronous saves (not on main queue)
-        oq.maxConcurrentOperationCount = 1
-        return oq
-    }()
 
-//===----------------------------------------------------------------------===//
-
-    /// Initialize with `StorageModel` instance.
-    public convenience required init(storage: StorageModel) {
-        let stack = ContextStack(storage: storage)
-        self.init(stack: stack)
-    }
-
-    /// Initialize with existing stack.
-    ///
-    /// - Remark: Not recommended. Consider using the generic initialization,
-    ///   which lets `Roku` handle the initialization and management
-    ///   of the new encapsulated generic stack.
-    ///   Use this `init` only if the full control over the stack is needed
-    public init(stack: ContextStack) {
-        self._stack = stack
-    }
-
-//===----------------------------------------------------------------------===//
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
     /// Initialize with `StorageModel` instance.
     public convenience init(
@@ -98,14 +70,14 @@ public class Roku<ContextStack: StorageModelBasedStack> : StorageModelBased {
     ///   which lets `Roku` handle the initialization and management
     ///   of the new encapsulated generic stack.
     ///   Use this `init` only if the full control over the stack is needed
-    public convenience init(
+    public init(
         stack: ContextStack, provider: Provider<NSManagedObjectContext>
     ) {
-        self.init(stack: stack)
+        super.init(stack: stack)
         self.provider = provider
     }
 
-//===----------------------------------------------------------------------===//
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
     /// Call `body(c)`, where `c` is a temporary background managed object context.
     ///
@@ -145,23 +117,6 @@ public class Roku<ContextStack: StorageModelBasedStack> : StorageModelBased {
         }
 
         return try body(worker)
-    }
-
-    /// Save data to persistent store.
-    ///
-    /// - Parameter stopOnError: Error callback.
-    ///   Should return `true` iff `Roku` should retry saving.
-    public final func persist(stopOnError error: ErrorType -> Bool) {
-        self._saves.addOperationWithBlock {
-            self._stack.trySave(stopOnError: error)
-        }
-    }
-}
-
-public extension Roku where ContextStack: MainQueueContextStack {
-    /// Main queue managed object context.
-    public final var mainObjectContext: NSManagedObjectContext {
-        return self._stack.mainObjectContext
     }
 }
 

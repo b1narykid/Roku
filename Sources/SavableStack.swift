@@ -1,9 +1,9 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  NestedStack.swift
+//  SavableStack.swift
 //  Roku
 //
-// Copyright © 2015 Ivan Trubach
+// Copyright © 2016 Ivan Trubach
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,31 +28,36 @@
 import Swift
 import CoreData
 
-/// Concurrent stack implementation with nested managed object contexts.
-///
-/// This stack consists of three layers.
-/// First layer is a writer (master) managed object context
-/// with the private concurrency type (operating on a background thread).
-/// Second layer consists of a main thread’s
-/// managed object context as a child of this master context.
-/// Third layer consists of one or multiple worker contexts
-/// as children of the main context in the private queue.
-///
-/// - Remark: In this setup the worker contexts on
-///   the third layer are used to import the data.
-///
-/// - Note: There may be multiple contexts on the second
-///   and third layers and worker contexts on the second layer.
-///
-/// - SeeAlso: `NestedStackTemplate`, `BaseStack`, `IndependentStack`
-public final class NestedStack: BaseStack, NestedStackTemplate {
-    /// Main managed object context.
+/// A stack that can save its managed object contexts.
+public protocol SavableStack: CoreStack {
+    /// Save changes in contexts implemented in this template
+    /// to the persistent store.
     ///
-    /// - Note: `self.masterObjectContext` is parent of `self.mainObjectContext`.
-    ///   Managed object context has main queue concurrency type.
-    public internal(set) lazy var mainObjectContext: NSManagedObjectContext = {
-        let context = ManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-        context.parentContext = self.masterObjectContext
-        return context
-    }()
+    /// - Parameter stopOnError: Callback closure. Informs caller about the error.
+    ///   Should return `true` if can retry context save.
+    ///   Otherwise, return false or you will get an infinite save attempts.
+    mutating func trySave(stopOnError error: ErrorType -> Bool)
+}
+
+//===–––––––––––––––––––––––––––––– Internal ––––––––––––––––––––––––––––––===//
+
+internal extension SavableStack {
+    /// Try saving context.
+    ///
+    /// Provides an internal synchrounous context saving functionality
+    /// with error callback.
+    internal mutating func trySaveContext(
+        context: NSManagedObjectContext, callback: ErrorType -> Bool
+    ) {
+        context.performBlockAndWait {
+            do {
+                try context.save()
+            } catch {
+                // Let the user handle an error.
+                guard callback(error) else { return }
+                // Retrying save operation.
+                self.trySaveContext(context, callback: callback)
+            }
+        }
+    }
 }

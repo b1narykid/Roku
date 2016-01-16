@@ -1,3 +1,4 @@
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
 //  ContextFactoryStack.swift
 //  Roku
@@ -21,13 +22,15 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+//
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
 import Swift
 import CoreData
 
 /// Describes a context stack that has a factory method
 /// for creating additional contexts (especially 'workers') for `Self`
-public protocol ContextFactoryStack {
+public protocol ContextFactoryStack: CoreStack {
     /// Create new context for `Self` stack.
     mutating func createContext(concurrencyType: NSManagedObjectContextConcurrencyType) -> NSManagedObjectContext
 }

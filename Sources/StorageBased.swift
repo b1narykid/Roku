@@ -1,6 +1,6 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  NestedStack.swift
+//  StorageBased.swift
 //  Roku
 //
 // Copyright © 2015 Ivan Trubach
@@ -26,33 +26,9 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
 import Swift
-import CoreData
 
-/// Concurrent stack implementation with nested managed object contexts.
-///
-/// This stack consists of three layers.
-/// First layer is a writer (master) managed object context
-/// with the private concurrency type (operating on a background thread).
-/// Second layer consists of a main thread’s
-/// managed object context as a child of this master context.
-/// Third layer consists of one or multiple worker contexts
-/// as children of the main context in the private queue.
-///
-/// - Remark: In this setup the worker contexts on
-///   the third layer are used to import the data.
-///
-/// - Note: There may be multiple contexts on the second
-///   and third layers and worker contexts on the second layer.
-///
-/// - SeeAlso: `NestedStackTemplate`, `BaseStack`, `IndependentStack`
-public final class NestedStack: BaseStack, NestedStackTemplate {
-    /// Main managed object context.
-    ///
-    /// - Note: `self.masterObjectContext` is parent of `self.mainObjectContext`.
-    ///   Managed object context has main queue concurrency type.
-    public internal(set) lazy var mainObjectContext: NSManagedObjectContext = {
-        let context = ManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-        context.parentContext = self.masterObjectContext
-        return context
-    }()
+/// Describes an object that has `StorageModel` property.
+public protocol StorageBased {
+    /// Storage model on which `self` is based.
+    var storage: StorageModel { get }
 }

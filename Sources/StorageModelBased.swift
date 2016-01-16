@@ -1,3 +1,4 @@
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
 //  IndependentStack.swift
 //  Roku
@@ -21,26 +22,20 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+//
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
 import Swift
 import CoreData
 
-/// Storage model based stack.
-public typealias StorageModelBasedStack = protocol<BaseStackTemplate, StorageModelBased>
-
 /// Describes an object which behaviour is based on `StorageModel`.
-public protocol StorageModelBased: StorageModelConvertible {
+public protocol StorageModelBased: StorageModelConvertible, StorageBased {
     /// Initialize with `StorageModel` instance.
+    ///
+    /// - Remark: Use `storage` argument to initialize `self.storage`.
+    ///
+    /// - Parameter storage: Storage model instance.
     init(storage: StorageModel)
     /// Storage model on which `self` is based.
-    ///
-    /// Should be equal to storage model from `init(storage: _)`.
     var storage: StorageModel { get }
-}
-
-public extension StorageModelBased where Self: BaseStackTemplate {
-    /// Persistent store coordinator from storage model.
-    public var persistentStoreCoordinator: NSPersistentStoreCoordinator {
-        get { return self.storage.persistentStoreCoordinator }
-    }
 }

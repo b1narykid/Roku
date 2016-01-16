@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7760F87F1C484CC900AC355A /* CoreStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F87E1C484CC900AC355A /* CoreStackTemplate.swift */; };
+		7760F8801C484CC900AC355A /* CoreStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F87E1C484CC900AC355A /* CoreStackTemplate.swift */; };
+		7760F8811C484CC900AC355A /* CoreStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F87E1C484CC900AC355A /* CoreStackTemplate.swift */; };
+		7760F8831C4854BD00AC355A /* StackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8821C4854BD00AC355A /* StackTemplate.swift */; };
+		7760F8841C4854BD00AC355A /* StackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8821C4854BD00AC355A /* StackTemplate.swift */; };
+		7760F8851C4854BD00AC355A /* StackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8821C4854BD00AC355A /* StackTemplate.swift */; };
+		7760F8881C4855CC00AC355A /* SavableStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8871C4855CC00AC355A /* SavableStack.swift */; };
+		7760F8891C4855CC00AC355A /* SavableStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8871C4855CC00AC355A /* SavableStack.swift */; };
+		7760F88A1C4855CC00AC355A /* SavableStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8871C4855CC00AC355A /* SavableStack.swift */; };
+		7760F88F1C485E5A00AC355A /* RokuCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F88E1C485E5A00AC355A /* RokuCore.swift */; };
+		7760F8901C485E5A00AC355A /* RokuCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F88E1C485E5A00AC355A /* RokuCore.swift */; };
+		7760F8911C485E5A00AC355A /* RokuCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F88E1C485E5A00AC355A /* RokuCore.swift */; };
+		7760F8931C49DC9B00AC355A /* StorageBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8921C49DC9B00AC355A /* StorageBased.swift */; };
+		7760F8941C49DC9B00AC355A /* StorageBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8921C49DC9B00AC355A /* StorageBased.swift */; };
+		7760F8951C49DC9B00AC355A /* StorageBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8921C49DC9B00AC355A /* StorageBased.swift */; };
 		77C2C5331C25B7A800448829 /* BaseStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5201C25B7A800448829 /* BaseStack.swift */; };
 		77C2C5341C25B7A800448829 /* BaseStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5201C25B7A800448829 /* BaseStack.swift */; };
 		77C2C5351C25B7A800448829 /* BaseStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5201C25B7A800448829 /* BaseStack.swift */; };
@@ -67,6 +82,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7760F87E1C484CC900AC355A /* CoreStackTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreStackTemplate.swift; sourceTree = "<group>"; };
+		7760F8821C4854BD00AC355A /* StackTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackTemplate.swift; sourceTree = "<group>"; };
+		7760F8871C4855CC00AC355A /* SavableStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavableStack.swift; sourceTree = "<group>"; };
+		7760F88E1C485E5A00AC355A /* RokuCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RokuCore.swift; sourceTree = "<group>"; };
+		7760F8921C49DC9B00AC355A /* StorageBased.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageBased.swift; sourceTree = "<group>"; };
 		77C2C4A61C25B68C00448829 /* Roku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Roku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C2C4AA1C25B68C00448829 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		77C2C4B51C25B70900448829 /* Roku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Roku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +139,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7760F8861C4854EA00AC355A /* Core Stack */ = {
+			isa = PBXGroup;
+			children = (
+				7760F87E1C484CC900AC355A /* CoreStackTemplate.swift */,
+				7760F8821C4854BD00AC355A /* StackTemplate.swift */,
+			);
+			name = "Core Stack";
+			sourceTree = "<group>";
+		};
+		7760F88B1C485A1100AC355A /* SavableStack */ = {
+			isa = PBXGroup;
+			children = (
+				7760F8871C4855CC00AC355A /* SavableStack.swift */,
+			);
+			name = SavableStack;
+			sourceTree = "<group>";
+		};
+		7760F88C1C485A2D00AC355A /* Stacks */ = {
+			isa = PBXGroup;
+			children = (
+				7760F8861C4854EA00AC355A /* Core Stack */,
+				7760F88D1C485A8A00AC355A /* MainQueueContextStack */,
+				77C2C5731C25CFD800448829 /* ContextFactoryStack */,
+				7760F88B1C485A1100AC355A /* SavableStack */,
+				77C2C5721C25CFCC00448829 /* Base Stack */,
+				77C2C5711C25CFC100448829 /* Independent Stack */,
+				77C2C5701C25CFB600448829 /* Nested Stack */,
+			);
+			name = Stacks;
+			sourceTree = "<group>";
+		};
+		7760F88D1C485A8A00AC355A /* MainQueueContextStack */ = {
+			isa = PBXGroup;
+			children = (
+				77C2C5261C25B7A800448829 /* MainQueueContextStack.swift */,
+			);
+			name = MainQueueContextStack;
+			sourceTree = "<group>";
+		};
+		7760F8961C49DCAB00AC355A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				77C2C5311C25B7A800448829 /* StorageModelBased.swift */,
+				7760F8921C49DC9B00AC355A /* StorageBased.swift */,
+				77C2C5321C25B7A800448829 /* StorageModelConvertible.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		779D8D0A1C4710F100FB7E5E /* Providing */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,12 +231,10 @@
 			isa = PBXGroup;
 			children = (
 				77C2C52F1C25B7A800448829 /* Roku.swift */,
+				7760F88E1C485E5A00AC355A /* RokuCore.swift */,
+				7760F88C1C485A2D00AC355A /* Stacks */,
 				779D8D0A1C4710F100FB7E5E /* Providing */,
-				77C2C5721C25CFCC00448829 /* Base Stack */,
-				77C2C5731C25CFD800448829 /* Stack Protocols */,
 				77C2C5761C25D00100448829 /* Observing */,
-				77C2C5711C25CFC100448829 /* Independent Stack */,
-				77C2C5701C25CFB600448829 /* Nested Stack */,
 				77C2C5751C25CFF800448829 /* Storage Model */,
 				77C2C5781C25D03A00448829 /* Patterns */,
 				77C2C5741C25CFEA00448829 /* Internals */,
@@ -203,13 +270,12 @@
 			name = "Base Stack";
 			sourceTree = "<group>";
 		};
-		77C2C5731C25CFD800448829 /* Stack Protocols */ = {
+		77C2C5731C25CFD800448829 /* ContextFactoryStack */ = {
 			isa = PBXGroup;
 			children = (
 				77C2C5221C25B7A800448829 /* ContextFactoryStack.swift */,
-				77C2C5261C25B7A800448829 /* MainQueueContextStack.swift */,
 			);
-			name = "Stack Protocols";
+			name = ContextFactoryStack;
 			sourceTree = "<group>";
 		};
 		77C2C5741C25CFEA00448829 /* Internals */ = {
@@ -224,8 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				77C2C5301C25B7A800448829 /* StorageModel.swift */,
-				77C2C5311C25B7A800448829 /* StorageModelBased.swift */,
-				77C2C5321C25B7A800448829 /* StorageModelConvertible.swift */,
+				7760F8961C49DCAB00AC355A /* Protocols */,
 			);
 			name = "Storage Model";
 			sourceTree = "<group>";
@@ -442,10 +507,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7760F87F1C484CC900AC355A /* CoreStackTemplate.swift in Sources */,
 				77C2C5541C25B7A800448829 /* ObservableContext.swift in Sources */,
 				77C2C5391C25B7A800448829 /* ContextFactoryStack.swift in Sources */,
 				77C2C55A1C25B7A800448829 /* Provider.swift in Sources */,
 				77C2C5631C25B7A800448829 /* StorageModel.swift in Sources */,
+				7760F8881C4855CC00AC355A /* SavableStack.swift in Sources */,
 				77C2C53C1C25B7A800448829 /* ContextObserver.swift in Sources */,
 				77C2C5331C25B7A800448829 /* BaseStack.swift in Sources */,
 				77C2C5571C25B7A800448829 /* OperationQueueFactory.swift in Sources */,
@@ -454,12 +521,15 @@
 				77C2C5421C25B7A800448829 /* IndependentStackTemplate.swift in Sources */,
 				77C2C53F1C25B7A800448829 /* IndependentStack.swift in Sources */,
 				77C2C5451C25B7A800448829 /* MainQueueContextStack.swift in Sources */,
+				7760F8831C4854BD00AC355A /* StackTemplate.swift in Sources */,
 				77C2C55D1C25B7A800448829 /* Queue.swift in Sources */,
 				77C2C5661C25B7A800448829 /* StorageModelBased.swift in Sources */,
+				7760F8931C49DC9B00AC355A /* StorageBased.swift in Sources */,
 				77C2C5511C25B7A800448829 /* NullObject.swift in Sources */,
 				77C2C5691C25B7A800448829 /* StorageModelConvertible.swift in Sources */,
 				77C2C54E1C25B7A800448829 /* NestedStackTemplate.swift in Sources */,
 				77C2C5481C25B7A800448829 /* ManagedObjectContext.swift in Sources */,
+				7760F88F1C485E5A00AC355A /* RokuCore.swift in Sources */,
 				77C2C5361C25B7A800448829 /* BaseStackTemplate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,10 +538,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7760F8801C484CC900AC355A /* CoreStackTemplate.swift in Sources */,
 				77C2C5551C25B7A800448829 /* ObservableContext.swift in Sources */,
 				77C2C53A1C25B7A800448829 /* ContextFactoryStack.swift in Sources */,
 				77C2C55B1C25B7A800448829 /* Provider.swift in Sources */,
 				77C2C5641C25B7A800448829 /* StorageModel.swift in Sources */,
+				7760F8891C4855CC00AC355A /* SavableStack.swift in Sources */,
 				77C2C53D1C25B7A800448829 /* ContextObserver.swift in Sources */,
 				77C2C5341C25B7A800448829 /* BaseStack.swift in Sources */,
 				77C2C5581C25B7A800448829 /* OperationQueueFactory.swift in Sources */,
@@ -480,12 +552,15 @@
 				77C2C5431C25B7A800448829 /* IndependentStackTemplate.swift in Sources */,
 				77C2C5401C25B7A800448829 /* IndependentStack.swift in Sources */,
 				77C2C5461C25B7A800448829 /* MainQueueContextStack.swift in Sources */,
+				7760F8841C4854BD00AC355A /* StackTemplate.swift in Sources */,
 				77C2C55E1C25B7A800448829 /* Queue.swift in Sources */,
 				77C2C5671C25B7A800448829 /* StorageModelBased.swift in Sources */,
+				7760F8941C49DC9B00AC355A /* StorageBased.swift in Sources */,
 				77C2C5521C25B7A800448829 /* NullObject.swift in Sources */,
 				77C2C56A1C25B7A800448829 /* StorageModelConvertible.swift in Sources */,
 				77C2C54F1C25B7A800448829 /* NestedStackTemplate.swift in Sources */,
 				77C2C5491C25B7A800448829 /* ManagedObjectContext.swift in Sources */,
+				7760F8901C485E5A00AC355A /* RokuCore.swift in Sources */,
 				77C2C5371C25B7A800448829 /* BaseStackTemplate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -494,10 +569,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7760F8811C484CC900AC355A /* CoreStackTemplate.swift in Sources */,
 				77C2C5561C25B7A800448829 /* ObservableContext.swift in Sources */,
 				77C2C53B1C25B7A800448829 /* ContextFactoryStack.swift in Sources */,
 				77C2C55C1C25B7A800448829 /* Provider.swift in Sources */,
 				77C2C5651C25B7A800448829 /* StorageModel.swift in Sources */,
+				7760F88A1C4855CC00AC355A /* SavableStack.swift in Sources */,
 				77C2C53E1C25B7A800448829 /* ContextObserver.swift in Sources */,
 				77C2C5351C25B7A800448829 /* BaseStack.swift in Sources */,
 				77C2C5591C25B7A800448829 /* OperationQueueFactory.swift in Sources */,
@@ -506,12 +583,15 @@
 				77C2C5441C25B7A800448829 /* IndependentStackTemplate.swift in Sources */,
 				77C2C5411C25B7A800448829 /* IndependentStack.swift in Sources */,
 				77C2C5471C25B7A800448829 /* MainQueueContextStack.swift in Sources */,
+				7760F8851C4854BD00AC355A /* StackTemplate.swift in Sources */,
 				77C2C55F1C25B7A800448829 /* Queue.swift in Sources */,
 				77C2C5681C25B7A800448829 /* StorageModelBased.swift in Sources */,
+				7760F8951C49DC9B00AC355A /* StorageBased.swift in Sources */,
 				77C2C5531C25B7A800448829 /* NullObject.swift in Sources */,
 				77C2C56B1C25B7A800448829 /* StorageModelConvertible.swift in Sources */,
 				77C2C5501C25B7A800448829 /* NestedStackTemplate.swift in Sources */,
 				77C2C54A1C25B7A800448829 /* ManagedObjectContext.swift in Sources */,
+				7760F8911C485E5A00AC355A /* RokuCore.swift in Sources */,
 				77C2C5381C25B7A800448829 /* BaseStackTemplate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -527,10 +607,13 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MODULEMAP_FILE = "$(SRCROOT)/Sources/Roku.modulemap";
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "-DXcodeBuild";
-				PRODUCT_BUNDLE_IDENTIFIER = com.b1narykid.Roku;
-				PRODUCT_NAME = Roku;
+				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.b1narykid.$(PRODUCT_NAME)";
+				PRODUCT_MODULE_NAME = Roku;
+				PRODUCT_NAME = "$(PRODUCT_MODULE_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -540,10 +623,13 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MODULEMAP_FILE = "$(SRCROOT)/Sources/Roku.modulemap";
-				OTHER_SWIFT_FLAGS = "-DXcodeBuild";
-				PRODUCT_BUNDLE_IDENTIFIER = com.b1narykid.Roku;
-				PRODUCT_NAME = Roku;
+				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.b1narykid.$(PRODUCT_NAME)";
+				PRODUCT_MODULE_NAME = Roku;
+				PRODUCT_NAME = "$(PRODUCT_MODULE_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -596,8 +682,9 @@
 				MODULEMAP_FILE = "$(inherited)";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(inherited)";
+				PRODUCT_MODULE_NAME = "$(inherited)";
 				PRODUCT_NAME = "$(inherited)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -650,8 +737,9 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MODULEMAP_FILE = "$(inherited)";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_SWIFT_FLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(inherited)";
+				PRODUCT_MODULE_NAME = "$(inherited)";
 				PRODUCT_NAME = "$(inherited)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -710,7 +798,9 @@
 				MODULEMAP_FILE = "$(inherited)";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(inherited)";
+				PRODUCT_MODULE_NAME = "$(inherited)";
 				PRODUCT_NAME = "$(inherited)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -764,7 +854,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "$(inherited)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(inherited)";
+				PRODUCT_MODULE_NAME = "$(inherited)";
 				PRODUCT_NAME = "$(inherited)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -823,7 +915,9 @@
 				MODULEMAP_FILE = "$(inherited)";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(inherited)";
+				PRODUCT_MODULE_NAME = "$(inherited)";
 				PRODUCT_NAME = "$(inherited)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -876,7 +970,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "$(inherited)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(inherited)";
+				PRODUCT_MODULE_NAME = "$(inherited)";
 				PRODUCT_NAME = "$(inherited)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
