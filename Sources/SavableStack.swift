@@ -39,6 +39,47 @@ public protocol SavableStack: CoreStack {
     mutating func trySave(stopOnError error: ErrorType -> Bool)
 }
 
+//===––––––––––––––––––––––––––––––– Errors –––––––––––––––––––––––––––––––===//
+
+/// Wrapper over the save error and context saved context.
+///
+/// Actually, this data structure looks like this:
+///
+///     ContextError {
+///         context: NSManagedObjectContext,
+///         error:   ErrorType
+///     }
+///
+/// - Note: Used in default save implementation.
+///   This enum has only one `.Save(_, ofContext: _)` case.
+public enum ContextError: ErrorType {
+    case Save(ErrorType, ofContext: NSManagedObjectContext)
+}
+
+extension ContextError: CustomStringConvertible {
+    /// A textual representation of `self`.
+    public var description: String {
+        switch self {
+        case .Save(let error as NSError, ofContext: let context):
+            return "SaveError {\n\tcontext: \(context.description),\n\terror: \(error.description)\n}"
+        default:
+            return "SaveError { }"
+        }
+    }
+}
+
+extension ContextError: CustomDebugStringConvertible {
+    /// A textual representation of `self`, suitable for debugging.
+    public var debugDescription: String {
+        switch self {
+        case .Save(let error as NSError, ofContext: let context):
+            return "SaveError {\n\tcontext: \(context.description),\n\terror: \(error.description)\n}"
+        default:
+            return "SaveError { }"
+        }
+    }
+}
+
 //===–––––––––––––––––––––––––––––– Internal ––––––––––––––––––––––––––––––===//
 
 internal extension SavableStack {
@@ -52,7 +93,8 @@ internal extension SavableStack {
         context.performBlockAndWait {
             do {
                 try context.save()
-            } catch {
+            } catch let error as NSError {
+                let error = ContextError.Save(error, ofContext: context)
                 // Let the user handle an error.
                 guard callback(error) else { return }
                 // Retrying save operation.
