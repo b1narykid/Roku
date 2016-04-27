@@ -1,6 +1,6 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  IndependentStackTemplate.swift
+//  IndependentStackProtocol.swift
 //  Roku
 //
 // Copyright © 2016 Ivan Trubach
@@ -43,8 +43,8 @@ import CoreData
 ///   to the `NSManagedObjectContextDidSaveNotification` and calling
 ///   `mergeChangesFromContextDidSaveNotification()` on the other context.
 ///
-/// - SeeAlso:   `IndependentStack`, `BaseStackTemplate`, `NestedStackTemplate`
-public protocol IndependentStackTemplate: CoreStackTemplate, MainQueueContextStack {
+/// - SeeAlso:   `IndependentStackBase`, `StackProtocol`, `NestedStackProtocol`
+public protocol IndependentStackProtocol: StackCoreProtocol, MainQueueStackProtocol {
     /// Root managed object context.
     ///
     /// - Important: Managed object context has private queue concurrency type.
@@ -57,7 +57,7 @@ public protocol IndependentStackTemplate: CoreStackTemplate, MainQueueContextSta
 
 }
 
-public extension IndependentStackTemplate where Self: SavableStack {
+extension IndependentStackProtocol where Self: SavableStackProtocol {
     /// Save changes in all contexts (except main queue context)
     /// implemented in this template to the persistent store.
     ///
@@ -77,7 +77,7 @@ public extension IndependentStackTemplate where Self: SavableStack {
     }
 }
 
-public extension IndependentStackTemplate where Self: protocol<ContextFactoryStack, StorageBased> {
+extension IndependentStackProtocol where Self: protocol<ContextFactoryStackProtocol, StorageBased> {
     /// Create new context for this template.
     ///
     /// - Parameter concurrencyType: Concurrency type of managed object context.

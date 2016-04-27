@@ -78,13 +78,13 @@ public final class StorageModel {
     /// Return `_NullPSC` instance.
     public static func nullStore() -> NSPersistentStoreCoordinator {
         /// `NSPersistentStoreCoordinator`. Null object pattern.
-        final class _NullPSC: NSPersistentStoreCoordinator, NullObject {}
+        final class _NullPSC: NSPersistentStoreCoordinator, NullObjectProtocol {}
         return _NullPSC()
     }
 
     /// Return `_NullMOMD` instance.
     public static func nullModel() -> NSManagedObjectModel {
-        final class _NullMOMD: NSManagedObjectModel, NullObject {}
+        final class _NullMOMD: NSManagedObjectModel, NullObjectProtocol {}
         return _NullMOMD()
     }
 
@@ -93,7 +93,7 @@ public final class StorageModel {
     /// The managed object model for the application.
     public var managedObjectModel: NSManagedObjectModel {
         get {
-            if self.persistentStoreCoordinator is NullObject {
+            if self.persistentStoreCoordinator is NullObjectProtocol {
                 return StorageModel.nullModel()
             }
             return self.persistentStoreCoordinator.managedObjectModel
@@ -104,7 +104,7 @@ public final class StorageModel {
     ///
     /// - Attention: Verification of the returned value type is recommended
     ///   before accessing this property. `StorageModel`
-    ///   by default initializes `NullObject`
+    ///   by default initializes `NullObjectProtocol`
     ///   persistent store coordinator. This behaviour allows
     ///   easier internal implementaion (without optionals)
     ///   and `StorageModel` initialization.

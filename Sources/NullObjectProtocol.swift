@@ -1,6 +1,6 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  NullObject.swift
+//  NullObjectProtocol.swift
 //  Evenus
 //
 // Copyright © 2016 Ivan Trubach
@@ -30,5 +30,5 @@ import Swift
 /// Null object pattern.
 ///
 /// - SeeAlso: [Null-object pattern](https://wikipedia.org/wiki/Null_Object_pattern)
-public protocol NullObject {
+public protocol NullObjectProtocol {
 }

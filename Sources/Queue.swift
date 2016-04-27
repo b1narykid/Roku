@@ -27,38 +27,19 @@
 
 import Swift
 
+#if !swift(>=3)
+  public typealias Sequence = SequenceType
+#endif
+
 /// A queue data structure type that can be iterated with a `for`...`in` loop.
-///
-/// `QueueSequenceType` makes no requirement on conforming types regarding
-/// whether they will be destructively "consumed" by iteration.  To
-/// ensure non-destructive iteration, constrain your *sequence* to
-/// `CollectionType`.
-///
-/// As a consequence, it is not possible to run multiple `for` loops
-/// on a sequence to "resume" iteration:
-///
-///     for element in sequence {
-///       if ... some condition { break }
-///     }
-///
-///     for element in sequence {
-///       // Not guaranteed to continue from the next element.
-///     }
-///
-/// `QueueSequenceType` makes no requirement about the behavior in that
-/// case.  It is not correct to assume that a sequence will either be
-/// "consumable" and will resume iteration, or that a sequence is a
-/// collection and will restart iteration from the first element.
-/// A conforming sequence that is not a collection is allowed to
-/// produce an arbitrary sequence of elements from the second generator.
-public protocol QueueSequenceType: SequenceType {
+public protocol QueueSequence: Sequence {
     /// Enqueue element into `self`.
     mutating func enqueue(newElement: Self.Generator.Element)
     /// Dequeue element from `self`.
     mutating func dequeue() -> Self.Generator.Element?
 }
 
-extension Array: QueueSequenceType {
+extension Array: QueueSequence {
     /// Enqueue element into `self`.
     public mutating func enqueue(newElement: Array.Generator.Element) {
         self.append(newElement)

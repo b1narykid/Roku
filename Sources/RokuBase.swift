@@ -1,6 +1,6 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  RokuCore.swift
+//  RokuBase.swift
 //  Roku
 //
 // Copyright © 2016 Ivan Trubach
@@ -28,12 +28,11 @@
 import Swift
 import CoreData
 
-/// Wrapper over `StorageModelBasedStack` stack.
+/// Wrapper over `StorageModelBased` stack.
 ///
 /// Contains generic features and implementation details of `Roku`.
-/// This class can be considered an implementation detail of `Roku`.
-public class RokuCore<
-    ContextStack: protocol<CoreStack, StorageModelBased>
+public class RokuBase<
+    ContextStack: protocol<CoreProtocol, StorageModelBased>
 > : StorageModelBased {
     /// Storage model used by `CoreData` stack.
     public var storage: StorageModel { return self._stack.storage }
@@ -79,9 +78,9 @@ public class RokuCore<
     }
 }
 
-//===–––––––––––––––––––––––––––– SavableStack ––––––––––––––––––––––––––––===//
+//===–––––––––––––––––––––––––––– SavableStackProtocol ––––––––––––––––––––––––––––===//
 
-public extension RokuCore where ContextStack: SavableStack {
+extension RokuBase where ContextStack: SavableStackProtocol {
     /// Save data to persistent store.
     ///
     /// - Parameter stopOnError: Error callback.
@@ -93,18 +92,18 @@ public extension RokuCore where ContextStack: SavableStack {
     }
 }
 
-//===–––––––––––––––––––––––––– CoreStackTemplate –––––––––––––––––––––––––===//
+//===–––––––––––––––––––––––––––– StackCoreProtocol –––––––––––––––––––––––––––===//
 
-public extension RokuCore where ContextStack: CoreStackTemplate {
+extension RokuBase where ContextStack: StackCoreProtocol {
     /// Master managed object context.
     public final var masterObjectContext: NSManagedObjectContext {
         return self._stack.masterObjectContext
     }
 }
 
-//===–––––––––––––––––––––––– MainQueueContextStack –––––––––––––––––––––––===//
+//===––––––––––––––––––––––– MainQueueStackProtocol –––––––––––––––––––––––===//
 
-public extension RokuCore where ContextStack: MainQueueContextStack {
+extension RokuBase where ContextStack: MainQueueStackProtocol {
     /// Main queue managed object context.
     public final var mainObjectContext: NSManagedObjectContext {
         return self._stack.mainObjectContext

@@ -31,7 +31,7 @@ import Swift
 ///
 /// Stores provided objects in generic queue.
 public class Provider<Object> {
-    internal typealias Queue = Array<Object> // QueueSequenceType
+    internal typealias Queue = Array<Object> // QueueSequence
 
     internal private(set) var _objects: Queue
     internal private(set) var _provide: () -> Object

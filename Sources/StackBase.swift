@@ -1,6 +1,6 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  BaseStack.swift
+//  StackBase.swift
 //  Roku
 //
 // Copyright © 2016 Ivan Trubach
@@ -47,8 +47,8 @@ import CoreData
 /// - Attention: In this setup the background or root context
 ///   should be used for the data import.
 ///
-/// - SeeAlso: `BaseStackTemplate`, `NestedStack`, `IndependentStack`
-public class BaseStack: BaseStackTemplate, StorageModelBased, ContextFactoryStack, SavableStack {
+/// - SeeAlso: `StackProtocol`, `NestedStackBase`, `IndependentStackBase`
+public class StackBase: StackProtocol, StorageModelBased, ContextFactoryStackProtocol, SavableStackProtocol {
     /// Initialize with `StorageModel` instance.
     ///
     /// - Parameters storage: Storage used by `self`.

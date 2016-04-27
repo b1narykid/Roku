@@ -7,54 +7,54 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7760F87F1C484CC900AC355A /* CoreStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F87E1C484CC900AC355A /* CoreStackTemplate.swift */; };
-		7760F8801C484CC900AC355A /* CoreStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F87E1C484CC900AC355A /* CoreStackTemplate.swift */; };
-		7760F8811C484CC900AC355A /* CoreStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F87E1C484CC900AC355A /* CoreStackTemplate.swift */; };
-		7760F8831C4854BD00AC355A /* StackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8821C4854BD00AC355A /* StackTemplate.swift */; };
-		7760F8841C4854BD00AC355A /* StackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8821C4854BD00AC355A /* StackTemplate.swift */; };
-		7760F8851C4854BD00AC355A /* StackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8821C4854BD00AC355A /* StackTemplate.swift */; };
-		7760F8881C4855CC00AC355A /* SavableStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8871C4855CC00AC355A /* SavableStack.swift */; };
-		7760F8891C4855CC00AC355A /* SavableStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8871C4855CC00AC355A /* SavableStack.swift */; };
-		7760F88A1C4855CC00AC355A /* SavableStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8871C4855CC00AC355A /* SavableStack.swift */; };
-		7760F88F1C485E5A00AC355A /* RokuCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F88E1C485E5A00AC355A /* RokuCore.swift */; };
-		7760F8901C485E5A00AC355A /* RokuCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F88E1C485E5A00AC355A /* RokuCore.swift */; };
-		7760F8911C485E5A00AC355A /* RokuCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F88E1C485E5A00AC355A /* RokuCore.swift */; };
+		7760F87F1C484CC900AC355A /* CoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F87E1C484CC900AC355A /* CoreProtocol.swift */; };
+		7760F8801C484CC900AC355A /* CoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F87E1C484CC900AC355A /* CoreProtocol.swift */; };
+		7760F8811C484CC900AC355A /* CoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F87E1C484CC900AC355A /* CoreProtocol.swift */; };
+		7760F8831C4854BD00AC355A /* StackCoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8821C4854BD00AC355A /* StackCoreProtocol.swift */; };
+		7760F8841C4854BD00AC355A /* StackCoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8821C4854BD00AC355A /* StackCoreProtocol.swift */; };
+		7760F8851C4854BD00AC355A /* StackCoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8821C4854BD00AC355A /* StackCoreProtocol.swift */; };
+		7760F8881C4855CC00AC355A /* SavableStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8871C4855CC00AC355A /* SavableStackProtocol.swift */; };
+		7760F8891C4855CC00AC355A /* SavableStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8871C4855CC00AC355A /* SavableStackProtocol.swift */; };
+		7760F88A1C4855CC00AC355A /* SavableStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8871C4855CC00AC355A /* SavableStackProtocol.swift */; };
+		7760F88F1C485E5A00AC355A /* RokuBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F88E1C485E5A00AC355A /* RokuBase.swift */; };
+		7760F8901C485E5A00AC355A /* RokuBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F88E1C485E5A00AC355A /* RokuBase.swift */; };
+		7760F8911C485E5A00AC355A /* RokuBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F88E1C485E5A00AC355A /* RokuBase.swift */; };
 		7760F8931C49DC9B00AC355A /* StorageBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8921C49DC9B00AC355A /* StorageBased.swift */; };
 		7760F8941C49DC9B00AC355A /* StorageBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8921C49DC9B00AC355A /* StorageBased.swift */; };
 		7760F8951C49DC9B00AC355A /* StorageBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8921C49DC9B00AC355A /* StorageBased.swift */; };
-		77C2C5331C25B7A800448829 /* BaseStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5201C25B7A800448829 /* BaseStack.swift */; };
-		77C2C5341C25B7A800448829 /* BaseStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5201C25B7A800448829 /* BaseStack.swift */; };
-		77C2C5351C25B7A800448829 /* BaseStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5201C25B7A800448829 /* BaseStack.swift */; };
-		77C2C5361C25B7A800448829 /* BaseStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5211C25B7A800448829 /* BaseStackTemplate.swift */; };
-		77C2C5371C25B7A800448829 /* BaseStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5211C25B7A800448829 /* BaseStackTemplate.swift */; };
-		77C2C5381C25B7A800448829 /* BaseStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5211C25B7A800448829 /* BaseStackTemplate.swift */; };
-		77C2C5391C25B7A800448829 /* ContextFactoryStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5221C25B7A800448829 /* ContextFactoryStack.swift */; };
-		77C2C53A1C25B7A800448829 /* ContextFactoryStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5221C25B7A800448829 /* ContextFactoryStack.swift */; };
-		77C2C53B1C25B7A800448829 /* ContextFactoryStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5221C25B7A800448829 /* ContextFactoryStack.swift */; };
+		77C2C5331C25B7A800448829 /* StackBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5201C25B7A800448829 /* StackBase.swift */; };
+		77C2C5341C25B7A800448829 /* StackBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5201C25B7A800448829 /* StackBase.swift */; };
+		77C2C5351C25B7A800448829 /* StackBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5201C25B7A800448829 /* StackBase.swift */; };
+		77C2C5361C25B7A800448829 /* StackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5211C25B7A800448829 /* StackProtocol.swift */; };
+		77C2C5371C25B7A800448829 /* StackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5211C25B7A800448829 /* StackProtocol.swift */; };
+		77C2C5381C25B7A800448829 /* StackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5211C25B7A800448829 /* StackProtocol.swift */; };
+		77C2C5391C25B7A800448829 /* ContextFactoryStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5221C25B7A800448829 /* ContextFactoryStackProtocol.swift */; };
+		77C2C53A1C25B7A800448829 /* ContextFactoryStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5221C25B7A800448829 /* ContextFactoryStackProtocol.swift */; };
+		77C2C53B1C25B7A800448829 /* ContextFactoryStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5221C25B7A800448829 /* ContextFactoryStackProtocol.swift */; };
 		77C2C53C1C25B7A800448829 /* ContextObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5231C25B7A800448829 /* ContextObserver.swift */; };
 		77C2C53D1C25B7A800448829 /* ContextObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5231C25B7A800448829 /* ContextObserver.swift */; };
 		77C2C53E1C25B7A800448829 /* ContextObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5231C25B7A800448829 /* ContextObserver.swift */; };
-		77C2C53F1C25B7A800448829 /* IndependentStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5241C25B7A800448829 /* IndependentStack.swift */; };
-		77C2C5401C25B7A800448829 /* IndependentStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5241C25B7A800448829 /* IndependentStack.swift */; };
-		77C2C5411C25B7A800448829 /* IndependentStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5241C25B7A800448829 /* IndependentStack.swift */; };
-		77C2C5421C25B7A800448829 /* IndependentStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5251C25B7A800448829 /* IndependentStackTemplate.swift */; };
-		77C2C5431C25B7A800448829 /* IndependentStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5251C25B7A800448829 /* IndependentStackTemplate.swift */; };
-		77C2C5441C25B7A800448829 /* IndependentStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5251C25B7A800448829 /* IndependentStackTemplate.swift */; };
-		77C2C5451C25B7A800448829 /* MainQueueContextStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5261C25B7A800448829 /* MainQueueContextStack.swift */; };
-		77C2C5461C25B7A800448829 /* MainQueueContextStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5261C25B7A800448829 /* MainQueueContextStack.swift */; };
-		77C2C5471C25B7A800448829 /* MainQueueContextStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5261C25B7A800448829 /* MainQueueContextStack.swift */; };
+		77C2C53F1C25B7A800448829 /* IndependentStackBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5241C25B7A800448829 /* IndependentStackBase.swift */; };
+		77C2C5401C25B7A800448829 /* IndependentStackBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5241C25B7A800448829 /* IndependentStackBase.swift */; };
+		77C2C5411C25B7A800448829 /* IndependentStackBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5241C25B7A800448829 /* IndependentStackBase.swift */; };
+		77C2C5421C25B7A800448829 /* IndependentStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5251C25B7A800448829 /* IndependentStackProtocol.swift */; };
+		77C2C5431C25B7A800448829 /* IndependentStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5251C25B7A800448829 /* IndependentStackProtocol.swift */; };
+		77C2C5441C25B7A800448829 /* IndependentStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5251C25B7A800448829 /* IndependentStackProtocol.swift */; };
+		77C2C5451C25B7A800448829 /* MainQueueStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5261C25B7A800448829 /* MainQueueStackProtocol.swift */; };
+		77C2C5461C25B7A800448829 /* MainQueueStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5261C25B7A800448829 /* MainQueueStackProtocol.swift */; };
+		77C2C5471C25B7A800448829 /* MainQueueStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5261C25B7A800448829 /* MainQueueStackProtocol.swift */; };
 		77C2C5481C25B7A800448829 /* ManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5271C25B7A800448829 /* ManagedObjectContext.swift */; };
 		77C2C5491C25B7A800448829 /* ManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5271C25B7A800448829 /* ManagedObjectContext.swift */; };
 		77C2C54A1C25B7A800448829 /* ManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5271C25B7A800448829 /* ManagedObjectContext.swift */; };
-		77C2C54B1C25B7A800448829 /* NestedStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5281C25B7A800448829 /* NestedStack.swift */; };
-		77C2C54C1C25B7A800448829 /* NestedStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5281C25B7A800448829 /* NestedStack.swift */; };
-		77C2C54D1C25B7A800448829 /* NestedStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5281C25B7A800448829 /* NestedStack.swift */; };
-		77C2C54E1C25B7A800448829 /* NestedStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5291C25B7A800448829 /* NestedStackTemplate.swift */; };
-		77C2C54F1C25B7A800448829 /* NestedStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5291C25B7A800448829 /* NestedStackTemplate.swift */; };
-		77C2C5501C25B7A800448829 /* NestedStackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5291C25B7A800448829 /* NestedStackTemplate.swift */; };
-		77C2C5511C25B7A800448829 /* NullObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52A1C25B7A800448829 /* NullObject.swift */; };
-		77C2C5521C25B7A800448829 /* NullObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52A1C25B7A800448829 /* NullObject.swift */; };
-		77C2C5531C25B7A800448829 /* NullObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52A1C25B7A800448829 /* NullObject.swift */; };
+		77C2C54B1C25B7A800448829 /* NestedStackBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5281C25B7A800448829 /* NestedStackBase.swift */; };
+		77C2C54C1C25B7A800448829 /* NestedStackBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5281C25B7A800448829 /* NestedStackBase.swift */; };
+		77C2C54D1C25B7A800448829 /* NestedStackBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5281C25B7A800448829 /* NestedStackBase.swift */; };
+		77C2C54E1C25B7A800448829 /* NestedStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5291C25B7A800448829 /* NestedStackProtocol.swift */; };
+		77C2C54F1C25B7A800448829 /* NestedStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5291C25B7A800448829 /* NestedStackProtocol.swift */; };
+		77C2C5501C25B7A800448829 /* NestedStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5291C25B7A800448829 /* NestedStackProtocol.swift */; };
+		77C2C5511C25B7A800448829 /* NullObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52A1C25B7A800448829 /* NullObjectProtocol.swift */; };
+		77C2C5521C25B7A800448829 /* NullObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52A1C25B7A800448829 /* NullObjectProtocol.swift */; };
+		77C2C5531C25B7A800448829 /* NullObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52A1C25B7A800448829 /* NullObjectProtocol.swift */; };
 		77C2C5541C25B7A800448829 /* ObservableContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52B1C25B7A800448829 /* ObservableContext.swift */; };
 		77C2C5551C25B7A800448829 /* ObservableContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52B1C25B7A800448829 /* ObservableContext.swift */; };
 		77C2C5561C25B7A800448829 /* ObservableContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C52B1C25B7A800448829 /* ObservableContext.swift */; };
@@ -82,27 +82,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7760F87E1C484CC900AC355A /* CoreStackTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreStackTemplate.swift; sourceTree = "<group>"; };
-		7760F8821C4854BD00AC355A /* StackTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackTemplate.swift; sourceTree = "<group>"; };
-		7760F8871C4855CC00AC355A /* SavableStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavableStack.swift; sourceTree = "<group>"; };
-		7760F88E1C485E5A00AC355A /* RokuCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RokuCore.swift; sourceTree = "<group>"; };
+		7760F87E1C484CC900AC355A /* CoreProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreProtocol.swift; sourceTree = "<group>"; };
+		7760F8821C4854BD00AC355A /* StackCoreProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackCoreProtocol.swift; sourceTree = "<group>"; };
+		7760F8871C4855CC00AC355A /* SavableStackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavableStackProtocol.swift; sourceTree = "<group>"; };
+		7760F88E1C485E5A00AC355A /* RokuBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RokuBase.swift; sourceTree = "<group>"; };
 		7760F8921C49DC9B00AC355A /* StorageBased.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageBased.swift; sourceTree = "<group>"; };
 		7760F8991C4A02B700AC355A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		77C2C4A61C25B68C00448829 /* Roku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Roku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C2C4AA1C25B68C00448829 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		77C2C4B51C25B70900448829 /* Roku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Roku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C2C4C51C25B77400448829 /* Roku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Roku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		77C2C5201C25B7A800448829 /* BaseStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseStack.swift; sourceTree = "<group>"; };
-		77C2C5211C25B7A800448829 /* BaseStackTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseStackTemplate.swift; sourceTree = "<group>"; };
-		77C2C5221C25B7A800448829 /* ContextFactoryStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextFactoryStack.swift; sourceTree = "<group>"; };
+		77C2C5201C25B7A800448829 /* StackBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackBase.swift; sourceTree = "<group>"; };
+		77C2C5211C25B7A800448829 /* StackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackProtocol.swift; sourceTree = "<group>"; };
+		77C2C5221C25B7A800448829 /* ContextFactoryStackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextFactoryStackProtocol.swift; sourceTree = "<group>"; };
 		77C2C5231C25B7A800448829 /* ContextObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextObserver.swift; sourceTree = "<group>"; };
-		77C2C5241C25B7A800448829 /* IndependentStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndependentStack.swift; sourceTree = "<group>"; };
-		77C2C5251C25B7A800448829 /* IndependentStackTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndependentStackTemplate.swift; sourceTree = "<group>"; };
-		77C2C5261C25B7A800448829 /* MainQueueContextStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainQueueContextStack.swift; sourceTree = "<group>"; };
+		77C2C5241C25B7A800448829 /* IndependentStackBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndependentStackBase.swift; sourceTree = "<group>"; };
+		77C2C5251C25B7A800448829 /* IndependentStackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndependentStackProtocol.swift; sourceTree = "<group>"; };
+		77C2C5261C25B7A800448829 /* MainQueueStackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainQueueStackProtocol.swift; sourceTree = "<group>"; };
 		77C2C5271C25B7A800448829 /* ManagedObjectContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectContext.swift; sourceTree = "<group>"; };
-		77C2C5281C25B7A800448829 /* NestedStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedStack.swift; sourceTree = "<group>"; };
-		77C2C5291C25B7A800448829 /* NestedStackTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedStackTemplate.swift; sourceTree = "<group>"; };
-		77C2C52A1C25B7A800448829 /* NullObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullObject.swift; sourceTree = "<group>"; };
+		77C2C5281C25B7A800448829 /* NestedStackBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedStackBase.swift; sourceTree = "<group>"; };
+		77C2C5291C25B7A800448829 /* NestedStackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedStackProtocol.swift; sourceTree = "<group>"; };
+		77C2C52A1C25B7A800448829 /* NullObjectProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullObjectProtocol.swift; sourceTree = "<group>"; };
 		77C2C52B1C25B7A800448829 /* ObservableContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableContext.swift; sourceTree = "<group>"; };
 		77C2C52C1C25B7A800448829 /* OperationQueueFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueueFactory.swift; sourceTree = "<group>"; };
 		77C2C52D1C25B7A800448829 /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
@@ -143,8 +143,8 @@
 		7760F8861C4854EA00AC355A /* Core Stack */ = {
 			isa = PBXGroup;
 			children = (
-				7760F87E1C484CC900AC355A /* CoreStackTemplate.swift */,
-				7760F8821C4854BD00AC355A /* StackTemplate.swift */,
+				7760F87E1C484CC900AC355A /* CoreProtocol.swift */,
+				7760F8821C4854BD00AC355A /* StackCoreProtocol.swift */,
 			);
 			name = "Core Stack";
 			sourceTree = "<group>";
@@ -152,7 +152,7 @@
 		7760F88B1C485A1100AC355A /* SavableStack */ = {
 			isa = PBXGroup;
 			children = (
-				7760F8871C4855CC00AC355A /* SavableStack.swift */,
+				7760F8871C4855CC00AC355A /* SavableStackProtocol.swift */,
 			);
 			name = SavableStack;
 			sourceTree = "<group>";
@@ -174,7 +174,7 @@
 		7760F88D1C485A8A00AC355A /* MainQueueContextStack */ = {
 			isa = PBXGroup;
 			children = (
-				77C2C5261C25B7A800448829 /* MainQueueContextStack.swift */,
+				77C2C5261C25B7A800448829 /* MainQueueStackProtocol.swift */,
 			);
 			name = MainQueueContextStack;
 			sourceTree = "<group>";
@@ -233,7 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				77C2C52F1C25B7A800448829 /* Roku.swift */,
-				7760F88E1C485E5A00AC355A /* RokuCore.swift */,
+				7760F88E1C485E5A00AC355A /* RokuBase.swift */,
 				7760F88C1C485A2D00AC355A /* Stacks */,
 				779D8D0A1C4710F100FB7E5E /* Providing */,
 				77C2C5761C25D00100448829 /* Observing */,
@@ -248,8 +248,8 @@
 		77C2C5701C25CFB600448829 /* Nested Stack */ = {
 			isa = PBXGroup;
 			children = (
-				77C2C5281C25B7A800448829 /* NestedStack.swift */,
-				77C2C5291C25B7A800448829 /* NestedStackTemplate.swift */,
+				77C2C5281C25B7A800448829 /* NestedStackBase.swift */,
+				77C2C5291C25B7A800448829 /* NestedStackProtocol.swift */,
 			);
 			name = "Nested Stack";
 			sourceTree = "<group>";
@@ -257,8 +257,8 @@
 		77C2C5711C25CFC100448829 /* Independent Stack */ = {
 			isa = PBXGroup;
 			children = (
-				77C2C5241C25B7A800448829 /* IndependentStack.swift */,
-				77C2C5251C25B7A800448829 /* IndependentStackTemplate.swift */,
+				77C2C5241C25B7A800448829 /* IndependentStackBase.swift */,
+				77C2C5251C25B7A800448829 /* IndependentStackProtocol.swift */,
 			);
 			name = "Independent Stack";
 			sourceTree = "<group>";
@@ -266,8 +266,8 @@
 		77C2C5721C25CFCC00448829 /* Base Stack */ = {
 			isa = PBXGroup;
 			children = (
-				77C2C5201C25B7A800448829 /* BaseStack.swift */,
-				77C2C5211C25B7A800448829 /* BaseStackTemplate.swift */,
+				77C2C5201C25B7A800448829 /* StackBase.swift */,
+				77C2C5211C25B7A800448829 /* StackProtocol.swift */,
 			);
 			name = "Base Stack";
 			sourceTree = "<group>";
@@ -275,7 +275,7 @@
 		77C2C5731C25CFD800448829 /* ContextFactoryStack */ = {
 			isa = PBXGroup;
 			children = (
-				77C2C5221C25B7A800448829 /* ContextFactoryStack.swift */,
+				77C2C5221C25B7A800448829 /* ContextFactoryStackProtocol.swift */,
 			);
 			name = ContextFactoryStack;
 			sourceTree = "<group>";
@@ -310,7 +310,7 @@
 		77C2C5781C25D03A00448829 /* Patterns */ = {
 			isa = PBXGroup;
 			children = (
-				77C2C52A1C25B7A800448829 /* NullObject.swift */,
+				77C2C52A1C25B7A800448829 /* NullObjectProtocol.swift */,
 			);
 			name = Patterns;
 			sourceTree = "<group>";
@@ -509,30 +509,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7760F87F1C484CC900AC355A /* CoreStackTemplate.swift in Sources */,
+				7760F87F1C484CC900AC355A /* CoreProtocol.swift in Sources */,
 				77C2C5541C25B7A800448829 /* ObservableContext.swift in Sources */,
-				77C2C5391C25B7A800448829 /* ContextFactoryStack.swift in Sources */,
+				77C2C5391C25B7A800448829 /* ContextFactoryStackProtocol.swift in Sources */,
 				77C2C55A1C25B7A800448829 /* Provider.swift in Sources */,
 				77C2C5631C25B7A800448829 /* StorageModel.swift in Sources */,
-				7760F8881C4855CC00AC355A /* SavableStack.swift in Sources */,
+				7760F8881C4855CC00AC355A /* SavableStackProtocol.swift in Sources */,
 				77C2C53C1C25B7A800448829 /* ContextObserver.swift in Sources */,
-				77C2C5331C25B7A800448829 /* BaseStack.swift in Sources */,
+				77C2C5331C25B7A800448829 /* StackBase.swift in Sources */,
 				77C2C5571C25B7A800448829 /* OperationQueueFactory.swift in Sources */,
 				77C2C5601C25B7A800448829 /* Roku.swift in Sources */,
-				77C2C54B1C25B7A800448829 /* NestedStack.swift in Sources */,
-				77C2C5421C25B7A800448829 /* IndependentStackTemplate.swift in Sources */,
-				77C2C53F1C25B7A800448829 /* IndependentStack.swift in Sources */,
-				77C2C5451C25B7A800448829 /* MainQueueContextStack.swift in Sources */,
-				7760F8831C4854BD00AC355A /* StackTemplate.swift in Sources */,
+				77C2C54B1C25B7A800448829 /* NestedStackBase.swift in Sources */,
+				77C2C5421C25B7A800448829 /* IndependentStackProtocol.swift in Sources */,
+				77C2C53F1C25B7A800448829 /* IndependentStackBase.swift in Sources */,
+				77C2C5451C25B7A800448829 /* MainQueueStackProtocol.swift in Sources */,
+				7760F8831C4854BD00AC355A /* StackCoreProtocol.swift in Sources */,
 				77C2C55D1C25B7A800448829 /* Queue.swift in Sources */,
 				77C2C5661C25B7A800448829 /* StorageModelBased.swift in Sources */,
 				7760F8931C49DC9B00AC355A /* StorageBased.swift in Sources */,
-				77C2C5511C25B7A800448829 /* NullObject.swift in Sources */,
+				77C2C5511C25B7A800448829 /* NullObjectProtocol.swift in Sources */,
 				77C2C5691C25B7A800448829 /* StorageModelConvertible.swift in Sources */,
-				77C2C54E1C25B7A800448829 /* NestedStackTemplate.swift in Sources */,
+				77C2C54E1C25B7A800448829 /* NestedStackProtocol.swift in Sources */,
 				77C2C5481C25B7A800448829 /* ManagedObjectContext.swift in Sources */,
-				7760F88F1C485E5A00AC355A /* RokuCore.swift in Sources */,
-				77C2C5361C25B7A800448829 /* BaseStackTemplate.swift in Sources */,
+				7760F88F1C485E5A00AC355A /* RokuBase.swift in Sources */,
+				77C2C5361C25B7A800448829 /* StackProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,30 +540,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7760F8801C484CC900AC355A /* CoreStackTemplate.swift in Sources */,
+				7760F8801C484CC900AC355A /* CoreProtocol.swift in Sources */,
 				77C2C5551C25B7A800448829 /* ObservableContext.swift in Sources */,
-				77C2C53A1C25B7A800448829 /* ContextFactoryStack.swift in Sources */,
+				77C2C53A1C25B7A800448829 /* ContextFactoryStackProtocol.swift in Sources */,
 				77C2C55B1C25B7A800448829 /* Provider.swift in Sources */,
 				77C2C5641C25B7A800448829 /* StorageModel.swift in Sources */,
-				7760F8891C4855CC00AC355A /* SavableStack.swift in Sources */,
+				7760F8891C4855CC00AC355A /* SavableStackProtocol.swift in Sources */,
 				77C2C53D1C25B7A800448829 /* ContextObserver.swift in Sources */,
-				77C2C5341C25B7A800448829 /* BaseStack.swift in Sources */,
+				77C2C5341C25B7A800448829 /* StackBase.swift in Sources */,
 				77C2C5581C25B7A800448829 /* OperationQueueFactory.swift in Sources */,
 				77C2C5611C25B7A800448829 /* Roku.swift in Sources */,
-				77C2C54C1C25B7A800448829 /* NestedStack.swift in Sources */,
-				77C2C5431C25B7A800448829 /* IndependentStackTemplate.swift in Sources */,
-				77C2C5401C25B7A800448829 /* IndependentStack.swift in Sources */,
-				77C2C5461C25B7A800448829 /* MainQueueContextStack.swift in Sources */,
-				7760F8841C4854BD00AC355A /* StackTemplate.swift in Sources */,
+				77C2C54C1C25B7A800448829 /* NestedStackBase.swift in Sources */,
+				77C2C5431C25B7A800448829 /* IndependentStackProtocol.swift in Sources */,
+				77C2C5401C25B7A800448829 /* IndependentStackBase.swift in Sources */,
+				77C2C5461C25B7A800448829 /* MainQueueStackProtocol.swift in Sources */,
+				7760F8841C4854BD00AC355A /* StackCoreProtocol.swift in Sources */,
 				77C2C55E1C25B7A800448829 /* Queue.swift in Sources */,
 				77C2C5671C25B7A800448829 /* StorageModelBased.swift in Sources */,
 				7760F8941C49DC9B00AC355A /* StorageBased.swift in Sources */,
-				77C2C5521C25B7A800448829 /* NullObject.swift in Sources */,
+				77C2C5521C25B7A800448829 /* NullObjectProtocol.swift in Sources */,
 				77C2C56A1C25B7A800448829 /* StorageModelConvertible.swift in Sources */,
-				77C2C54F1C25B7A800448829 /* NestedStackTemplate.swift in Sources */,
+				77C2C54F1C25B7A800448829 /* NestedStackProtocol.swift in Sources */,
 				77C2C5491C25B7A800448829 /* ManagedObjectContext.swift in Sources */,
-				7760F8901C485E5A00AC355A /* RokuCore.swift in Sources */,
-				77C2C5371C25B7A800448829 /* BaseStackTemplate.swift in Sources */,
+				7760F8901C485E5A00AC355A /* RokuBase.swift in Sources */,
+				77C2C5371C25B7A800448829 /* StackProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,30 +571,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7760F8811C484CC900AC355A /* CoreStackTemplate.swift in Sources */,
+				7760F8811C484CC900AC355A /* CoreProtocol.swift in Sources */,
 				77C2C5561C25B7A800448829 /* ObservableContext.swift in Sources */,
-				77C2C53B1C25B7A800448829 /* ContextFactoryStack.swift in Sources */,
+				77C2C53B1C25B7A800448829 /* ContextFactoryStackProtocol.swift in Sources */,
 				77C2C55C1C25B7A800448829 /* Provider.swift in Sources */,
 				77C2C5651C25B7A800448829 /* StorageModel.swift in Sources */,
-				7760F88A1C4855CC00AC355A /* SavableStack.swift in Sources */,
+				7760F88A1C4855CC00AC355A /* SavableStackProtocol.swift in Sources */,
 				77C2C53E1C25B7A800448829 /* ContextObserver.swift in Sources */,
-				77C2C5351C25B7A800448829 /* BaseStack.swift in Sources */,
+				77C2C5351C25B7A800448829 /* StackBase.swift in Sources */,
 				77C2C5591C25B7A800448829 /* OperationQueueFactory.swift in Sources */,
 				77C2C5621C25B7A800448829 /* Roku.swift in Sources */,
-				77C2C54D1C25B7A800448829 /* NestedStack.swift in Sources */,
-				77C2C5441C25B7A800448829 /* IndependentStackTemplate.swift in Sources */,
-				77C2C5411C25B7A800448829 /* IndependentStack.swift in Sources */,
-				77C2C5471C25B7A800448829 /* MainQueueContextStack.swift in Sources */,
-				7760F8851C4854BD00AC355A /* StackTemplate.swift in Sources */,
+				77C2C54D1C25B7A800448829 /* NestedStackBase.swift in Sources */,
+				77C2C5441C25B7A800448829 /* IndependentStackProtocol.swift in Sources */,
+				77C2C5411C25B7A800448829 /* IndependentStackBase.swift in Sources */,
+				77C2C5471C25B7A800448829 /* MainQueueStackProtocol.swift in Sources */,
+				7760F8851C4854BD00AC355A /* StackCoreProtocol.swift in Sources */,
 				77C2C55F1C25B7A800448829 /* Queue.swift in Sources */,
 				77C2C5681C25B7A800448829 /* StorageModelBased.swift in Sources */,
 				7760F8951C49DC9B00AC355A /* StorageBased.swift in Sources */,
-				77C2C5531C25B7A800448829 /* NullObject.swift in Sources */,
+				77C2C5531C25B7A800448829 /* NullObjectProtocol.swift in Sources */,
 				77C2C56B1C25B7A800448829 /* StorageModelConvertible.swift in Sources */,
-				77C2C5501C25B7A800448829 /* NestedStackTemplate.swift in Sources */,
+				77C2C5501C25B7A800448829 /* NestedStackProtocol.swift in Sources */,
 				77C2C54A1C25B7A800448829 /* ManagedObjectContext.swift in Sources */,
-				7760F8911C485E5A00AC355A /* RokuCore.swift in Sources */,
-				77C2C5381C25B7A800448829 /* BaseStackTemplate.swift in Sources */,
+				7760F8911C485E5A00AC355A /* RokuBase.swift in Sources */,
+				77C2C5381C25B7A800448829 /* StackProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,6 +1,6 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  BaseStackTemplate.swift
+//  NestedStackProtocol.swift
 //  Roku
 //
 // Copyright © 2016 Ivan Trubach
@@ -28,28 +28,36 @@
 import Swift
 import CoreData
 
-/// Default `CoreData` stack template.
+/// Concurrent stack template with nested managed object contexts.
 ///
-/// This stack consists of one root managed object context
-/// initialized with the private concurrency type.
+/// This stack consists of three layers.
+/// First layer is a writer (master) managed object context
+/// with the private concurrency type (operating on a background thread).
+/// Second layer consists of a main thread’s
+/// managed object context as a child of this master context.
+/// Third layer consists of one or multiple worker contexts
+/// as children of the main context in the private queue.
 ///
-/// Creating contexts on the same layer
-/// with automatic changes merging is supported.
-/// You may add as much child background contexts as needed.
+/// - Remark: In this setup the worker contexts on
+///   the third layer are used to import the data.
 ///
-/// - Note: I included this stack as a template for other stacks.
-///   This stack template can be used for designing stacks
-///   with multiple persistent store coordinators for `Roku`.
+/// - Note: There may be multiple contexts on the second
+///   and third layers and worker contexts on the second layer.
 ///
-/// - SeeAlso: `BaseStack`, `NestedStackTemplate`, `IndependentStackTemplate`
-public protocol BaseStackTemplate: CoreStackTemplate {
+/// - SeeAlso:   `NestedStackBase`, `StackProtocol`, `IndependentStackProtocol`
+public protocol NestedStackProtocol: StackCoreProtocol, MainQueueStackProtocol {
     /// Root managed object context.
     ///
     /// - Note: Should be with `PrivateQueueConcurrencyType` concurrency type.
     var masterObjectContext: NSManagedObjectContext { get }
+    /// Main managed object context.
+    ///
+    /// - Note: Should be with `.MainQueueConcurrencyType` and
+    ///         child context of `self.masterObjectContext`.
+    var mainObjectContext: NSManagedObjectContext { get }
 }
 
-public extension BaseStackTemplate where Self: SavableStack {
+extension NestedStackProtocol where Self: SavableStackProtocol {
     /// Save changes in all contexts implemented in this template
     /// to the persistent store.
     ///
@@ -59,25 +67,28 @@ public extension BaseStackTemplate where Self: SavableStack {
     ///   Should return `true` if can retry context save.
     ///   Otherwise, return false or you will get an infinite save attempts.
     public mutating func trySave(
-        stopOnError error: ErrorType -> Bool = { _ in return false }
+        repeatOnError error: ErrorType -> Bool = { _ in return false }
     ) {
-            self.trySaveContext(self.masterObjectContext, callback: error)
+        // Save second layer.
+        self.trySaveContext(self.mainObjectContext, callback: error)
+        // Save first layer.
+        self.trySaveContext(self.masterObjectContext, callback: error)
     }
 }
 
-public extension BaseStackTemplate where Self: ContextFactoryStack {
+extension NestedStackProtocol where Self: ContextFactoryStackProtocol {
     /// Create new context for this template.
     ///
     /// - Parameter concurrencyType: Concurrency type of managed object context.
     ///   Defaults to `PrivateQueueConcurrencyType`.
     ///
     /// - Returns: New `ManagedObjectContext` instance as
-    ///   a child of `self.masterObjectContext`.
+    ///   a child of `self.mainObjectContext`.
     public mutating func createContext(
         concurrencyType: NSManagedObjectContextConcurrencyType = .PrivateQueueConcurrencyType
     ) -> NSManagedObjectContext {
         let context = ManagedObjectContext(concurrencyType: concurrencyType)
-        context.parentContext = self.masterObjectContext
+        context.parentContext = self.mainObjectContext
         return context
     }
 }

@@ -1,6 +1,6 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  CoreStack.swift
+//  ContextFactoryStackProtocol.swift
 //  Roku
 //
 // Copyright © 2016 Ivan Trubach
@@ -28,8 +28,11 @@
 import Swift
 import CoreData
 
-/// Highly abstract `CoreData`' stack.
-///
-/// This stack can be considered an implementation detail of other stacks.
-public protocol CoreStack {
+/// Describes a context stack that has a factory method
+/// for creating additional contexts (especially 'workers') for `Self`.
+public protocol ContextFactoryStackProtocol: CoreProtocol {
+    /// Create new context for `Self` stack.
+    mutating func createContext(
+        concurrencyType: NSManagedObjectContextConcurrencyType
+    ) -> NSManagedObjectContext
 }

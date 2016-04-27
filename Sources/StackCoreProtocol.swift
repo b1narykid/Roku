@@ -1,6 +1,6 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  NestedStack.swift
+//  StackCoreProtocol.swift
 //  Roku
 //
 // Copyright © 2016 Ivan Trubach
@@ -12,7 +12,7 @@
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
 //
-// The above copyright notice and this permission notice shall be included in
+// The above copyright notice and§ this permission notice shall be included in
 // all copies or substantial portions of the Software.
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -28,31 +28,13 @@
 import Swift
 import CoreData
 
-/// Concurrent stack implementation with nested managed object contexts.
+/// Default `CoreData` stack template.
 ///
-/// This stack consists of three layers.
-/// First layer is a writer (master) managed object context
-/// with the private concurrency type (operating on a background thread).
-/// Second layer consists of a main thread’s
-/// managed object context as a child of this master context.
-/// Third layer consists of one or multiple worker contexts
-/// as children of the main context in the private queue.
+/// This stack consists of one root managed object context
+/// initialized with the prefered concurrency type.
 ///
-/// - Remark: In this setup the worker contexts on
-///   the third layer are used to import the data.
-///
-/// - Note: There may be multiple contexts on the second
-///   and third layers and worker contexts on the second layer.
-///
-/// - SeeAlso: `NestedStackTemplate`, `BaseStack`, `IndependentStack`
-public final class NestedStack: BaseStack, NestedStackTemplate {
-    /// Main managed object context.
-    ///
-    /// - Note: `self.masterObjectContext` is parent of `self.mainObjectContext`.
-    ///   Managed object context has main queue concurrency type.
-    public internal(set) lazy var mainObjectContext: NSManagedObjectContext = {
-        let context = ManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-        context.parentContext = self.masterObjectContext
-        return context
-    }()
+/// - SeeAlso: `StackProtocol`, `NestedStackProtocol`, `IndependentStackProtocol`
+public protocol StackCoreProtocol: CoreProtocol {
+    /// Root managed object context.
+    var masterObjectContext: NSManagedObjectContext { get }
 }

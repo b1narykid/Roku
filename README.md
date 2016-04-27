@@ -40,22 +40,22 @@ let storage = StorageModel(persistentStoreCoordinator: oldPersistentStoreCoordin
 Initialize `Roku` stack with a base stack:
 
 ```swift
-let baseStack = Roku<BaseStack>(storage: storage)
+let baseStack = Roku<StackBase>(storage: storage)
 ```
 
 or with a nested stack...
 
 ```swift
-let nestedStack = Roku<NestedStack>(storage: storage)
+let nestedStack = Roku<NestedStackBase>(storage: storage)
 ```
 
 or with an independent stack...
 
 ```swift
-let independentStack = Roku<IndependentStack>(storage: storage)
+let independentStack = Roku<IndependentStackBase>(storage: storage)
 ```
 
-or with a custom stack that conforms to `BaseStackTemplate` and `StorageModelBased` protocols.
+or with a custom stack that conforms to `StackProtocol` and `StorageModelBased` protocols.
 
 ```swift
 let myAwesomeStack = Roku<AwesomeStack>(storage: storage)

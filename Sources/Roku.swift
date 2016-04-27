@@ -34,10 +34,10 @@ import class Foundation.NSOperationQueue
 /// Encapsulates the `CoreData` stack.
 /// Provides a convenience API for the `CoreData`'s context stacks.
 ///
-/// - SeeAlso: `BaseStack`, `NestedStack`, `IndependentStack`
+/// - SeeAlso: `StackBase`, `NestedStackBase`, `IndependentStackBase`.
 public class Roku<
-    ContextStack: protocol<ContextFactoryStack, StorageModelBased>
-> : RokuCore<ContextStack> {
+    ContextStack: protocol<ContextFactoryStackProtocol, StorageModelBased>
+> : RokuBase<ContextStack> {
     /// `NSManagedObjectContext` provider.
     ///
     /// - Note: Provided contexts do not have any undo manager.

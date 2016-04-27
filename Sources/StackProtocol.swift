@@ -1,6 +1,6 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  CoreStackTemplate.swift
+//  StackProtocol.swift
 //  Roku
 //
 // Copyright © 2016 Ivan Trubach
@@ -12,7 +12,7 @@
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
 //
-// The above copyright notice and§ this permission notice shall be included in
+// The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -31,15 +31,25 @@ import CoreData
 /// Default `CoreData` stack template.
 ///
 /// This stack consists of one root managed object context
-/// initialized with the prefered concurrency type.
+/// initialized with the private concurrency type.
 ///
-/// - SeeAlso: `BaseStack`, `NestedStackTemplate`, `IndependentStackTemplate`
-public protocol CoreStackTemplate: CoreStack {
+/// Creating contexts on the same layer
+/// with automatic changes merging is supported.
+/// You may add as much child background contexts as needed.
+///
+/// - Note: I included this stack as a template for other stacks.
+///   This stack template can be used for designing stacks
+///   with multiple persistent store coordinators for `Roku`.
+///
+/// - SeeAlso: `StackBase`, `NestedStackProtocol`, `IndependentStackProtocol`
+public protocol StackProtocol: StackCoreProtocol {
     /// Root managed object context.
+    ///
+    /// - Note: Should be with `PrivateQueueConcurrencyType` concurrency type.
     var masterObjectContext: NSManagedObjectContext { get }
 }
 
-public extension CoreStackTemplate where Self: SavableStack {
+extension StackProtocol where Self: SavableStackProtocol {
     /// Save changes in all contexts implemented in this template
     /// to the persistent store.
     ///
@@ -52,5 +62,22 @@ public extension CoreStackTemplate where Self: SavableStack {
         stopOnError error: ErrorType -> Bool = { _ in return false }
     ) {
             self.trySaveContext(self.masterObjectContext, callback: error)
+    }
+}
+
+extension StackProtocol where Self: ContextFactoryStackProtocol {
+    /// Create new context for this template.
+    ///
+    /// - Parameter concurrencyType: Concurrency type of managed object context.
+    ///   Defaults to `PrivateQueueConcurrencyType`.
+    ///
+    /// - Returns: New `ManagedObjectContext` instance as
+    ///   a child of `self.masterObjectContext`.
+    public mutating func createContext(
+        concurrencyType: NSManagedObjectContextConcurrencyType = .PrivateQueueConcurrencyType
+    ) -> NSManagedObjectContext {
+        let context = ManagedObjectContext(concurrencyType: concurrencyType)
+        context.parentContext = self.masterObjectContext
+        return context
     }
 }

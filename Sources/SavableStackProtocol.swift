@@ -1,6 +1,6 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  SavableStack.swift
+//  SavableStackProtocol.swift
 //  Roku
 //
 // Copyright © 2016 Ivan Trubach
@@ -29,7 +29,7 @@ import Swift
 import CoreData
 
 /// A stack that can save its managed object contexts.
-public protocol SavableStack: CoreStack {
+public protocol SavableStackProtocol: CoreProtocol {
     /// Save changes in contexts implemented in this template
     /// to the persistent store.
     ///
@@ -37,6 +37,22 @@ public protocol SavableStack: CoreStack {
     ///   Should return `true` if can retry context save.
     ///   Otherwise, return false or you will get an infinite save attempts.
     mutating func trySave(stopOnError error: ErrorType -> Bool)
+}
+
+extension SavableStackProtocol where Self: StackCoreProtocol {
+  /// Save changes in all contexts implemented in this template
+  /// to the persistent store.
+  ///
+  /// - Note: Worker contexts are not saved.
+  ///
+  /// - Parameter stopOnError: Callback closure. Informs caller about the error.
+  ///   Should return `true` if can retry context save.
+  ///   Otherwise, return false or you will get an infinite save attempts.
+  public mutating func trySave(
+      stopOnError error: ErrorType -> Bool = { _ in return false }
+  ) {
+    self.trySaveContext(self.masterObjectContext, callback: error)
+  }
 }
 
 //===––––––––––––––––––––––––––––––– Errors –––––––––––––––––––––––––––––––===//
@@ -82,7 +98,7 @@ extension ContextError: CustomDebugStringConvertible {
 
 //===–––––––––––––––––––––––––––––– Internal ––––––––––––––––––––––––––––––===//
 
-internal extension SavableStack {
+extension SavableStackProtocol {
     /// Try saving context.
     ///
     /// Provides an internal synchrounous context saving functionality

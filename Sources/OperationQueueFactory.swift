@@ -70,6 +70,6 @@ internal class OperationQueueFactory {
     }
 }
 
-internal extension NSOperationQueue {
+extension NSOperationQueue {
     internal static let factory = OperationQueueFactory()
 }
