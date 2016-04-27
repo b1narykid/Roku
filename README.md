@@ -55,7 +55,7 @@ or with an independent stack...
 let independentStack = Roku<IndependentStackBase>(storage: storage)
 ```
 
-or with a custom stack that conforms to `StackProtocol` and `StorageModelBased` protocols.
+or with a custom stack that conforms to `StackProtocol` and `StorageModelContainer` protocols.
 
 ```swift
 let myAwesomeStack = Roku<AwesomeStack>(storage: storage)

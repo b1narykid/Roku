@@ -1,6 +1,6 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  StorageBased.swift
+//  StorageModelContainer.swift
 //  Roku
 //
 // Copyright © 2016 Ivan Trubach
@@ -26,9 +26,16 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
 import Swift
+import CoreData
 
-/// Describes an object that has `StorageModel` property.
-public protocol StorageBased {
+/// A type that is a container for some `StorageModel` object.
+public protocol StorageModelContainer: StorageModelConvertible, StorageModelWrapper {
+    /// Initialize with `StorageModel` instance.
+    ///
+    /// - Remark: Use `storage` argument to initialize `self.storage`.
+    ///
+    /// - Parameter storage: Storage model instance.
+    init(storage: StorageModel)
     /// Storage model on which `self` is based.
     var storage: StorageModel { get }
 }

@@ -1,6 +1,6 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  IndependentStackBase.swift
+//  StorageModelWrapper.swift
 //  Roku
 //
 // Copyright © 2016 Ivan Trubach
@@ -26,16 +26,8 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
 import Swift
-import CoreData
 
-/// Describes an object which behaviour is based on `StorageModel`.
-public protocol StorageModelBased: StorageModelConvertible, StorageBased {
-    /// Initialize with `StorageModel` instance.
-    ///
-    /// - Remark: Use `storage` argument to initialize `self.storage`.
-    ///
-    /// - Parameter storage: Storage model instance.
-    init(storage: StorageModel)
-    /// Storage model on which `self` is based.
+/// A type that is just a wrapper over some `StorageModel` object.
+public protocol StorageModelWrapper {
     var storage: StorageModel { get }
 }

@@ -27,16 +27,16 @@
 
 import Swift
 import CoreData
-import class Foundation.NSOperationQueue
+import Foundation
 
-/// Wrapper over `StorageModelBasedStack` stack with unified API for all stacks.
+/// Wrapper over `StorageModelContainer` stack with same API for all stack types.
 ///
 /// Encapsulates the `CoreData` stack.
 /// Provides a convenience API for the `CoreData`'s context stacks.
 ///
 /// - SeeAlso: `StackBase`, `NestedStackBase`, `IndependentStackBase`.
 public class Roku<
-    ContextStack: protocol<ContextFactoryStackProtocol, StorageModelBased>
+    ContextStack: protocol<ContextFactoryStackProtocol, StorageModelContainer>
 > : RokuBase<ContextStack> {
     /// `NSManagedObjectContext` provider.
     ///
@@ -100,7 +100,7 @@ public class Roku<
     ///     (and handle an errors) in this function.
     public final func withBackgroundContext<R>(
         @noescape body: NSManagedObjectContext throws -> R,
-        save: NSManagedObjectContext -> Void = doSave
+        save: NSManagedObjectContext -> Void = performSave
     ) rethrows -> R {
         // Take worker from provider
         let worker = self.provider.take()
@@ -121,12 +121,11 @@ public class Roku<
 }
 
 /// Perfrom save if `context` has changes.
-private func doSave(context: NSManagedObjectContext) {
+private func performSave(context: NSManagedObjectContext) {
     if context.hasChanges {
         do {
             try context.save()
         } catch {
-
         }
     }
 }

@@ -19,9 +19,9 @@
 		7760F88F1C485E5A00AC355A /* RokuBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F88E1C485E5A00AC355A /* RokuBase.swift */; };
 		7760F8901C485E5A00AC355A /* RokuBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F88E1C485E5A00AC355A /* RokuBase.swift */; };
 		7760F8911C485E5A00AC355A /* RokuBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F88E1C485E5A00AC355A /* RokuBase.swift */; };
-		7760F8931C49DC9B00AC355A /* StorageBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8921C49DC9B00AC355A /* StorageBased.swift */; };
-		7760F8941C49DC9B00AC355A /* StorageBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8921C49DC9B00AC355A /* StorageBased.swift */; };
-		7760F8951C49DC9B00AC355A /* StorageBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8921C49DC9B00AC355A /* StorageBased.swift */; };
+		7760F8931C49DC9B00AC355A /* StorageModelWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8921C49DC9B00AC355A /* StorageModelWrapper.swift */; };
+		7760F8941C49DC9B00AC355A /* StorageModelWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8921C49DC9B00AC355A /* StorageModelWrapper.swift */; };
+		7760F8951C49DC9B00AC355A /* StorageModelWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760F8921C49DC9B00AC355A /* StorageModelWrapper.swift */; };
 		77C2C5331C25B7A800448829 /* StackBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5201C25B7A800448829 /* StackBase.swift */; };
 		77C2C5341C25B7A800448829 /* StackBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5201C25B7A800448829 /* StackBase.swift */; };
 		77C2C5351C25B7A800448829 /* StackBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5201C25B7A800448829 /* StackBase.swift */; };
@@ -73,9 +73,9 @@
 		77C2C5631C25B7A800448829 /* StorageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5301C25B7A800448829 /* StorageModel.swift */; };
 		77C2C5641C25B7A800448829 /* StorageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5301C25B7A800448829 /* StorageModel.swift */; };
 		77C2C5651C25B7A800448829 /* StorageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5301C25B7A800448829 /* StorageModel.swift */; };
-		77C2C5661C25B7A800448829 /* StorageModelBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5311C25B7A800448829 /* StorageModelBased.swift */; };
-		77C2C5671C25B7A800448829 /* StorageModelBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5311C25B7A800448829 /* StorageModelBased.swift */; };
-		77C2C5681C25B7A800448829 /* StorageModelBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5311C25B7A800448829 /* StorageModelBased.swift */; };
+		77C2C5661C25B7A800448829 /* StorageModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5311C25B7A800448829 /* StorageModelContainer.swift */; };
+		77C2C5671C25B7A800448829 /* StorageModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5311C25B7A800448829 /* StorageModelContainer.swift */; };
+		77C2C5681C25B7A800448829 /* StorageModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5311C25B7A800448829 /* StorageModelContainer.swift */; };
 		77C2C5691C25B7A800448829 /* StorageModelConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5321C25B7A800448829 /* StorageModelConvertible.swift */; };
 		77C2C56A1C25B7A800448829 /* StorageModelConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5321C25B7A800448829 /* StorageModelConvertible.swift */; };
 		77C2C56B1C25B7A800448829 /* StorageModelConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C5321C25B7A800448829 /* StorageModelConvertible.swift */; };
@@ -86,7 +86,7 @@
 		7760F8821C4854BD00AC355A /* StackCoreProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackCoreProtocol.swift; sourceTree = "<group>"; };
 		7760F8871C4855CC00AC355A /* SavableStackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavableStackProtocol.swift; sourceTree = "<group>"; };
 		7760F88E1C485E5A00AC355A /* RokuBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RokuBase.swift; sourceTree = "<group>"; };
-		7760F8921C49DC9B00AC355A /* StorageBased.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageBased.swift; sourceTree = "<group>"; };
+		7760F8921C49DC9B00AC355A /* StorageModelWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageModelWrapper.swift; sourceTree = "<group>"; };
 		7760F8991C4A02B700AC355A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		77C2C4A61C25B68C00448829 /* Roku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Roku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C2C4AA1C25B68C00448829 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 		77C2C52E1C25B7A800448829 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		77C2C52F1C25B7A800448829 /* Roku.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roku.swift; sourceTree = "<group>"; };
 		77C2C5301C25B7A800448829 /* StorageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageModel.swift; sourceTree = "<group>"; };
-		77C2C5311C25B7A800448829 /* StorageModelBased.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageModelBased.swift; sourceTree = "<group>"; };
+		77C2C5311C25B7A800448829 /* StorageModelContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageModelContainer.swift; sourceTree = "<group>"; };
 		77C2C5321C25B7A800448829 /* StorageModelConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageModelConvertible.swift; sourceTree = "<group>"; };
 		77C2C5791C25D56900448829 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		77C2C57B1C25EA9100448829 /* Roku.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = Roku.modulemap; path = Sources/Roku.modulemap; sourceTree = SOURCE_ROOT; };
@@ -182,8 +182,8 @@
 		7760F8961C49DCAB00AC355A /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				77C2C5311C25B7A800448829 /* StorageModelBased.swift */,
-				7760F8921C49DC9B00AC355A /* StorageBased.swift */,
+				77C2C5311C25B7A800448829 /* StorageModelContainer.swift */,
+				7760F8921C49DC9B00AC355A /* StorageModelWrapper.swift */,
 				77C2C5321C25B7A800448829 /* StorageModelConvertible.swift */,
 			);
 			name = Protocols;
@@ -525,8 +525,8 @@
 				77C2C5451C25B7A800448829 /* MainQueueStackProtocol.swift in Sources */,
 				7760F8831C4854BD00AC355A /* StackCoreProtocol.swift in Sources */,
 				77C2C55D1C25B7A800448829 /* Queue.swift in Sources */,
-				77C2C5661C25B7A800448829 /* StorageModelBased.swift in Sources */,
-				7760F8931C49DC9B00AC355A /* StorageBased.swift in Sources */,
+				77C2C5661C25B7A800448829 /* StorageModelContainer.swift in Sources */,
+				7760F8931C49DC9B00AC355A /* StorageModelWrapper.swift in Sources */,
 				77C2C5511C25B7A800448829 /* NullObjectProtocol.swift in Sources */,
 				77C2C5691C25B7A800448829 /* StorageModelConvertible.swift in Sources */,
 				77C2C54E1C25B7A800448829 /* NestedStackProtocol.swift in Sources */,
@@ -556,8 +556,8 @@
 				77C2C5461C25B7A800448829 /* MainQueueStackProtocol.swift in Sources */,
 				7760F8841C4854BD00AC355A /* StackCoreProtocol.swift in Sources */,
 				77C2C55E1C25B7A800448829 /* Queue.swift in Sources */,
-				77C2C5671C25B7A800448829 /* StorageModelBased.swift in Sources */,
-				7760F8941C49DC9B00AC355A /* StorageBased.swift in Sources */,
+				77C2C5671C25B7A800448829 /* StorageModelContainer.swift in Sources */,
+				7760F8941C49DC9B00AC355A /* StorageModelWrapper.swift in Sources */,
 				77C2C5521C25B7A800448829 /* NullObjectProtocol.swift in Sources */,
 				77C2C56A1C25B7A800448829 /* StorageModelConvertible.swift in Sources */,
 				77C2C54F1C25B7A800448829 /* NestedStackProtocol.swift in Sources */,
@@ -587,8 +587,8 @@
 				77C2C5471C25B7A800448829 /* MainQueueStackProtocol.swift in Sources */,
 				7760F8851C4854BD00AC355A /* StackCoreProtocol.swift in Sources */,
 				77C2C55F1C25B7A800448829 /* Queue.swift in Sources */,
-				77C2C5681C25B7A800448829 /* StorageModelBased.swift in Sources */,
-				7760F8951C49DC9B00AC355A /* StorageBased.swift in Sources */,
+				77C2C5681C25B7A800448829 /* StorageModelContainer.swift in Sources */,
+				7760F8951C49DC9B00AC355A /* StorageModelWrapper.swift in Sources */,
 				77C2C5531C25B7A800448829 /* NullObjectProtocol.swift in Sources */,
 				77C2C56B1C25B7A800448829 /* StorageModelConvertible.swift in Sources */,
 				77C2C5501C25B7A800448829 /* NestedStackProtocol.swift in Sources */,

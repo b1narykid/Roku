@@ -77,7 +77,7 @@ extension IndependentStackProtocol where Self: SavableStackProtocol {
     }
 }
 
-extension IndependentStackProtocol where Self: protocol<ContextFactoryStackProtocol, StorageBased> {
+extension IndependentStackProtocol where Self: protocol<ContextFactoryStackProtocol, StorageModelWrapper> {
     /// Create new context for this template.
     ///
     /// - Parameter concurrencyType: Concurrency type of managed object context.

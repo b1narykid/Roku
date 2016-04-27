@@ -27,7 +27,7 @@
 
 import Swift
 import Dispatch
-import class Foundation.NSOperationQueue
+import Foundation
 
 /// Encapsulates the proccess of `NSOperationQueue` and serial `OS_dispatch_queue`
 /// creation for multiple platforms and OS versions.

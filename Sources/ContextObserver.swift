@@ -27,10 +27,8 @@
 
 import Swift
 import CoreData
+import Foundation
 import protocol ObjectiveC.NSObjectProtocol
-import class Foundation.NSNotification
-import class Foundation.NSNotificationCenter
-import class Foundation.NSOperationQueue
 
 internal enum ObservedStore {
     case MOC(NSManagedObjectContext)

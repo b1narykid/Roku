@@ -28,12 +28,14 @@
 import Swift
 import CoreData
 
-/// Wrapper over `StorageModelBased` stack.
+/// Wrapper over `StorageModelContainer` stack.
 ///
 /// Contains generic features and implementation details of `Roku`.
+///
+/// - SeeAlso: `Roku`.
 public class RokuBase<
-    ContextStack: protocol<CoreProtocol, StorageModelBased>
-> : StorageModelBased {
+    ContextStack: protocol<CoreProtocol, StorageModelContainer>
+> : StorageModelContainer {
     /// Storage model used by `CoreData` stack.
     public var storage: StorageModel { return self._stack.storage }
     /// Encapsulated `CoreData` stack.

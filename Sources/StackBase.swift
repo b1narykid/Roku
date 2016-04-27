@@ -48,7 +48,7 @@ import CoreData
 ///   should be used for the data import.
 ///
 /// - SeeAlso: `StackProtocol`, `NestedStackBase`, `IndependentStackBase`
-public class StackBase: StackProtocol, StorageModelBased, ContextFactoryStackProtocol, SavableStackProtocol {
+public class StackBase: StackProtocol, StorageModelContainer, ContextFactoryStackProtocol, SavableStackProtocol {
     /// Initialize with `StorageModel` instance.
     ///
     /// - Parameters storage: Storage used by `self`.
