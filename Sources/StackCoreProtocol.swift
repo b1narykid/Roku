@@ -1,7 +1,7 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  StackCoreProtocol.swift
-//  Roku
+//	StackCoreProtocol.swift
+//	Roku
 //
 // Copyright © 2016 Ivan Trubach
 //
@@ -35,6 +35,6 @@ import CoreData
 ///
 /// - SeeAlso: `StackProtocol`, `NestedStackProtocol`, `IndependentStackProtocol`
 public protocol StackCoreProtocol: CoreProtocol {
-    /// Root managed object context.
-    var masterObjectContext: NSManagedObjectContext { get }
+	/// Root managed object context.
+	var masterObjectContext: NSManagedObjectContext { get }
 }

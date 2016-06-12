@@ -1,7 +1,7 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  MainQueueStackProtocol.swift
-//  Roku
+//	MainQueueStackProtocol.swift
+//	Roku
 //
 // Copyright © 2016 Ivan Trubach
 //
@@ -30,8 +30,8 @@ import CoreData
 
 /// Describes a context stack with a main queue context.
 public protocol MainQueueStackProtocol: CoreProtocol {
-    /// Main managed object context.
-    ///
-    /// - Important: Managed object context has main queue concurrency type.
-    var mainObjectContext: NSManagedObjectContext { get }
+	/// Main managed object context.
+	///
+	/// - Important: Managed object context has main queue concurrency type.
+	var mainObjectContext: NSManagedObjectContext { get }
 }

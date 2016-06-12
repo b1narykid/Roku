@@ -1,7 +1,7 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  StorageModelWrapper.swift
-//  Roku
+//	StorageModelWrapper.swift
+//	Roku
 //
 // Copyright © 2016 Ivan Trubach
 //
@@ -29,5 +29,5 @@ import Swift
 
 /// A type that is just a wrapper over some `StorageModel` object.
 public protocol StorageModelWrapper {
-    var storage: StorageModel { get }
+	var storage: StorageModel { get }
 }

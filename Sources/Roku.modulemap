@@ -1,7 +1,7 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  OperationQueueFactory.swift
-//  Roku
+//	OperationQueueFactory.swift
+//	Roku
 //
 // Copyright © 2016 Ivan Trubach
 //
@@ -26,5 +26,5 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
 framework module Roku {
-    export *
+	export *
 }

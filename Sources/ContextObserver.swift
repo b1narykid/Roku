@@ -1,7 +1,7 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  ContextObserver.swift
-//  Roku
+//	ContextObserver.swift
+//	Roku
 //
 // Copyright © 2016 Ivan Trubach
 //
@@ -31,9 +31,9 @@ import Foundation
 import protocol ObjectiveC.NSObjectProtocol
 
 internal enum ObservedStore {
-    case MOC(NSManagedObjectContext)
-    case PSC(NSPersistentStoreCoordinator)
-    case Error
+	case MOC(NSManagedObjectContext)
+	case PSC(NSPersistentStoreCoordinator)
+	case Error
 }
 
 /// An observer for `NSManagedObjectContext` context
@@ -46,139 +46,139 @@ internal enum ObservedStore {
 ///   `ContextObserver` merges changes only from `NSManagedObjectContext`
 ///   instances that conform to `ObservableContext` protocol.
 public class ContextObserver {
-    /// Observed object.
-    ///
-    /// - Remark: Weak reference. Receiving a notification when
-    ///   the object, pointed by this reference is `nil`
-    ///   will cause the removal of notification observer.
-    public internal(set) weak var observedObject: NSManagedObjectContext? {
-        willSet {
-            guard newValue is ObservableContext else {
-                fatalError("observedObject should be ObservableContext")
-            }
-        }
-    }
+	/// Observed object.
+	///
+	/// - Remark: Weak reference. Receiving a notification when
+	///   the object, pointed by this reference is `nil`
+	///   will cause the removal of notification observer.
+	public internal(set) weak var observedObject: NSManagedObjectContext? {
+		willSet {
+			guard newValue is ObservableContext else {
+				fatalError("observedObject should be ObservableContext")
+			}
+		}
+	}
 
-    /// An opaque object to act as the observer.
-    internal private(set) var _observer: NSObjectProtocol?
-    /// Max number of concurrent change merges.
-    internal private(set) var maxConcurrentMergesCount: Int {
-        get { return self._queue.maxConcurrentOperationCount }
-        set { self._queue.maxConcurrentOperationCount = newValue }
-    }
+	/// An opaque object to act as the observer.
+	internal private(set) var _observer: NSObjectProtocol?
+	/// Max number of concurrent change merges.
+	internal private(set) var maxConcurrentMergesCount: Int {
+		get { return self._queue.maxConcurrentOperationCount }
+		set { self._queue.maxConcurrentOperationCount = newValue }
+	}
 
-    /// Observed store type. Read-only.
-    ///
-    /// - Warning: Does not handle error.
-    internal var observedStore: ObservedStore {
-        guard let observedObject = self.observedObject else { return .Error }
-        // Parent context should not be an `ObservableContext`
-        // (unless we need to merge changes from parent context).
-        if let moc = observedObject.parentContext { return .MOC(moc) }
-        // iff child context, than the following is true:
-        // `persistentStoreCoordinator` === `parentContext.persistentStoreCoordinator`
-        if let psc = observedObject.persistentStoreCoordinator
-            where observedObject.parentContext == nil { return .PSC(psc) }
-        // Error... Unexpected error...
-        return .Error
-    }
+	/// Observed store type. Read-only.
+	///
+	/// - Warning: Does not handle error.
+	internal var observedStore: ObservedStore {
+		guard let observedObject = self.observedObject else { return .Error }
+		// Parent context should not be an `ObservableContext`
+		// (unless we need to merge changes from parent context).
+		if let moc = observedObject.parentContext { return .MOC(moc) }
+		// iff child context, than the following is true:
+		// `persistentStoreCoordinator` === `parentContext.persistentStoreCoordinator`
+		if let psc = observedObject.persistentStoreCoordinator
+			where observedObject.parentContext == nil { return .PSC(psc) }
+		// Error... Unexpected error...
+		return .Error
+	}
 
-    /// Underlying operations queue
-    internal lazy var _queue: NSOperationQueue = {
-        let name = "com.b1nary.Roku.roku_change_handler_\(unsafeAddressOf(self))"
-        return NSOperationQueue.factory.createOprationQueue(name: name)
-    }()
-
-//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
-
-    /// Initialize observer of `managedObjectContext` context.
-    ///
-    /// - Parameters:
-    ///   - managedObjectContext: `NSManagedObjectContext`
-    ///     conforming to `ObservableContext` which will be observed.
-    ///
-    ///   - beginObserving: Begin observing immediately iff `true`.
-    ///     Defaults to `true`.
-    public init<Context: NSManagedObjectContext where Context: ObservableContext>(
-        managedObjectContext pmoc: Context, beginObserving: Bool = true
-    ) {
-        self.observedObject = pmoc
-        if beginObserving {
-            self.beginObserving()
-        }
-    }
+	/// Underlying operations queue
+	internal lazy var _queue: NSOperationQueue = {
+		let name = "com.b1nary.Roku.roku_change_handler_\(unsafeAddressOf(self))"
+		return NSOperationQueue.factory.createOprationQueue(name: name)
+	}()
 
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
-    /// Begins observing on `notificationCenter`.
-    ///
-    /// - Parameter notificationCenter: Notification center where `self` should
-    ///   begin observing context save notifications.
-    internal func beginObserving(
-        notificationCenter: NSNotificationCenter = .defaultCenter()
-    ) {
-        let name = NSManagedObjectContextDidSaveNotification
-        // Add observer for name using block
-        self._observer = notificationCenter.addObserverForName(name,
-            object: nil,
-            queue: self._queue,
-            usingBlock: self.saveNotification
-        )
-    }
+	/// Initialize observer of `managedObjectContext` context.
+	///
+	/// - Parameters:
+	///   - managedObjectContext: `NSManagedObjectContext`
+	///		conforming to `ObservableContext` which will be observed.
+	///
+	///   - beginObserving: Begin observing immediately iff `true`.
+	///		Defaults to `true`.
+	public init<Context: NSManagedObjectContext>(
+		managedObjectContext pmoc: Context, beginObserving: Bool = true
+	) where Context: ObservableContext {
+		self.observedObject = pmoc
+		if beginObserving {
+			self.beginObserving()
+		}
+	}
 
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
-    /// Handles context save notification `notification`.
-    ///
-    /// - Remark: Notifications sent by `self.observedObject`.
-    ///
-    /// - Parameters notification: Context save notification sent by object
-    ///   that conforms to `ObservableContext`.
-    private func saveNotification(notification: NSNotification) {
-        guard notification.name == NSManagedObjectContextDidSaveNotification else { return }
-        // Assert that the observed object is not released. Else end observing.
-        guard let obsrvd = self.observedObject else {
-            return self.endObserving()
-        }
-        guard let sender = notification.object
-            where sender is ObservableContext
-               && sender !== obsrvd else { return }
-        // Check if sender is correct
-        switch self.observedStore {
-        // Should be context on the same 'layer'
-        // or parent context (where parent is `ObservableContext`).
-        case .MOC(let moc):
-            guard sender.parentContext === moc
-               || (sender ===  moc && moc is ObservableContext) else { return }
-        // `persistentStoreCoordinator == parentContext.persistentStoreCoordinator`.
-        case .PSC(let psc):
-            // Error: Ambiguous use of 'persistentStoreCoordinator'
-            // guard sender.persistentStoreCoordinator === psc
-            guard sender.valueForKey("persistentStoreCoordinator") === psc
-               && sender.parentContext == nil else { return }
-        // Remove observer by default.
-        default: return self.endObserving()
-        }
-        // Merge changes if all checks passed.
-        obsrvd.performBlockAndWait {
-            obsrvd.mergeChangesFromContextDidSaveNotification(notification)
-        }
-    }
+	/// Begins observing on `notificationCenter`.
+	///
+	/// - Parameter notificationCenter: Notification center where `self` should
+	///   begin observing context save notifications.
+	internal func beginObserving(
+		notificationCenter: NSNotificationCenter = .defaultCenter()
+	) {
+		let name = NSManagedObjectContextDidSaveNotification
+		// Add observer for name using block
+		self._observer = notificationCenter.addObserverForName(name,
+			object: nil,
+			queue: self._queue,
+			usingBlock: self.saveNotification
+		)
+	}
 
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
-    /// Remove observer `self` from `notificationCenter`.
-    ///
-    /// - Parameter notificationCenter: Notification center where `self` should
-    ///   end observing of context save notifications.
-    internal func endObserving(notificationCenter: NSNotificationCenter = .defaultCenter()) {
-        if let observer = self._observer {
-            notificationCenter.removeObserver(observer)
-            self._observer = nil
-        }
-    }
+	/// Handles context save notification `notification`.
+	///
+	/// - Remark: Notifications sent by `self.observedObject`.
+	///
+	/// - Parameters notification: Context save notification sent by object
+	///   that conforms to `ObservableContext`.
+	private func saveNotification(notification: NSNotification) {
+		guard notification.name == NSManagedObjectContextDidSaveNotification else { return }
+		// Assert that the observed object is not released. Else end observing.
+		guard let obsrvd = self.observedObject else {
+			return self.endObserving()
+		}
+		guard let sender = notification.object
+			where sender is ObservableContext
+			   && sender !== obsrvd else { return }
+		// Check if sender is correct
+		switch self.observedStore {
+		// Should be context on the same 'layer'
+		// or parent context (where parent is `ObservableContext`).
+		case .MOC(let moc):
+			guard sender.parentContext === moc
+			   || (sender ===  moc && moc is ObservableContext) else { return }
+		// `persistentStoreCoordinator == parentContext.persistentStoreCoordinator`.
+		case .PSC(let psc):
+			// Error: Ambiguous use of 'persistentStoreCoordinator'
+			// guard sender.persistentStoreCoordinator === psc
+			guard sender.valueForKey("persistentStoreCoordinator") === psc
+			   && sender.parentContext == nil else { return }
+		// Remove observer by default.
+		default: return self.endObserving()
+		}
+		// Merge changes if all checks passed.
+		obsrvd.performBlockAndWait {
+			obsrvd.mergeChangesFromContextDidSaveNotification(notification)
+		}
+	}
 
-    deinit {
-        self.endObserving()
-    }
+//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
+
+	/// Remove observer `self` from `notificationCenter`.
+	///
+	/// - Parameter notificationCenter: Notification center where `self` should
+	///   end observing of context save notifications.
+	internal func endObserving(notificationCenter: NSNotificationCenter = .defaultCenter()) {
+		if let observer = self._observer {
+			notificationCenter.removeObserver(observer)
+			self._observer = nil
+		}
+	}
+
+	deinit {
+		self.endObserving()
+	}
 }

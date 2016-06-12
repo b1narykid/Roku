@@ -1,7 +1,7 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  SavableStackProtocol.swift
-//  Roku
+//	SavableStackProtocol.swift
+//	Roku
 //
 // Copyright © 2016 Ivan Trubach
 //
@@ -30,29 +30,29 @@ import CoreData
 
 /// A stack that can save its managed object contexts.
 public protocol SavableStackProtocol: CoreProtocol {
-    /// Save changes in contexts implemented in this template
-    /// to the persistent store.
-    ///
-    /// - Parameter stopOnError: Callback closure. Informs caller about the error.
-    ///   Should return `true` if can retry context save.
-    ///   Otherwise, return false or you will get an infinite save attempts.
-    mutating func trySave(stopOnError error: ErrorType -> Bool)
+	/// Save changes in contexts implemented in this template
+	/// to the persistent store.
+	///
+	/// - Parameter stopOnError: Callback closure. Informs caller about the error.
+	///   Should return `true` if can retry context save.
+	///   Otherwise, return false or you will get an infinite save attempts.
+	mutating func trySave(stopOnError error: ErrorType -> Bool)
 }
 
 extension SavableStackProtocol where Self: StackCoreProtocol {
-  /// Save changes in all contexts implemented in this template
-  /// to the persistent store.
-  ///
-  /// - Note: Worker contexts are not saved.
-  ///
-  /// - Parameter stopOnError: Callback closure. Informs caller about the error.
-  ///   Should return `true` if can retry context save.
-  ///   Otherwise, return false or you will get an infinite save attempts.
-  public mutating func trySave(
-      stopOnError error: ErrorType -> Bool = { _ in return false }
-  ) {
-    self.trySaveContext(self.masterObjectContext, callback: error)
-  }
+	/// Save changes in all contexts implemented in this template
+	/// to the persistent store.
+	///
+	/// - Note: Worker contexts are not saved.
+	///
+	/// - Parameter stopOnError: Callback closure. Informs caller about the error.
+	///	Should return `true` if can retry context save.
+	///	Otherwise, return false or you will get an infinite save attempts.
+	public mutating func trySave(
+		stopOnError error: ErrorType -> Bool = { _ in return false }
+	) {
+		self.trySaveContext(self.masterObjectContext, callback: error)
+	}
 }
 
 //===––––––––––––––––––––––––––––––– Errors –––––––––––––––––––––––––––––––===//
@@ -61,61 +61,61 @@ extension SavableStackProtocol where Self: StackCoreProtocol {
 ///
 /// Actually, this data structure looks like this:
 ///
-///     ContextError {
-///         context: NSManagedObjectContext,
-///         error:   ErrorType
-///     }
+///		ContextError {
+///			context: NSManagedObjectContext,
+///			error:	 ErrorType
+///		}
 ///
 /// - Note: Used in default save implementation.
 ///   This enum has only one `.Save(_, ofContext: _)` case.
 public enum ContextError: ErrorType {
-    case Save(ErrorType, ofContext: NSManagedObjectContext)
+	case Save(ErrorType, ofContext: NSManagedObjectContext)
 }
 
 extension ContextError: CustomStringConvertible {
-    /// A textual representation of `self`.
-    public var description: String {
-        switch self {
-        case .Save(let error as NSError, ofContext: let context):
-            return "SaveError {\n\tcontext: \(context.description),\n\terror: \(error.description)\n}"
-        default:
-            return "SaveError { }"
-        }
-    }
+	/// A textual representation of `self`.
+	public var description: String {
+		switch self {
+		case .Save(let error as NSError, ofContext: let context):
+			return "SaveError {\n\tcontext: \(context.description),\n\terror: \(error.description)\n}"
+		default:
+			return "SaveError { }"
+		}
+	}
 }
 
 extension ContextError: CustomDebugStringConvertible {
-    /// A textual representation of `self`, suitable for debugging.
-    public var debugDescription: String {
-        switch self {
-        case .Save(let error as NSError, ofContext: let context):
-            return "SaveError {\n\tcontext: \(context.description),\n\terror: \(error.description)\n}"
-        default:
-            return "SaveError { }"
-        }
-    }
+	/// A textual representation of `self`, suitable for debugging.
+	public var debugDescription: String {
+		switch self {
+		case .Save(let error as NSError, ofContext: let context):
+			return "SaveError {\n\tcontext: \(context.description),\n\terror: \(error.description)\n}"
+		default:
+			return "SaveError { }"
+		}
+	}
 }
 
 //===–––––––––––––––––––––––––––––– Internal ––––––––––––––––––––––––––––––===//
 
 extension SavableStackProtocol {
-    /// Try saving context.
-    ///
-    /// Provides an internal synchrounous context saving functionality
-    /// with error callback.
-    internal mutating func trySaveContext(
-        context: NSManagedObjectContext, callback: ErrorType -> Bool
-    ) {
-        context.performBlockAndWait {
-            do {
-                try context.save()
-            } catch let error as NSError {
-                let error = ContextError.Save(error, ofContext: context)
-                // Let the user handle an error.
-                guard callback(error) else { return }
-                // Retrying save operation.
-                self.trySaveContext(context, callback: callback)
-            }
-        }
-    }
+	/// Try saving context.
+	///
+	/// Provides an internal synchrounous context saving functionality
+	/// with error callback.
+	internal mutating func trySaveContext(
+		context: NSManagedObjectContext, callback: ErrorType -> Bool
+	) {
+		context.performBlockAndWait {
+			do {
+				try context.save()
+			} catch let error as NSError {
+				let error = ContextError.Save(error, ofContext: context)
+				// Let the user handle an error.
+				guard callback(error) else { return }
+				// Retrying save operation.
+				self.trySaveContext(context, callback: callback)
+			}
+		}
+	}
 }

@@ -1,7 +1,7 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  Provider.swift
-//  Roku
+//	Provider.swift
+//	Roku
 //
 // Copyright © 2016 Ivan Trubach
 //
@@ -31,34 +31,34 @@ import Swift
 ///
 /// Stores provided objects in generic queue.
 public class Provider<Object> {
-    internal typealias Queue = Array<Object> // QueueSequence
+	internal typealias Queue = Array<Object> // QueueSequence
 
-    internal private(set) var _objects: Queue
-    internal private(set) var _provide: () -> Object
+	internal private(set) var _objects: Queue
+	internal private(set) var _provide: () -> Object
 
-    /// Provide a new object.
-    public func provide() -> Object {
-        return self._provide()
-    }
+	/// Provide a new object.
+	public func provide() -> Object {
+		return self._provide()
+	}
 
-    /// Transmit ('give') an object to the provider.
-    public func transmit(newObject: Object) {
-        self._objects.enqueue(newObject)
-    }
+	/// Transmit ('give') an object to the provider.
+	public func transmit(newObject: Object) {
+		self._objects.enqueue(newObject)
+	}
 
-    /// Take provided object from provider.
-    public func take() -> Object {
-        return self._objects.dequeue() ?? self.provide()
-    }
+	/// Take provided object from provider.
+	public func take() -> Object {
+		return self._objects.dequeue() ?? self.provide()
+	}
 
-    /// Create provider with `provider` function.
-    public convenience required init(providing: () -> Object) {
-        self.init(providing: providing, Queue())
-    }
+	/// Create provider with `provider` function.
+	public convenience required init(providing: () -> Object) {
+		self.init(providing: providing, Queue())
+	}
 
-    /// Create provider with `provider` function and queue of existing object.
-    internal init(providing: () -> Object, _ providedObjects: Queue) {
-        self._objects = Queue()
-        self._provide = providing
-    }
+	/// Create provider with `provider` function and queue of existing object.
+	internal init(providing: () -> Object, _ providedObjects: Queue) {
+		self._objects = Queue()
+		self._provide = providing
+	}
 }
