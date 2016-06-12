@@ -1,7 +1,7 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  IndependentStackProtocol.swift
-//  Roku
+//	IndependentStackProtocol.swift
+//	Roku
 //
 // Copyright © 2016 Ivan Trubach
 //
@@ -43,53 +43,53 @@ import CoreData
 ///   to the `NSManagedObjectContextDidSaveNotification` and calling
 ///   `mergeChangesFromContextDidSaveNotification()` on the other context.
 ///
-/// - SeeAlso:   `IndependentStackBase`, `StackProtocol`, `NestedStackProtocol`
+/// - SeeAlso:	 `IndependentStackBase`, `StackProtocol`, `NestedStackProtocol`
 public protocol IndependentStackProtocol: StackCoreProtocol, MainQueueStackProtocol {
-    /// Root managed object context.
-    ///
-    /// - Important: Managed object context has private queue concurrency type.
-    var masterObjectContext: NSManagedObjectContext { get }
-    /// Main managed object context.
-    ///
-    /// - Note: Should be independent with `.MainQueueConcurrencyType`
-    ///   and work only with `self.persistentStoreCoordinator`.
-    var mainObjectContext: NSManagedObjectContext { get }
+	/// Root managed object context.
+	///
+	/// - Important: Managed object context has private queue concurrency type.
+	var masterObjectContext: NSManagedObjectContext { get }
+	/// Main managed object context.
+	///
+	/// - Note: Should be independent with `.MainQueueConcurrencyType`
+	///   and work only with `self.persistentStoreCoordinator`.
+	var mainObjectContext: NSManagedObjectContext { get }
 
 }
 
 extension IndependentStackProtocol where Self: SavableStackProtocol {
-    /// Save changes in all contexts (except main queue context)
-    /// implemented in this template to the persistent store.
-    ///
-    /// - Note: Main queue and worker contexts
-    ///   are not being saved in this method.
-    ///
-    /// - Parameter stopOnError: Callback closure. Informs caller about the error.
-    ///   Should return `true` if can retry context save.
-    ///   Otherwise, return false or you will get an infinite save attempts.
-    public mutating func trySave(
-        stopOnError error: ErrorType -> Bool = { _ in return false }
-    ) {
-        // Main queue context will be notified about change.
-        // There is no need in saving main queue
-        // because it should not be used for data imports.
-        self.trySaveContext(self.masterObjectContext, callback: error)
-    }
+	/// Save changes in all contexts (except main queue context)
+	/// implemented in this template to the persistent store.
+	///
+	/// - Note: Main queue and worker contexts
+	///   are not being saved in this method.
+	///
+	/// - Parameter stopOnError: Callback closure. Informs caller about the error.
+	///   Should return `true` if can retry context save.
+	///   Otherwise, return false or you will get an infinite save attempts.
+	public mutating func trySave(
+		stopOnError error: ErrorType -> Bool = { _ in return false }
+	) {
+		// Main queue context will be notified about change.
+		// There is no need in saving main queue
+		// because it should not be used for data imports.
+		self.trySaveContext(self.masterObjectContext, callback: error)
+	}
 }
 
 extension IndependentStackProtocol where Self: protocol<ContextFactoryStackProtocol, StorageModelWrapper> {
-    /// Create new context for this template.
-    ///
-    /// - Parameter concurrencyType: Concurrency type of managed object context.
-    ///   Defaults to `PrivateQueueConcurrencyType`.
-    ///
-    /// - Returns: New independent managed object context with
-    ///   `self.persistentStoreCoordinator` persistent store coordinator.
-    public mutating func createContext(
-        concurrencyType: NSManagedObjectContextConcurrencyType = .PrivateQueueConcurrencyType
-    ) -> NSManagedObjectContext {
-        let context = ManagedObjectContext(concurrencyType: concurrencyType)
-        context.persistentStoreCoordinator = self.storage.persistentStoreCoordinator
-        return context
-    }
+	/// Create new context for this template.
+	///
+	/// - Parameter concurrencyType: Concurrency type of managed object context.
+	///   Defaults to `PrivateQueueConcurrencyType`.
+	///
+	/// - Returns: New independent managed object context with
+	///   `self.persistentStoreCoordinator` persistent store coordinator.
+	public mutating func createContext(
+		concurrencyType: NSManagedObjectContextConcurrencyType = .PrivateQueueConcurrencyType
+	) -> NSManagedObjectContext {
+		let context = ManagedObjectContext(concurrencyType: concurrencyType)
+		context.persistentStoreCoordinator = self.storage.persistentStoreCoordinator
+		return context
+	}
 }

@@ -1,7 +1,7 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  NullObjectProtocol.swift
-//  Evenus
+//	NullObjectProtocol.swift
+//	Evenus
 //
 // Copyright © 2016 Ivan Trubach
 //

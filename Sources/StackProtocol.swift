@@ -1,7 +1,7 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  StackProtocol.swift
-//  Roku
+//	StackProtocol.swift
+//	Roku
 //
 // Copyright © 2016 Ivan Trubach
 //
@@ -43,41 +43,41 @@ import CoreData
 ///
 /// - SeeAlso: `StackBase`, `NestedStackProtocol`, `IndependentStackProtocol`
 public protocol StackProtocol: StackCoreProtocol {
-    /// Root managed object context.
-    ///
-    /// - Note: Should be with `PrivateQueueConcurrencyType` concurrency type.
-    var masterObjectContext: NSManagedObjectContext { get }
+	/// Root managed object context.
+	///
+	/// - Note: Should be with `PrivateQueueConcurrencyType` concurrency type.
+	var masterObjectContext: NSManagedObjectContext { get }
 }
 
 extension StackProtocol where Self: SavableStackProtocol {
-    /// Save changes in all contexts implemented in this template
-    /// to the persistent store.
-    ///
-    /// - Note: Worker contexts are not saved.
-    ///
-    /// - Parameter stopOnError: Callback closure. Informs caller about the error.
-    ///   Should return `true` if can retry context save.
-    ///   Otherwise, return false or you will get an infinite save attempts.
-    public mutating func trySave(
-        stopOnError error: ErrorType -> Bool = { _ in return false }
-    ) {
-            self.trySaveContext(self.masterObjectContext, callback: error)
-    }
+	/// Save changes in all contexts implemented in this template
+	/// to the persistent store.
+	///
+	/// - Note: Worker contexts are not saved.
+	///
+	/// - Parameter stopOnError: Callback closure. Informs caller about the error.
+	///   Should return `true` if can retry context save.
+	///   Otherwise, return false or you will get an infinite save attempts.
+	public mutating func trySave(
+		stopOnError error: ErrorType -> Bool = { _ in return false }
+	) {
+			self.trySaveContext(self.masterObjectContext, callback: error)
+	}
 }
 
 extension StackProtocol where Self: ContextFactoryStackProtocol {
-    /// Create new context for this template.
-    ///
-    /// - Parameter concurrencyType: Concurrency type of managed object context.
-    ///   Defaults to `PrivateQueueConcurrencyType`.
-    ///
-    /// - Returns: New `ManagedObjectContext` instance as
-    ///   a child of `self.masterObjectContext`.
-    public mutating func createContext(
-        concurrencyType: NSManagedObjectContextConcurrencyType = .PrivateQueueConcurrencyType
-    ) -> NSManagedObjectContext {
-        let context = ManagedObjectContext(concurrencyType: concurrencyType)
-        context.parentContext = self.masterObjectContext
-        return context
-    }
+	/// Create new context for this template.
+	///
+	/// - Parameter concurrencyType: Concurrency type of managed object context.
+	///   Defaults to `PrivateQueueConcurrencyType`.
+	///
+	/// - Returns: New `ManagedObjectContext` instance as
+	///   a child of `self.masterObjectContext`.
+	public mutating func createContext(
+		concurrencyType: NSManagedObjectContextConcurrencyType = .PrivateQueueConcurrencyType
+	) -> NSManagedObjectContext {
+		let context = ManagedObjectContext(concurrencyType: concurrencyType)
+		context.parentContext = self.masterObjectContext
+		return context
+	}
 }

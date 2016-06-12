@@ -1,7 +1,7 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  OperationQueueFactory.swift
-//  Roku
+//	OperationQueueFactory.swift
+//	Roku
 //
 // Copyright © 2016 Ivan Trubach
 //
@@ -32,44 +32,44 @@ import Foundation
 /// Encapsulates the proccess of `NSOperationQueue` and serial `OS_dispatch_queue`
 /// creation for multiple platforms and OS versions.
 internal class OperationQueueFactory {
-    /// Create operation queue with identifier.
-    ///
-    /// On `'iOS 8.0, OSX 10.10 < *'` optionally use custom dispatch queue.
-    func createOprationQueue(
-        name name: String? = nil, queue: OS_dispatch_queue? = nil
-    ) -> NSOperationQueue {
-        let oq = NSOperationQueue()
-        let name = name ?? "com.b1nary.Roku.factory\(unsafeAddressOf(oq))"
-        oq.name = name
+	/// Create operation queue with identifier.
+	///
+	/// On `'iOS 8.0, OSX 10.10 < *'` optionally use custom dispatch queue.
+	func createOprationQueue(
+		name name: String? = nil, queue: OS_dispatch_queue? = nil
+	) -> NSOperationQueue {
+		let oq = NSOperationQueue()
+		let name = name ?? "com.b1nary.Roku.factory\(unsafeAddressOf(oq))"
+		oq.name = name
 
-        if #available(iOS 8.0, OSX 10.10, /*tvOS 9.0,*/ *) {
-            oq.underlyingQueue = queue ?? self.createDispatchQueue(identifier: name)
-        }
+		if #available(iOS 8.0, OSX 10.10, /*tvOS 9.0,*/ *) {
+			oq.underlyingQueue = queue ?? self.createDispatchQueue(identifier: name)
+		}
 
-        return oq
-    }
+		return oq
+	}
 
-    /// Create serial dispatch queue with identifier.
-    ///
-    /// On `'iOS 8.0, OSX 10.10 < *'` use attributes
-    /// `{ DISPATCH_QUEUE_SERIAL, QOS_CLASS_UTILITY, -2 }`.
-    func createDispatchQueue(identifier identifier: String) -> OS_dispatch_queue {
-        let attributes: OS_dispatch_queue_attr!
+	/// Create serial dispatch queue with identifier.
+	///
+	/// On `'iOS 8.0, OSX 10.10 < *'` use attributes
+	/// `{ DISPATCH_QUEUE_SERIAL, QOS_CLASS_UTILITY, -2 }`.
+	func createDispatchQueue(identifier identifier: String) -> OS_dispatch_queue {
+		let attributes: OS_dispatch_queue_attr!
 
-        if #available(iOS 8.0, OSX 10.10, /*tvOS 9.0,*/ *) {
-            attributes = dispatch_queue_attr_make_with_qos_class(
-                DISPATCH_QUEUE_SERIAL,
-                QOS_CLASS_UTILITY,
-                -2
-            )
-        } else {
-            attributes = nil
-        }
+		if #available(iOS 8.0, OSX 10.10, /*tvOS 9.0,*/ *) {
+			attributes = dispatch_queue_attr_make_with_qos_class(
+				DISPATCH_QUEUE_SERIAL,
+				QOS_CLASS_UTILITY,
+				-2
+			)
+		} else {
+			attributes = nil
+		}
 
-        return dispatch_queue_create(identifier, attributes)
-    }
+		return dispatch_queue_create(identifier, attributes)
+	}
 }
 
 extension NSOperationQueue {
-    internal static let factory = OperationQueueFactory()
+	internal static let factory = OperationQueueFactory()
 }

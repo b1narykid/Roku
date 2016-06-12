@@ -1,7 +1,7 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  Queue.swift
-//  Roku
+//	Queue.swift
+//	Roku
 //
 // Copyright © 2016 Ivan Trubach
 //
@@ -28,25 +28,25 @@
 import Swift
 
 #if !swift(>=3)
-  public typealias Sequence = SequenceType
+	public typealias Sequence = SequenceType
 #endif
 
 /// A queue data structure type that can be iterated with a `for`...`in` loop.
 public protocol QueueSequence: Sequence {
-    /// Enqueue element into `self`.
-    mutating func enqueue(newElement: Self.Generator.Element)
-    /// Dequeue element from `self`.
-    mutating func dequeue() -> Self.Generator.Element?
+	/// Enqueue element into `self`.
+	mutating func enqueue(newElement: Self.Generator.Element)
+	/// Dequeue element from `self`.
+	mutating func dequeue() -> Self.Generator.Element?
 }
 
 extension Array: QueueSequence {
-    /// Enqueue element into `self`.
-    public mutating func enqueue(newElement: Array.Generator.Element) {
-        self.append(newElement)
-    }
+	/// Enqueue element into `self`.
+	public mutating func enqueue(newElement: Array.Generator.Element) {
+		self.append(newElement)
+	}
 
-    /// Dequeue element from `self`.
-    public mutating func dequeue() -> Array.Generator.Element? {
-        return self.popLast()
-    }
+	/// Dequeue element from `self`.
+	public mutating func dequeue() -> Array.Generator.Element? {
+		return self.popLast()
+	}
 }

@@ -1,7 +1,7 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  StorageController.swift
-//  Roku
+//	StorageController.swift
+//	Roku
 //
 // Copyright © 2016 Ivan Trubach
 //
@@ -36,96 +36,96 @@ import Foundation
 ///
 /// - SeeAlso: `StackBase`, `NestedStackBase`, `IndependentStackBase`.
 public class Roku<
-    ContextStack: protocol<ContextFactoryStackProtocol, StorageModelContainer>
+	ContextStack: protocol<ContextFactoryStackProtocol, StorageModelContainer>
 > : RokuBase<ContextStack> {
-    /// `NSManagedObjectContext` provider.
-    ///
-    /// - Note: Provided contexts do not have any undo manager.
-    public internal(set) lazy var provider: Provider<NSManagedObjectContext> = {
-        Provider {
-            let context = self._stack.createContext(.PrivateQueueConcurrencyType)
-            #if !os(iOS) // || !os(tvOS)
-                // See OSX docs, it is not nil by default.
-                // Not sure about tvOS,
-                // set it to `nil` on both OSX and tvOS.
-                context.undoManager = nil
-            #endif
-            return context
-        }
-    }()
+	/// `NSManagedObjectContext` provider.
+	///
+	/// - Note: Provided contexts do not have any undo manager.
+	public internal(set) lazy var provider: Provider<NSManagedObjectContext> = {
+		Provider {
+			let context = self._stack.createContext(.PrivateQueueConcurrencyType)
+			#if !os(iOS) // || !os(tvOS)
+				// See OSX docs, it is not nil by default.
+				// Not sure about tvOS,
+				// set it to `nil` on both OSX and tvOS.
+				context.undoManager = nil
+			#endif
+			return context
+		}
+	}()
 
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
-    /// Initialize with `StorageModel` instance.
-    public convenience init(
-        storage: StorageModel, provider: Provider<NSManagedObjectContext>
-    ) {
-        let stack = ContextStack(storage: storage)
-        self.init(stack: stack, provider: provider)
-    }
+	/// Initialize with `StorageModel` instance.
+	public convenience init(
+		storage: StorageModel, provider: Provider<NSManagedObjectContext>
+	) {
+		let stack = ContextStack(storage: storage)
+		self.init(stack: stack, provider: provider)
+	}
 
-    /// Initialize with existing stack.
-    ///
-    /// - Remark: Not recommended. Consider using the generic initialization,
-    ///   which lets `Roku` handle the initialization and management
-    ///   of the new encapsulated generic stack.
-    ///   Use this `init` only if the full control over the stack is needed
-    public init(
-        stack: ContextStack, provider: Provider<NSManagedObjectContext>
-    ) {
-        super.init(stack: stack)
-        self.provider = provider
-    }
+	/// Initialize with existing stack.
+	///
+	/// - Remark: Not recommended. Consider using the generic initialization,
+	///   which lets `Roku` handle the initialization and management
+	///   of the new encapsulated generic stack.
+	///   Use this `init` only if the full control over the stack is needed
+	public init(
+		stack: ContextStack, provider: Provider<NSManagedObjectContext>
+	) {
+		super.init(stack: stack)
+		self.provider = provider
+	}
 
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 
-    /// Call `body(c)`, where `c` is a temporary background managed object context.
-    ///
-    /// The temporary context is poped from queue of unused contexts.
-    /// If no such context exists in queue, it is first created.
-    ///
-    /// - Remark: `save(c)` is called to save context
-    ///   even if the `body(c)` throws an error.
-    ///
-    /// - Parameters:
-    ///   - body: Use the `body(c)` call to import/export data into/from context.
-    ///     The save is handled by `Roku` in private background operation queue.
-    ///     Don not rely on the context `c` beacause it may be reused by `Roku`.
-    ///     External changes in `c` outside of `body(c)` may cause unexpected behaviours.
-    ///
-    ///   - save: Save operation for context `c`. `save(c)` will be executed
-    ///     on a private context's background queue by `Roku`,
-    ///     you don not have to call `c.performBlock` to save cotnext
-    ///     in `save(c)` function. Just 'describe' how you want to save
-    ///     (and handle an errors) in this function.
-    public final func withBackgroundContext<R>(
-        @noescape body: NSManagedObjectContext throws -> R,
-        save: NSManagedObjectContext -> Void = performSave
-    ) rethrows -> R {
-        // Take worker from provider
-        let worker = self.provider.take()
+	/// Call `body(c)`, where `c` is a temporary background managed object context.
+	///
+	/// The temporary context is poped from queue of unused contexts.
+	/// If no such context exists in queue, it is first created.
+	///
+	/// - Remark: `save(c)` is called to save context
+	///   even if the `body(c)` throws an error.
+	///
+	/// - Parameters:
+	///   - body: Use the `body(c)` call to import/export data into/from context.
+	///		The save is handled by `Roku` in private background operation queue.
+	///		Don not rely on the context `c` beacause it may be reused by `Roku`.
+	///		External changes in `c` outside of `body(c)` may cause unexpected behaviours.
+	///
+	///   - save: Save operation for context `c`. `save(c)` will be executed
+	///		on a private context's background queue by `Roku`,
+	///		you don not have to call `c.performBlock` to save cotnext
+	///		in `save(c)` function. Just 'describe' how you want to save
+	///		(and handle an errors) in this function.
+	public final func withBackgroundContext<R>(
+		@noescape body: NSManagedObjectContext throws -> R,
+		save: NSManagedObjectContext -> Void = performSave
+	) rethrows -> R {
+		// Take worker from provider
+		let worker = self.provider.take()
 
-        defer {
-            self._saves.addOperationWithBlock { [weak self] in
-                withExtendedLifetime(worker) {
-                    // Perform `save(c)` handled by user.
-                    worker.performBlockAndWait { save(worker) }
-                    guard let this = self else { return }
-                    this.provider.transmit(worker)
-                }
-            }
-        }
+		defer {
+			self._saves.addOperationWithBlock { [weak self] in
+				withExtendedLifetime(worker) {
+					// Perform `save(c)` handled by user.
+					worker.performBlockAndWait { save(worker) }
+					guard let this = self else { return }
+					this.provider.transmit(worker)
+				}
+			}
+		}
 
-        return try body(worker)
-    }
+		return try body(worker)
+	}
 }
 
 /// Perfrom save if `context` has changes.
 private func performSave(context: NSManagedObjectContext) {
-    if context.hasChanges {
-        do {
-            try context.save()
-        } catch {
-        }
-    }
+	if context.hasChanges {
+		do {
+			try context.save()
+		} catch {
+		}
+	}
 }

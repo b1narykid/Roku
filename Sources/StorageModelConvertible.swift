@@ -30,6 +30,6 @@ import Swift
 /// Types conforming to this protocol
 /// could be intialized with `StorageModel` instance.
 public protocol StorageModelConvertible {
-    /// Initialize with `StorageModel` instance.
-    init(storage: StorageModel)
+	/// Initialize with `StorageModel` instance.
+	init(storage: StorageModel)
 }

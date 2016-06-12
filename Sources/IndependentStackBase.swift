@@ -1,7 +1,7 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  IndependentStackBase.swift
-//  Roku
+//	IndependentStackBase.swift
+//	Roku
 //
 // Copyright © 2016 Ivan Trubach
 //
@@ -45,13 +45,13 @@ import CoreData
 ///
 /// - SeeAlso: `IndependentStackProtocol`, `StackBase`, `NestedStackBase`
 public final class IndependentStackBase: StackBase, IndependentStackProtocol {
-    /// Main managed object context.
-    ///
-    /// - Note: Independent and works with `self.persistentStoreCoordinator`.
-    ///   Managed object context has main queue concurrency type.
-    public internal(set) lazy var mainObjectContext: NSManagedObjectContext = {
-        let context = ManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-        context.persistentStoreCoordinator = self.storage.persistentStoreCoordinator
-        return context
-    }()
+	/// Main managed object context.
+	///
+	/// - Note: Independent and works with `self.persistentStoreCoordinator`.
+	///   Managed object context has main queue concurrency type.
+	public internal(set) lazy var mainObjectContext: NSManagedObjectContext = {
+		let context = ManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+		context.persistentStoreCoordinator = self.storage.persistentStoreCoordinator
+		return context
+	}()
 }
