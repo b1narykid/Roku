@@ -23,7 +23,7 @@ Initialize `StorageModel` with a function that creates a new coordinator:
 
 ```swift
 func newPersistentStoreCoordinator() -> NSPersistentStoreCoordinator {
-    // Create and return new persistent store coordinator
+  // Create and return new persistent store coordinator
 }
 
 let storage = StorageModel(persistentStoreCoordinator: newPersistentStoreCoordinator())
@@ -67,15 +67,15 @@ Enjoy `Roku`'s features :tada:
 
 ```swift
 myStack.withBackgroundContext { context in
-    // Do heavy import operations on the background context
+  // Do heavy import operations on the background context
 }
 
 myStack.persist { error -> Bool in
-    // Handle an error
+  // Handle an error
 
-    // If error was successfully handled,
-    // `Roku` will repeat save.
-    return errorHandled && shouldRepeatSave
+  // If error was successfully handled,
+  // `Roku` will repeat save.
+  return errorHandled && shouldRepeatSave
 }
 
 // Managed object context with main queue concurrency type
@@ -83,7 +83,7 @@ myStack.mainObjectContext
 
 // Get `StorageModel` from encapsulated stack
 let storage = myStack.withUnderlyingStack { (inout stack: ContextStack) in
-    return stack.storage
+  return stack.storage
 }
 ```
 
@@ -124,8 +124,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-[kostiakoval]:            https://github.com/kostiakoval
-[Seru]:            https://github.com/kostiakoval/Seru
+[kostiakoval]:		https://github.com/kostiakoval
+[Seru]:				https://github.com/kostiakoval/Seru
 
-[Performance]:     http://floriankugler.com/2013/04/29/concurrent-core-data-stack-performance-shootout/
-[HighPerformance]: https://developer.apple.com/videos/play/wwdc2013-211/
+[Performance]:		http://floriankugler.com/2013/04/29/concurrent-core-data-stack-performance-shootout/
+[HighPerformance]:	https://developer.apple.com/videos/play/wwdc2013-211/

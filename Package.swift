@@ -1,7 +1,7 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  Package.swift
-//  Roku
+//	Package.swift
+//	Roku
 //
 // Copyright © 2016 Ivan Trubach
 //
@@ -29,5 +29,5 @@ import Swift
 import PackageDescription
 
 let package = Package(
-    name: "Roku"
+	name: "Roku"
 )
