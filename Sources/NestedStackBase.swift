@@ -1,9 +1,11 @@
-//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
+//===----------------------------------------------------------------------===//
 //
 //  NestedStackBase.swift
 //  Roku
 //
-// Copyright © 2016 Ivan Trubach
+// Copyright (c) 2016 Ivan Trubach
+//
+//===----------------------------------------------------------------------===//
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +25,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
-//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
+//===----------------------------------------------------------------------===//
 
 import Swift
 import CoreData
@@ -46,13 +48,13 @@ import CoreData
 ///
 /// - SeeAlso: `NestedStackProtocol`, `StackBase`, `IndependentStackBase`
 public final class NestedStackBase: StackBase, NestedStackProtocol {
-    /// Main managed object context.
-    ///
-    /// - Note: `self.masterObjectContext` is parent of `self.mainObjectContext`.
-    ///   Managed object context has main queue concurrency type.
-    public internal(set) lazy var mainObjectContext: NSManagedObjectContext = {
-        let context = ManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-        context.parentContext = self.masterObjectContext
-        return context
-    }()
+	/// Main managed object context.
+	///
+	/// - Note: `self.masterObjectContext` is parent of `self.mainObjectContext`.
+	///   Managed object context has main queue concurrency type.
+	public internal(set) lazy var mainObjectContext: NSManagedObjectContext = {
+		let context = ManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+		context.parent = self.masterObjectContext
+		return context
+	}()
 }

@@ -1,9 +1,11 @@
-//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
+//===----------------------------------------------------------------------===//
 //
 //  ManagedObjectContext.swift
 //  Roku
 //
-// Copyright © 2016 Ivan Trubach
+// Copyright (c) 2016 Ivan Trubach
+//
+//===----------------------------------------------------------------------===//
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +25,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
-//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
+//===----------------------------------------------------------------------===//
 
 import Swift
 import CoreData
@@ -39,27 +41,27 @@ import CoreData
 ///
 /// [Video]: https://developer.apple.com/videos/play/wwdc2013-211/
 public class ManagedObjectContext: NSManagedObjectContext, ObservableContext {
-    /// Object, that handles observing of other contexts
-    /// and merges changes into `self`.
-    public internal(set) var observer: ContextObserver?
+	/// Object, that handles observing of other contexts
+	/// and merges changes into `self`.
+	public internal(set) var observer: ContextObserver?
 
-    public override var persistentStoreCoordinator: NSPersistentStoreCoordinator? {
-        didSet { self.becomeObserver() }
-    }
+	public override var persistentStoreCoordinator: NSPersistentStoreCoordinator? {
+		didSet { self.becomeObserver() }
+	}
 
-    public override var parentContext: NSManagedObjectContext? {
-        didSet { self.becomeObserver() }
-    }
+	public override var parent: NSManagedObjectContext? {
+		didSet { self.becomeObserver() }
+	}
 
-    /// Create object, that handles observing of other contexts
-    /// and merges changes into `self`. Removes the current observer.
-    ///
-    /// - Remark: Will not become observer iff `concurrencyType`
-    ///   is `.MainQueueConcurrencyType`.
-    internal func becomeObserver() {
-        self.observer = nil
-        if self.concurrencyType == .MainQueueConcurrencyType {
-            self.observer = ContextObserver(managedObjectContext: self)
-        }
-    }
+	/// Create object, that handles observing of other contexts
+	/// and merges changes into `self`. Removes the current observer.
+	///
+	/// - Remark: Will not become observer iff `concurrencyType`
+	///   is `.MainQueueConcurrencyType`.
+	internal func becomeObserver() {
+		self.observer = nil
+		if self.concurrencyType == .mainQueueConcurrencyType {
+			self.observer = ContextObserver(managedObjectContext: self)
+		}
+	}
 }

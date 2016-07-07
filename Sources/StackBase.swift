@@ -1,9 +1,11 @@
-//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
+//===----------------------------------------------------------------------===//
 //
 //  StackBase.swift
 //  Roku
 //
-// Copyright © 2016 Ivan Trubach
+// Copyright (c) 2016 Ivan Trubach
+//
+//===----------------------------------------------------------------------===//
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +25,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
-//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
+//===----------------------------------------------------------------------===//
 
 import Swift
 import CoreData
@@ -49,23 +51,23 @@ import CoreData
 ///
 /// - SeeAlso: `StackProtocol`, `NestedStackBase`, `IndependentStackBase`
 public class StackBase: StackProtocol, StorageModelContainer, ContextFactoryStackProtocol, SavableStackProtocol {
-    /// Initialize with `StorageModel` instance.
-    ///
-    /// - Parameters storage: Storage used by `self`.
-    public required init(storage: StorageModel) {
-        self.storage = storage
-    }
+	/// Initialize with `StorageModel` instance.
+	///
+	/// - Parameters storage: Storage used by `self`.
+	public required init(storage: StorageModel) {
+		self.storage = storage
+	}
 
-    /// Storage used by managed object contexts.
-    public internal(set) var storage: StorageModel
+	/// Storage used by managed object contexts.
+	public internal(set) var storage: StorageModel
 
-    /// Root managed object context.
-    ///
-    /// - Note: Independent and works with `self.persistentStoreCoordinator`.
-    ///   Managed object context has private queue concurrency type.
-    public internal(set) lazy var masterObjectContext: NSManagedObjectContext = {
-        let context = ManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-        context.persistentStoreCoordinator = self.storage.persistentStoreCoordinator
-        return context
-    }()
+	/// Root managed object context.
+	///
+	/// - Note: Independent and works with `self.persistentStoreCoordinator`.
+	///   Managed object context has private queue concurrency type.
+	public internal(set) lazy var masterObjectContext: NSManagedObjectContext = {
+		let context = ManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+		context.persistentStoreCoordinator = self.storage.persistentStoreCoordinator
+		return context
+	}()
 }

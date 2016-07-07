@@ -1,9 +1,11 @@
-//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
+//===----------------------------------------------------------------------===//
 //
 //  Queue.swift
 //  Roku
 //
-// Copyright © 2016 Ivan Trubach
+// Copyright (c) 2016 Ivan Trubach
+//
+//===----------------------------------------------------------------------===//
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,30 +25,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
-//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
+//===----------------------------------------------------------------------===//
 
 import Swift
 
 #if !swift(>=3)
-  public typealias Sequence = SequenceType
+	public typealias Sequence = Swift.Sequence
 #endif
 
 /// A queue data structure type that can be iterated with a `for`...`in` loop.
 public protocol QueueSequence: Sequence {
-    /// Enqueue element into `self`.
-    mutating func enqueue(newElement: Self.Generator.Element)
-    /// Dequeue element from `self`.
-    mutating func dequeue() -> Self.Generator.Element?
+	/// Enqueue element into `self`.
+	mutating func enqueue(_ newElement: Self.Iterator.Element)
+	/// Dequeue element from `self`.
+	mutating func dequeue() -> Self.Iterator.Element?
 }
 
 extension Array: QueueSequence {
-    /// Enqueue element into `self`.
-    public mutating func enqueue(newElement: Array.Generator.Element) {
-        self.append(newElement)
-    }
+	/// Enqueue element into `self`.
+	public mutating func enqueue(_ newElement: Array.Iterator.Element) {
+		self.append(newElement)
+	}
 
-    /// Dequeue element from `self`.
-    public mutating func dequeue() -> Array.Generator.Element? {
-        return self.popLast()
-    }
+	/// Dequeue element from `self`.
+	public mutating func dequeue() -> Array.Iterator.Element? {
+		return self.popLast()
+	}
 }

@@ -1,9 +1,11 @@
-//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
+//===----------------------------------------------------------------------===//
 //
 //  ContextFactoryStackProtocol.swift
 //  Roku
 //
-// Copyright © 2016 Ivan Trubach
+// Copyright (c) 2016 Ivan Trubach
+//
+//===----------------------------------------------------------------------===//
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +25,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
-//===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
+//===----------------------------------------------------------------------===//
 
 import Swift
 import CoreData
@@ -31,8 +33,8 @@ import CoreData
 /// Describes a context stack that has a factory method
 /// for creating additional contexts (especially 'workers') for `Self`.
 public protocol ContextFactoryStackProtocol: CoreProtocol {
-    /// Create new context for `Self` stack.
-    mutating func createContext(
-        concurrencyType: NSManagedObjectContextConcurrencyType
-    ) -> NSManagedObjectContext
+	/// Create new context for `Self` stack.
+	mutating func makeContext(
+		_ concurrencyType: NSManagedObjectContextConcurrencyType
+	) -> NSManagedObjectContext
 }
