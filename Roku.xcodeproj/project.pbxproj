@@ -198,6 +198,14 @@
 			name = Providing;
 			sourceTree = "<group>";
 		};
+		77A0896D1D2E8A1200E22F5D /* Patterns */ = {
+			isa = PBXGroup;
+			children = (
+				77C2C52A1C25B7A800448829 /* NullObjectProtocol.swift */,
+			);
+			name = Patterns;
+			sourceTree = "<group>";
+		};
 		77C2C48C1C25B5E400448829 = {
 			isa = PBXGroup;
 			children = (
@@ -238,8 +246,8 @@
 				779D8D0A1C4710F100FB7E5E /* Providing */,
 				77C2C5761C25D00100448829 /* Observing */,
 				77C2C5751C25CFF800448829 /* Storage Model */,
-				77C2C5781C25D03A00448829 /* Patterns */,
 				77C2C5741C25CFEA00448829 /* Internals */,
+				77C2C5781C25D03A00448829 /* Deprecated */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -306,12 +314,12 @@
 			name = Observing;
 			sourceTree = "<group>";
 		};
-		77C2C5781C25D03A00448829 /* Patterns */ = {
+		77C2C5781C25D03A00448829 /* Deprecated */ = {
 			isa = PBXGroup;
 			children = (
-				77C2C52A1C25B7A800448829 /* NullObjectProtocol.swift */,
+				77A0896D1D2E8A1200E22F5D /* Patterns */,
 			);
-			name = Patterns;
+			name = Deprecated;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

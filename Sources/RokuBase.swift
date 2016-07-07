@@ -53,7 +53,7 @@ public class RokuBase<
 		return oq
 	}()
 
-	//===----------------------------------------------------------------------===//
+	//===--------------------------------------------------------------------===//
 
 	/// Initialize with `StorageModel` instance.
 	public convenience required init(storage: StorageModel) {
@@ -71,7 +71,7 @@ public class RokuBase<
 		self._stack = stack
 	}
 
-	//===----------------------------------------------------------------------===//
+	//===--------------------------------------------------------------------===//
 
 	/// Call `body(c)`, where `c` is an incapsulated generic stack.
 	public func withUnderlyingStack<Result>(

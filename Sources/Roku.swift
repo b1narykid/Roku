@@ -56,7 +56,32 @@ public final class Roku<
 		}
 	}()
 
-	//===----------------------------------------------------------------------===//
+	//===--------------------------------------------------------------------===//
+	// Default provider init
+
+	/// Initialize with `StorageModel` instance.
+	public required init(
+		storage: StorageModel
+	) {
+		let stack = ContextStack(storage: storage)
+		super.init(stack: stack)
+	}
+
+	/// Initialize with existing stack.
+	///
+	/// - Remark: Not recommended. Consider using the generic initialization,
+	///   which lets `Roku` handle the initialization and management
+	///   of the new encapsulated generic stack.
+	///   Use this `init` only if the full control over the stack is needed
+	public override init(
+		stack: ContextStack
+	) {
+		super.init(stack: stack)
+	}
+
+
+	//===--------------------------------------------------------------------===//
+	// Custom provider init
 
 	/// Initialize with `StorageModel` instance.
 	public convenience init(
@@ -79,7 +104,7 @@ public final class Roku<
 		self.provider = provider
 	}
 
-	//===----------------------------------------------------------------------===//
+	//===--------------------------------------------------------------------===//
 
 	/// Call `body(c)`, where `c` is a temporary background managed object context.
 	///

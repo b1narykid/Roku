@@ -32,5 +32,9 @@ import Swift
 /// Null object pattern.
 ///
 /// - SeeAlso: [Null-object pattern](https://wikipedia.org/wiki/Null_Object_pattern)
+@available(*,
+	deprecated: 0.3.0,
+	obsoleted:  0.3.0,
+	message:    "No longer used in this library.")
 public protocol NullObjectProtocol {
 }
