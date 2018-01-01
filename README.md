@@ -1,14 +1,12 @@
 > Warning:
-> This project is currently in development.
+> This project no longer maintained.  Consider using [NSPersistentContainer].
 
 # Roku ([六](https://en.wiktionary.org/wiki/六#Numeral))
 
 CoreData's concurrent stacks made easy.
 
-> Inspired by
-> [Concurrent Core Data Stacks][Performance] article,
-> [WWDC2013 Session 211][HighPerformance]
-> and [Seru][Seru] CoreData stack by [@kostiakoval][kostiakoval].
+> Inspired by [Concurrent Core Data Stacks] article,
+> [WWDC2013 Session 211] and [Seru] CoreData stack by [kostiakoval].
 
 ## Usage
 
@@ -90,7 +88,7 @@ let storage = myStack.withUnderlyingStack { (inout stack: ContextStack) in
 --------------------------------------------------------------------------------
 
 ## TODO
-- [x] Implement observable NSManagedObjectContext.
+- [x] Implement observable [NSManagedObjectContext].
 - [x] Implement templates and default implementations.
 - [x] Implement all functionality of `Roku` class.
 - [ ] Finish writing README.md file.
@@ -100,32 +98,13 @@ let storage = myStack.withUnderlyingStack { (inout stack: ContextStack) in
 
 ## License
 
-```
-The MIT License (MIT)
+Available under the MIT license.  See [license file](LICENSE.md) for more info.
 
-Copyright © 2015 Ivan Trubach
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
-[kostiakoval]:            https://github.com/kostiakoval
+[@kostiakoval]:    https://github.com/kostiakoval
 [Seru]:            https://github.com/kostiakoval/Seru
 
-[Performance]:     http://floriankugler.com/2013/04/29/concurrent-core-data-stack-performance-shootout/
-[HighPerformance]: https://developer.apple.com/videos/play/wwdc2013-211/
+[Concurrent Core Data Stacks]: http://floriankugler.com/2013/04/29/concurrent-core-data-stack-performance-shootout/
+[WWDC2013 Session 211]:        https://developer.apple.com/videos/play/wwdc2013-211/
+
+[NSManagedObjectContext]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext
+[NSPersistentContainer]:  https://developer.apple.com/documentation/CoreData/NSPersistentContainer
