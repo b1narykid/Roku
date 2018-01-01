@@ -1,6 +1,6 @@
 //===––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––===//
 //
-//  IndependentStackBase.swift
+//  StorageModelConvertible.swift
 //  Roku
 //
 // Copyright © 2016 Ivan Trubach
